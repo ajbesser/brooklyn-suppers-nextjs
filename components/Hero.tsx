@@ -222,6 +222,39 @@ export function Hero() {
           </div>
         </div>
 
+        {/* Scroll indicator */}
+        <div className="flex justify-center mt-14 md:mt-16">
+          <button
+            type="button"
+            onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
+            aria-label="Scroll to About section"
+            className="flex flex-col items-center gap-1 opacity-50 hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#d4c4ad]"
+            style={{ animation: "scrollBounce 2s ease-in-out infinite" }}
+          >
+            <span
+              style={{ fontFamily: "var(--font-newsreader)", color: "#4a3a2a" }}
+              className="text-[12px] tracking-widest uppercase"
+            >
+              scroll
+            </span>
+            <svg
+              width="16"
+              height="10"
+              viewBox="0 0 16 10"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M1 1l7 7 7-7"
+                stroke="#4a3a2a"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+
         {/* Mobile video */}
         <div className="md:hidden mt-10 rounded-[12px] overflow-hidden shadow-[0_20px_60px_-20px_rgba(42,31,22,0.3)] h-[260px]">
           <video

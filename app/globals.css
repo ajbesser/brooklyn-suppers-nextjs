@@ -22,6 +22,11 @@ html, body {
   scroll-behavior: smooth;
 }
 
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
 body {
   font-family: var(--font-serif), serif;
   color: var(--color-dark);

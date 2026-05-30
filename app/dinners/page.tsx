@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { Nav } from "@/components/Nav";
 import { menus } from "@/data/menus";
 
 export const metadata: Metadata = {
@@ -12,15 +13,9 @@ export const metadata: Metadata = {
 export default function DinnersPage() {
   return (
     <div style={{ background: "#faf6ee", minHeight: "100vh" }}>
+      <Nav />
       {/* Page header */}
       <div className="max-w-[960px] mx-auto px-6 pt-32 pb-16">
-        <Link
-          href="/"
-          style={{ fontFamily: "var(--font-newsreader)", color: "#574638" }}
-          className="text-[15px] hover:text-[#2a1f16] transition-colors inline-flex items-center gap-1 mb-12"
-        >
-          ← Brooklyn Suppers
-        </Link>
 
         <p
           style={{ fontFamily: "var(--font-kalam)", color: "#a04e33" }}

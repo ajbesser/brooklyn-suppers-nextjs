@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const navLinks = [
   { label: "About", id: "about" },
@@ -9,6 +11,9 @@ const navLinks = [
 ];
 
 export function Nav() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -19,8 +24,9 @@ export function Nav() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Active section tracking
+  // Active section tracking — only on home page
   useEffect(() => {
+    if (!isHome) return;
     const sectionIds = [...navLinks.map((l) => l.id), "save-a-seat"];
     const observers: IntersectionObserver[] = [];
 
@@ -38,7 +44,7 @@ export function Nav() {
     });
 
     return () => observers.forEach((o) => o.disconnect());
-  }, []);
+  }, [isHome]);
 
   // Close menu on scroll
   useEffect(() => {
@@ -47,158 +53,179 @@ export function Nav() {
 
   const scrollTo = (id: string) => {
     setMenuOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    if (isHome) {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.href = `/#${id}`;
+    }
   };
 
   const scrollToTop = () => {
     setMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (isHome) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      window.location.href = "/";
+    }
   };
 
   return (
-    <>
-      <header
-        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-        style={{
-          background:
-            menuOpen || scrolled ? "rgba(250,246,238,0.97)" : "transparent",
-          backdropFilter: menuOpen || scrolled ? "blur(8px)" : "none",
-          borderBottom:
-            menuOpen || scrolled
-              ? "1px solid rgba(42,31,22,0.08)"
-              : "1px solid transparent",
-        }}
-      >
-        <div className="max-w-[960px] mx-auto px-6 h-14 flex items-center justify-between">
+    <header
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={{
+        background:
+          menuOpen || scrolled ? "rgba(250,246,238,0.97)" : "transparent",
+        backdropFilter: menuOpen || scrolled ? "blur(8px)" : "none",
+        borderBottom:
+          menuOpen || scrolled
+            ? "1px solid rgba(42,31,22,0.08)"
+            : "1px solid transparent",
+      }}
+    >
+      <div className="max-w-[960px] mx-auto px-6 h-14 flex items-center justify-between">
+        <button
+          type="button"
+          onClick={scrollToTop}
+          style={{ fontFamily: "var(--font-newsreader)", color: "#2a1f16" }}
+          className="text-[18px] font-normal tracking-tight rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
+        >
+          Brooklyn Suppers
+        </button>
+
+        {/* Desktop nav */}
+        <nav aria-label="Main navigation" className="hidden md:flex items-center gap-8">
+          {navLinks.map(({ label, id }) => (
+            <button
+              type="button"
+              key={id}
+              onClick={() => scrollTo(id)}
+              style={{
+                fontFamily: "var(--font-newsreader)",
+                color: isHome && activeSection === id ? "#2a1f16" : "#574638",
+              }}
+              className="text-[16px] font-normal hover:text-[#2a1f16] transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
+            >
+              {label}
+            </button>
+          ))}
+          <Link
+            href="/dinners"
+            style={{ fontFamily: "var(--font-newsreader)", color: "#574638" }}
+            className="text-[16px] font-normal hover:text-[#2a1f16] transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
+          >
+            Past dinners
+          </Link>
           <button
             type="button"
-            onClick={scrollToTop}
-            style={{ fontFamily: "var(--font-newsreader)", color: "#2a1f16" }}
-            className="text-[18px] font-normal tracking-tight rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
+            onClick={() => scrollTo("save-a-seat")}
+            style={{
+              fontFamily: "var(--font-newsreader)",
+              background: "#2a1f16",
+              color: "#f4eee2",
+            }}
+            className="text-[16px] font-normal px-5 py-2 rounded-full hover:opacity-90 transition-opacity italic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
           >
-            Brooklyn Suppers
+            Hear first →
+          </button>
+        </nav>
+
+        {/* Mobile controls */}
+        <div className="md:hidden flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => scrollTo("save-a-seat")}
+            style={{
+              fontFamily: "var(--font-newsreader)",
+              background: "#2a1f16",
+              color: "#f4eee2",
+            }}
+            className="text-[15px] font-normal px-4 py-2 rounded-full italic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
+          >
+            Hear first →
           </button>
 
-          {/* Desktop nav */}
-          <nav aria-label="Main navigation" className="hidden md:flex items-center gap-8">
-            {navLinks.map(({ label, id }) => (
-              <button
-                type="button"
-                key={id}
-                onClick={() => scrollTo(id)}
-                style={{
-                  fontFamily: "var(--font-newsreader)",
-                  color: activeSection === id ? "#2a1f16" : "#574638",
-                }}
-                className="text-[16px] font-normal hover:text-[#2a1f16] transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
-              >
-                {label}
-              </button>
-            ))}
-            <button
-              type="button"
-              onClick={() => scrollTo("save-a-seat")}
-              style={{
-                fontFamily: "var(--font-newsreader)",
-                background: "#2a1f16",
-                color: "#f4eee2",
-              }}
-              className="text-[16px] font-normal px-5 py-2 rounded-full hover:opacity-90 transition-opacity italic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
-            >
-              Hear first →
-            </button>
-          </nav>
-
-          {/* Mobile controls */}
-          <div className="md:hidden flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => scrollTo("save-a-seat")}
-              style={{
-                fontFamily: "var(--font-newsreader)",
-                background: "#2a1f16",
-                color: "#f4eee2",
-              }}
-              className="text-[15px] font-normal px-4 py-2 rounded-full italic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
-            >
-              Hear first →
-            </button>
-
-            {/* Hamburger */}
-            <button
-              type="button"
-              onClick={() => setMenuOpen((o) => !o)}
-              aria-expanded={menuOpen}
-              aria-label={menuOpen ? "Close menu" : "Open menu"}
-              className="w-9 h-9 flex flex-col items-center justify-center gap-[5px] rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf6ee]"
-            >
-              <span
-                className="block h-px w-5 transition-all duration-200"
-                style={{
-                  background: "#2a1f16",
-                  transform: menuOpen ? "translateY(6px) rotate(45deg)" : "none",
-                }}
-              />
-              <span
-                className="block h-px w-5 transition-all duration-200"
-                style={{
-                  background: "#2a1f16",
-                  opacity: menuOpen ? 0 : 1,
-                }}
-              />
-              <span
-                className="block h-px w-5 transition-all duration-200"
-                style={{
-                  background: "#2a1f16",
-                  transform: menuOpen ? "translateY(-6px) rotate(-45deg)" : "none",
-                }}
-              />
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile dropdown */}
-        <div
-          className="md:hidden overflow-hidden transition-all duration-300"
-          style={{
-            maxHeight: menuOpen ? "320px" : "0",
-            borderTop: menuOpen ? "1px solid rgba(42,31,22,0.08)" : "none",
-          }}
-        >
-          <nav
-            aria-label="Mobile navigation"
-            className="flex flex-col px-6 py-4"
+          {/* Hamburger */}
+          <button
+            type="button"
+            onClick={() => setMenuOpen((o) => !o)}
+            aria-expanded={menuOpen}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            className="w-9 h-9 flex flex-col items-center justify-center gap-[5px] rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf6ee]"
           >
-            {navLinks.map(({ label, id }, i) => (
-              <button
-                type="button"
-                key={id}
-                onClick={() => scrollTo(id)}
-                style={{
-                  fontFamily: "var(--font-newsreader)",
-                  color: activeSection === id ? "#2a1f16" : "#574638",
-                }}
-                className={`text-left text-[20px] py-3 font-normal hover:text-[#2a1f16] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] ${
-                  i < navLinks.length - 1 ? "border-b border-[rgba(42,31,22,0.08)]" : ""
-                }`}
-              >
-                {label}
-              </button>
-            ))}
+            <span
+              className="block h-px w-5 transition-all duration-200"
+              style={{
+                background: "#2a1f16",
+                transform: menuOpen ? "translateY(6px) rotate(45deg)" : "none",
+              }}
+            />
+            <span
+              className="block h-px w-5 transition-all duration-200"
+              style={{
+                background: "#2a1f16",
+                opacity: menuOpen ? 0 : 1,
+              }}
+            />
+            <span
+              className="block h-px w-5 transition-all duration-200"
+              style={{
+                background: "#2a1f16",
+                transform: menuOpen ? "translateY(-6px) rotate(-45deg)" : "none",
+              }}
+            />
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile dropdown */}
+      <div
+        className="md:hidden overflow-hidden transition-all duration-300"
+        style={{
+          maxHeight: menuOpen ? "380px" : "0",
+          borderTop: menuOpen ? "1px solid rgba(42,31,22,0.08)" : "none",
+        }}
+      >
+        <nav
+          aria-label="Mobile navigation"
+          className="flex flex-col px-6 py-4"
+        >
+          {navLinks.map(({ label, id }, i) => (
             <button
               type="button"
-              onClick={() => scrollTo("save-a-seat")}
+              key={id}
+              onClick={() => scrollTo(id)}
               style={{
                 fontFamily: "var(--font-newsreader)",
-                color: "#a04e33",
+                color: isHome && activeSection === id ? "#2a1f16" : "#574638",
               }}
-              className="text-left text-[20px] py-3 font-normal italic hover:opacity-80 transition-opacity border-t border-[rgba(42,31,22,0.08)] mt-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
+              className={`text-left text-[20px] py-3 font-normal hover:text-[#2a1f16] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] ${
+                i < navLinks.length - 1 ? "border-b border-[rgba(42,31,22,0.08)]" : ""
+              }`}
             >
-              Hear first about the next supper →
+              {label}
             </button>
-          </nav>
-        </div>
-      </header>
-    </>
+          ))}
+          <Link
+            href="/dinners"
+            onClick={() => setMenuOpen(false)}
+            style={{ fontFamily: "var(--font-newsreader)", color: "#574638" }}
+            className="text-left text-[20px] py-3 font-normal hover:text-[#2a1f16] transition-colors border-b border-[rgba(42,31,22,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
+          >
+            Past dinners
+          </Link>
+          <button
+            type="button"
+            onClick={() => scrollTo("save-a-seat")}
+            style={{
+              fontFamily: "var(--font-newsreader)",
+              color: "#a04e33",
+            }}
+            className="text-left text-[20px] py-3 font-normal italic hover:opacity-80 transition-opacity border-t border-[rgba(42,31,22,0.08)] mt-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
+          >
+            Hear first about the next supper →
+          </button>
+        </nav>
+      </div>
+    </header>
   );
 }
