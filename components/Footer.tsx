@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { BackToTop } from "@/components/BackToTop";
+
 export function Footer() {
   return (
     <footer
@@ -14,10 +17,17 @@ export function Footer() {
           </p>
           <p
             style={{ fontFamily: "var(--font-newsreader)", color: "#574638", fontStyle: "italic" }}
-            className="text-[15px] mb-1"
+            className="text-[15px] mb-3"
           >
             A long dinner, once a month, in Brooklyn.
           </p>
+          <Link
+            href="/dinners"
+            style={{ fontFamily: "var(--font-newsreader)", color: "#574638" }}
+            className="text-[14px] hover:text-[#2a1f16] transition-colors"
+          >
+            Past dinners →
+          </Link>
         </div>
 
         <nav aria-label="Footer" style={{ fontFamily: "var(--font-newsreader)", color: "#574638" }} className="text-[15px] md:text-right">
@@ -41,9 +51,12 @@ export function Footer() {
               </a>
             </li>
           </ul>
-          <p style={{ color: "#6f5f51" }} className="text-[13px] pt-2">
-            © 2026
-          </p>
+          <div className="flex items-center gap-4 pt-3 md:justify-end">
+            <p style={{ color: "#6f5f51" }} className="text-[13px]">
+              © 2026
+            </p>
+            <BackToTop />
+          </div>
         </nav>
       </div>
     </footer>

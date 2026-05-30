@@ -1,5 +1,7 @@
 export interface Menu {
   month: string;
+  year: number;
+  date?: string; // e.g. "May 17, 2026" — used on the archive page
   theme: string;
   wines: string;
   note: string;
@@ -8,11 +10,13 @@ export interface Menu {
   photo?: string;
 }
 
-// Most recent first — the Menus component renders the first two entries.
-// To add a new dinner: prepend a new object and update the photo path.
+// Most recent first — the homepage Menus component renders the first two entries.
+// To add a new dinner: prepend a new object here (and copy the photo to public/images/).
 export const menus: Menu[] = [
   {
     month: "May",
+    year: 2026,
+    date: "May 17, 2026",
     theme: "A spring table",
     wines: "with paired wines",
     note: "Built around what was best at the market and what made sense for the guests at the table.",
@@ -30,6 +34,8 @@ export const menus: Menu[] = [
   },
   {
     month: "April",
+    year: 2026,
+    date: "April 12, 2026",
     theme: "A late spring dinner",
     wines: "with paired wines",
     note: "A slow, generous menu with a few things to start, a shared main course, sides, and dessert.",

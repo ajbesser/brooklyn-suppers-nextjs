@@ -51,14 +51,15 @@ export function About() {
           {/* Right: photo + caption */}
           <div className="flex flex-col gap-4">
             <div
-              className="relative rounded-[3px] overflow-hidden shadow-[0_20px_60px_-20px_rgba(42,31,22,0.28)]"
+              className="group relative rounded-[3px] overflow-hidden shadow-[0_20px_60px_-20px_rgba(42,31,22,0.28)]"
               style={{ height: "400px" }}
             >
               <Image
                 src="/images/about.png"
                 alt="A warm dinner gathering in Bed-Stuy"
                 fill
-                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
             </div>

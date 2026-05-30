@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Newsreader, Kalam } from "next/font/google";
 import { JsonLd } from "@/components/JsonLd";
+import { DinnerBanner } from "@/components/DinnerBanner";
 import "./globals.css";
 
 const newsreader = Newsreader({
@@ -83,6 +84,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <JsonLd />
+        <DinnerBanner />
         {children}
       </body>
     </html>
