@@ -5,6 +5,7 @@ import Image from "next/image";
 import { heroStats } from "@/data/stats";
 
 export function Hero() {
+  const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -130,7 +131,7 @@ export function Hero() {
                   action="https://instagram.us9.list-manage.com/subscribe/post?u=2dc474f2d0acdfb6984a19dec&id=bfc2de2d8a&f_id=0055eee1f0"
                   method="post"
                   aria-label="Join the mailing list"
-                  className="flex gap-2 flex-wrap sm:flex-nowrap"
+                  className="flex flex-col gap-2"
                 >
                   {/* Honeypot field for bot protection */}
                   <input
@@ -143,15 +144,15 @@ export function Hero() {
                     aria-hidden="true"
                   />
                   <input
-                    type="email"
-                    aria-label="Email address"
-                    autoComplete="email"
-                    name="EMAIL"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="your@email.com"
+                    type="text"
+                    aria-label="First name"
+                    autoComplete="given-name"
+                    name="FNAME"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    placeholder="First name"
                     required
-                    className="flex-1 min-w-0 px-4 py-3 rounded-full text-[16px] outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-2 focus-visible:ring-offset-[#d4c4ad]"
+                    className="w-full px-4 py-3 rounded-full text-[16px] outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-2 focus-visible:ring-offset-[#d4c4ad]"
                     style={{
                       fontFamily: "var(--font-newsreader)",
                       background: "rgba(250,246,238,0.6)",
@@ -159,18 +160,37 @@ export function Hero() {
                       color: "#2a1f16",
                     }}
                   />
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="shrink-0 px-6 py-3 rounded-full text-[16px] transition-all hover:opacity-90 hover:scale-[1.02] disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-2 focus-visible:ring-offset-[#d4c4ad]"
-                    style={{
-                      fontFamily: "var(--font-newsreader)",
-                      background: "#2a1f16",
-                      color: "#f4eee2",
-                    }}
-                  >
-                    {isSubmitting ? "Joining..." : "Hear first →"}
-                  </button>
+                  <div className="flex gap-2 flex-wrap sm:flex-nowrap">
+                    <input
+                      type="email"
+                      aria-label="Email address"
+                      autoComplete="email"
+                      name="EMAIL"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="your@email.com"
+                      required
+                      className="flex-1 min-w-0 px-4 py-3 rounded-full text-[16px] outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-2 focus-visible:ring-offset-[#d4c4ad]"
+                      style={{
+                        fontFamily: "var(--font-newsreader)",
+                        background: "rgba(250,246,238,0.6)",
+                        border: "1px solid rgba(42,31,22,0.2)",
+                        color: "#2a1f16",
+                      }}
+                    />
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="shrink-0 px-6 py-3 rounded-full text-[16px] transition-all hover:opacity-90 hover:scale-[1.02] disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-2 focus-visible:ring-offset-[#d4c4ad]"
+                      style={{
+                        fontFamily: "var(--font-newsreader)",
+                        background: "#2a1f16",
+                        color: "#f4eee2",
+                      }}
+                    >
+                      {isSubmitting ? "Joining..." : "Hear first →"}
+                    </button>
+                  </div>
                 </form>
               )}
               <p
