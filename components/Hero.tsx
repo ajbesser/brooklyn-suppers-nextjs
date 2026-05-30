@@ -5,30 +5,37 @@ import Image from "next/image";
 import { heroStats } from "@/data/stats";
 
 export function Hero() {
-  const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [dietary, setDietary] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const openModal = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
+    setShowModal(true);
+  };
 
-    // Submit to Mailchimp
-    const form = e.target as HTMLFormElement;
+  const submitToMailchimp = async () => {
     setIsSubmitting(true);
+    const data = new FormData();
+    data.append("EMAIL", email);
+    data.append("FNAME", firstName);
+    data.append("LNAME", lastName);
+    data.append("MMERGE11", dietary);
+    data.append("b_2dc474f2d0acdfb6984a19dec_bfc2de2d8a", ""); // honeypot
     try {
-      await fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-        mode: "no-cors", // Mailchimp doesn't support CORS, but submission still works
-      });
-      setSubmitted(true);
-    } catch {
-      // Even if fetch fails due to CORS, the form still submits successfully
-      setSubmitted(true);
+      await fetch(
+        "https://instagram.us9.list-manage.com/subscribe/post?u=2dc474f2d0acdfb6984a19dec&id=bfc2de2d8a&f_id=0055eee1f0",
+        { method: "POST", body: data, mode: "no-cors" }
+      );
     } finally {
       setIsSubmitting(false);
+      setShowModal(false);
+      setSubmitted(true);
     }
   };
 
@@ -126,33 +133,22 @@ export function Hero() {
                   set. ✦
                 </p>
               ) : (
+                <>
                 <form
-                  onSubmit={handleSubmit}
-                  action="https://instagram.us9.list-manage.com/subscribe/post?u=2dc474f2d0acdfb6984a19dec&id=bfc2de2d8a&f_id=0055eee1f0"
-                  method="post"
+                  onSubmit={openModal}
                   aria-label="Join the mailing list"
-                  className="flex flex-col gap-2"
+                  className="flex gap-2 flex-wrap sm:flex-nowrap"
                 >
-                  {/* Honeypot field for bot protection */}
                   <input
-                    type="text"
-                    name="b_2dc474f2d0acdfb6984a19dec_bfc2de2d8a"
-                    tabIndex={-1}
-                    value=""
-                    onChange={() => {}}
-                    style={{ position: "absolute", left: "-5000px" }}
-                    aria-hidden="true"
-                  />
-                  <input
-                    type="text"
-                    aria-label="First name"
-                    autoComplete="given-name"
-                    name="FNAME"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    placeholder="First name"
+                    type="email"
+                    aria-label="Email address"
+                    autoComplete="email"
+                    name="EMAIL"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="your@email.com"
                     required
-                    className="w-full px-4 py-3 rounded-full text-[16px] outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-2 focus-visible:ring-offset-[#d4c4ad]"
+                    className="flex-1 min-w-0 px-4 py-3 rounded-full text-[16px] outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-2 focus-visible:ring-offset-[#d4c4ad]"
                     style={{
                       fontFamily: "var(--font-newsreader)",
                       background: "rgba(250,246,238,0.6)",
@@ -160,38 +156,123 @@ export function Hero() {
                       color: "#2a1f16",
                     }}
                   />
-                  <div className="flex gap-2 flex-wrap sm:flex-nowrap">
-                    <input
-                      type="email"
-                      aria-label="Email address"
-                      autoComplete="email"
-                      name="EMAIL"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="your@email.com"
-                      required
-                      className="flex-1 min-w-0 px-4 py-3 rounded-full text-[16px] outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-2 focus-visible:ring-offset-[#d4c4ad]"
-                      style={{
-                        fontFamily: "var(--font-newsreader)",
-                        background: "rgba(250,246,238,0.6)",
-                        border: "1px solid rgba(42,31,22,0.2)",
-                        color: "#2a1f16",
-                      }}
-                    />
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="shrink-0 px-6 py-3 rounded-full text-[16px] transition-all hover:opacity-90 hover:scale-[1.02] disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-2 focus-visible:ring-offset-[#d4c4ad]"
-                      style={{
-                        fontFamily: "var(--font-newsreader)",
-                        background: "#2a1f16",
-                        color: "#f4eee2",
-                      }}
-                    >
-                      {isSubmitting ? "Joining..." : "Hear first →"}
-                    </button>
-                  </div>
+                  <button
+                    type="submit"
+                    className="shrink-0 px-6 py-3 rounded-full text-[16px] transition-all hover:opacity-90 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-2 focus-visible:ring-offset-[#d4c4ad]"
+                    style={{
+                      fontFamily: "var(--font-newsreader)",
+                      background: "#2a1f16",
+                      color: "#f4eee2",
+                    }}
+                  >
+                    Hear first →
+                  </button>
                 </form>
+
+                {/* Optional-details modal */}
+                {showModal && (
+                  <div
+                    className="fixed inset-0 z-50 flex items-center justify-center px-4"
+                    style={{ background: "rgba(42,31,22,0.5)", backdropFilter: "blur(4px)" }}
+                    onClick={(e) => { if (e.target === e.currentTarget) setShowModal(false); }}
+                  >
+                    <div
+                      className="w-full max-w-[420px] rounded-[20px] p-8 shadow-2xl"
+                      style={{ background: "#faf6ee" }}
+                    >
+                      <p
+                        style={{ fontFamily: "var(--font-kalam)", color: "#a04e33" }}
+                        className="text-[18px] mb-1"
+                      >
+                        one more thing —
+                      </p>
+                      <h2
+                        style={{ fontFamily: "var(--font-newsreader)", color: "#2a1f16", letterSpacing: "-0.5px" }}
+                        className="text-[26px] font-normal mb-2"
+                      >
+                        A couple quick details
+                      </h2>
+                      <p
+                        style={{ fontFamily: "var(--font-newsreader)", color: "#6f5f51", lineHeight: "1.6" }}
+                        className="text-[15px] mb-6"
+                      >
+                        All optional — helps us plan the table.
+                      </p>
+
+                      <div className="flex flex-col gap-3">
+                        <div className="flex gap-2">
+                          <input
+                            type="text"
+                            aria-label="First name"
+                            autoComplete="given-name"
+                            placeholder="First name"
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            className="flex-1 min-w-0 px-4 py-3 rounded-full text-[15px] outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
+                            style={{
+                              fontFamily: "var(--font-newsreader)",
+                              background: "#f0e8d8",
+                              border: "1px solid rgba(42,31,22,0.15)",
+                              color: "#2a1f16",
+                            }}
+                          />
+                          <input
+                            type="text"
+                            aria-label="Last name"
+                            autoComplete="family-name"
+                            placeholder="Last name"
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                            className="flex-1 min-w-0 px-4 py-3 rounded-full text-[15px] outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
+                            style={{
+                              fontFamily: "var(--font-newsreader)",
+                              background: "#f0e8d8",
+                              border: "1px solid rgba(42,31,22,0.15)",
+                              color: "#2a1f16",
+                            }}
+                          />
+                        </div>
+                        <textarea
+                          aria-label="Dietary restrictions"
+                          placeholder="Any dietary restrictions? (optional)"
+                          value={dietary}
+                          onChange={(e) => setDietary(e.target.value)}
+                          rows={3}
+                          className="w-full px-4 py-3 rounded-[14px] text-[15px] outline-none resize-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
+                          style={{
+                            fontFamily: "var(--font-newsreader)",
+                            background: "#f0e8d8",
+                            border: "1px solid rgba(42,31,22,0.15)",
+                            color: "#2a1f16",
+                          }}
+                        />
+                        <button
+                          type="button"
+                          onClick={submitToMailchimp}
+                          disabled={isSubmitting}
+                          className="w-full py-3 rounded-full text-[16px] transition-all hover:opacity-90 disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
+                          style={{
+                            fontFamily: "var(--font-newsreader)",
+                            background: "#2a1f16",
+                            color: "#f4eee2",
+                          }}
+                        >
+                          {isSubmitting ? "Joining..." : "Join the list →"}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={submitToMailchimp}
+                          disabled={isSubmitting}
+                          className="text-[14px] underline underline-offset-2 transition-opacity hover:opacity-70 disabled:opacity-40"
+                          style={{ fontFamily: "var(--font-newsreader)", color: "#6f5f51" }}
+                        >
+                          Skip and just use my email
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                </>
               )}
               <p
                 style={{
