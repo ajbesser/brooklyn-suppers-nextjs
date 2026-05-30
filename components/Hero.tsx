@@ -31,7 +31,13 @@ export function Hero() {
   };
 
   return (
-    <section className="pt-28 pb-20 px-6" style={{ background: "#d4c4ad" }}>
+    <section
+      className="pt-28 pb-20 px-6"
+      style={{
+        background:
+          "radial-gradient(ellipse 80% 60% at 70% 40%, rgba(160,78,51,0.07) 0%, transparent 70%), #d4c4ad",
+      }}
+    >
       <div className="max-w-[960px] mx-auto">
         {/* Two-column layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
