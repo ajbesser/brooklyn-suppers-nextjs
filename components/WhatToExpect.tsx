@@ -53,8 +53,8 @@ export function WhatToExpect() {
             </h2>
 
             <div className="space-y-8">
-              {items.map(({ bold, rest }, i) => (
-                <div key={i} className="flex gap-5 items-start">
+              {items.map(({ bold, rest }) => (
+                <div key={bold} className="flex gap-5 items-start">
                   <span
                     style={{ fontFamily: "var(--font-kalam)", color: "#a04e33", lineHeight: "1.6" }}
                     className="text-[24px] shrink-0 mt-0.5"
@@ -65,7 +65,7 @@ export function WhatToExpect() {
                     style={{ fontFamily: "var(--font-newsreader)", lineHeight: "1.65" }}
                     className="text-[18px]"
                   >
-                    <strong style={{ color: "#2a1f16", fontWeight: 400 }}>{bold}</strong>
+                    <span style={{ color: "#2a1f16" }}>{bold}</span>
                     <span style={{ color: "#574638" }}>{rest}</span>
                   </p>
                 </div>

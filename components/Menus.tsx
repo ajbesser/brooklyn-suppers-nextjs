@@ -44,7 +44,7 @@ function MenuCard({
 }) {
   return (
     <div
-      className="rounded-[12px] overflow-hidden transition-all duration-300 hover:-translate-y-3 hover:scale-[1.03] hover:rotate-[0deg]"
+      className="rounded-[12px] overflow-hidden transition-all duration-300 hover:-translate-y-3 hover:scale-[1.03]"
       style={{
         background: "rgba(235,226,208,0.55)",
         boxShadow: "0 20px 60px -24px rgba(42,31,22,0.3)",
@@ -56,6 +56,7 @@ function MenuCard({
             src={photo}
             alt="A recent Brooklyn Suppers menu"
             fill
+            sizes="(max-width: 768px) 100vw, 45vw"
             className="object-cover transition-transform duration-300 hover:scale-105"
             loading="lazy"
           />
@@ -108,8 +109,8 @@ function MenuCard({
 
         {/* Course list */}
         <ul className="space-y-3">
-          {menu.courses.map((course, i) => (
-            <li key={i} className="flex gap-3 items-start">
+          {menu.courses.map((course) => (
+            <li key={course} className="flex gap-3 items-start">
               <span
                 style={{ fontFamily: "var(--font-newsreader)", color: "#6f5f51" }}
                 className="text-[15px] shrink-0 mt-0.5"
