@@ -18,6 +18,7 @@ const kalam = Kalam({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://brooklynsuppers.com"),
   title: "Brooklyn Suppers — A Monthly Table in Bed-Stuy",
   description:
     "Eight seats, one table, seasonal menus. A monthly dinner for people who eat with intention. Bed-Stuy, Brooklyn.",
