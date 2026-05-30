@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Newsreader, Kalam } from "next/font/google";
+import { JsonLd } from "@/components/JsonLd";
 import "./globals.css";
 
 const newsreader = Newsreader({
@@ -22,17 +23,36 @@ export const metadata: Metadata = {
   title: "Brooklyn Suppers — A Monthly Table in Bed-Stuy",
   description:
     "Eight seats, one table, seasonal menus. A monthly dinner for people who eat with intention. Bed-Stuy, Brooklyn.",
+  keywords: [
+    "Brooklyn dinner club",
+    "supper club Brooklyn",
+    "Bed-Stuy dinner",
+    "seasonal tasting menu",
+    "private dining Brooklyn",
+    "monthly dinner NYC",
+  ],
+  robots: { index: true, follow: true },
   openGraph: {
     title: "Brooklyn Suppers — A Monthly Table in Bed-Stuy",
     description:
       "Eight seats, one table, seasonal menus. A monthly dinner for people who eat with intention.",
     url: "https://brooklynsuppers.com",
     siteName: "Brooklyn Suppers",
-    images: [{ url: "/og-image.jpg" }],
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Brooklyn Suppers — a long dinner in Bed-Stuy",
+      },
+    ],
     type: "website",
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
+    site: "@brooklynsuppers",
+    creator: "@brooklynsuppers",
     title: "Brooklyn Suppers — A Monthly Table in Bed-Stuy",
     description:
       "Eight seats, one table, seasonal menus. A monthly dinner for people who eat with intention.",
@@ -58,6 +78,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <JsonLd />
         {children}
       </body>
     </html>
