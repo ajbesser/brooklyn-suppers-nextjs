@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Newsreader, Kalam } from "next/font/google";
 import { JsonLd } from "@/components/JsonLd";
 import "./globals.css";
@@ -17,6 +17,10 @@ const kalam = Kalam({
   weight: ["400"],
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  themeColor: "#faf6ee",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://brooklynsuppers.com"),

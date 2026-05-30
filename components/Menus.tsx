@@ -1,47 +1,7 @@
 import Image from "next/image";
+import { menus, type Menu } from "@/data/menus";
 
-const mayMenu = {
-  month: "May",
-  theme: "A spring table",
-  wines: "with paired wines",
-  note: "Built around what was best at the market and what made sense for the guests at the table.",
-  caption: "dessert, just before",
-  courses: [
-    "Mussels escabeche",
-    "Patatas fritas con jamón ibérico y piparras",
-    "Paella mixta",
-    "Roasted young potatoes with ramp aioli",
-    "Fava beans with snap peas, mint, and pecorino",
-    "Broccoli rabe",
-    "Basque cheesecake with kumquat honey",
-  ],
-};
-
-const aprilMenu = {
-  month: "April",
-  theme: "A late spring dinner",
-  wines: "with paired wines",
-  note: "A slow, generous menu with a few things to start, a shared main course, sides, and dessert.",
-  caption: "from the table",
-  courses: [
-    "Pimento cheese and crackers",
-    "Fennel pickled shrimp",
-    "Pickled spring vegetables",
-    "Fried chicken with honey-fermented kumquats and hot honey",
-    "Collard greens",
-    "Skillet cornbread",
-    "Mac and cheese",
-    "Strawberry rhubarb pavlova",
-  ],
-};
-
-function MenuCard({
-  menu,
-  photo,
-}: {
-  menu: typeof mayMenu;
-  photo?: string;
-}) {
+function MenuCard({ menu }: { menu: Menu }) {
   return (
     <div
       className="rounded-[12px] overflow-hidden transition-all duration-300 hover:-translate-y-3 hover:scale-[1.03]"
@@ -50,10 +10,10 @@ function MenuCard({
         boxShadow: "0 20px 60px -24px rgba(42,31,22,0.3)",
       }}
     >
-      {photo && (
+      {menu.photo && (
         <div className="relative h-[240px] overflow-hidden">
           <Image
-            src={photo}
+            src={menu.photo}
             alt="A recent Brooklyn Suppers menu"
             fill
             sizes="(max-width: 768px) 100vw, 45vw"
@@ -108,12 +68,13 @@ function MenuCard({
         />
 
         {/* Course list */}
-        <ul className="space-y-3">
+        <ul className="space-y-3 list-none">
           {menu.courses.map((course) => (
             <li key={course} className="flex gap-3 items-start">
               <span
                 style={{ fontFamily: "var(--font-newsreader)", color: "#6f5f51" }}
                 className="text-[15px] shrink-0 mt-0.5"
+                aria-hidden="true"
               >
                 —
               </span>
@@ -139,6 +100,8 @@ function MenuCard({
 }
 
 export function Menus() {
+  const [recent, older] = menus;
+
   return (
     <section id="menus" className="py-24 px-6" style={{ background: "#f4eee2" }}>
       <div className="max-w-[960px] mx-auto">
@@ -174,10 +137,10 @@ export function Menus() {
         <div className="relative">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             <div className="md:translate-y-8 md:rotate-[-2deg]">
-              <MenuCard menu={mayMenu} photo="/images/menu-may.jpg" />
+              <MenuCard menu={recent} />
             </div>
             <div className="md:-translate-y-8 md:rotate-[1.5deg]">
-              <MenuCard menu={aprilMenu} />
+              <MenuCard menu={older} />
             </div>
           </div>
         </div>

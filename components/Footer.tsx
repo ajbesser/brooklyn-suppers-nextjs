@@ -20,7 +20,7 @@ export function Footer() {
           </p>
         </div>
 
-        <nav aria-label="Footer" style={{ fontFamily: "var(--font-newsreader)", color: "#574638" }} className="text-[15px] text-right">
+        <nav aria-label="Footer" style={{ fontFamily: "var(--font-newsreader)", color: "#574638" }} className="text-[15px] md:text-right">
           <ul className="space-y-1.5 list-none">
             <li>
               <a

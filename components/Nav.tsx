@@ -11,11 +11,33 @@ const navLinks = [
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Active section tracking
+  useEffect(() => {
+    const sectionIds = [...navLinks.map((l) => l.id), "save-a-seat"];
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id);
+        },
+        { rootMargin: "-40% 0px -55% 0px" }
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
   }, []);
 
   // Close menu on scroll
@@ -64,7 +86,10 @@ export function Nav() {
                 type="button"
                 key={id}
                 onClick={() => scrollTo(id)}
-                style={{ fontFamily: "var(--font-newsreader)", color: "#574638" }}
+                style={{
+                  fontFamily: "var(--font-newsreader)",
+                  color: activeSection === id ? "#2a1f16" : "#574638",
+                }}
                 className="text-[16px] font-normal hover:text-[#2a1f16] transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
               >
                 {label}
@@ -142,15 +167,20 @@ export function Nav() {
         >
           <nav
             aria-label="Mobile navigation"
-            className="flex flex-col px-6 py-6 gap-1"
+            className="flex flex-col px-6 py-4"
           >
-            {navLinks.map(({ label, id }) => (
+            {navLinks.map(({ label, id }, i) => (
               <button
                 type="button"
                 key={id}
                 onClick={() => scrollTo(id)}
-                style={{ fontFamily: "var(--font-newsreader)", color: "#574638" }}
-                className="text-left text-[20px] py-3 font-normal hover:text-[#2a1f16] transition-colors border-b focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
+                style={{
+                  fontFamily: "var(--font-newsreader)",
+                  color: activeSection === id ? "#2a1f16" : "#574638",
+                }}
+                className={`text-left text-[20px] py-3 font-normal hover:text-[#2a1f16] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] ${
+                  i < navLinks.length - 1 ? "border-b border-[rgba(42,31,22,0.08)]" : ""
+                }`}
               >
                 {label}
               </button>
@@ -162,7 +192,7 @@ export function Nav() {
                 fontFamily: "var(--font-newsreader)",
                 color: "#a04e33",
               }}
-              className="text-left text-[20px] py-3 font-normal italic hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
+              className="text-left text-[20px] py-3 font-normal italic hover:opacity-80 transition-opacity border-t border-[rgba(42,31,22,0.08)] mt-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
             >
               Hear first about the next supper →
             </button>
