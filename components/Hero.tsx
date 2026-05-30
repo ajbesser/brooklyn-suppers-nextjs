@@ -125,6 +125,7 @@ export function Hero() {
                   onSubmit={handleSubmit}
                   action="https://instagram.us9.list-manage.com/subscribe/post?u=2dc474f2d0acdfb6984a19dec&id=bfc2de2d8a&f_id=0055eee1f0"
                   method="post"
+                  aria-label="Join the mailing list"
                   className="flex gap-2 flex-wrap sm:flex-nowrap"
                 >
                   {/* Honeypot field for bot protection */}
@@ -191,6 +192,7 @@ export function Hero() {
                 loop
                 muted
                 playsInline
+                preload="none"
                 poster="/hero-poster.jpg"
                 className="w-full h-full object-cover"
                 aria-label="Video of guests around the table at a Brooklyn Supper"
@@ -214,7 +216,7 @@ export function Hero() {
                 alt="A dish from the table"
                 fill
                 className="object-cover"
-                loading="lazy"
+                priority
               />
             </div>
           </div>
@@ -227,6 +229,7 @@ export function Hero() {
             loop
             muted
             playsInline
+            preload="none"
             poster="/hero-poster.jpg"
             className="w-full h-full object-cover"
             aria-label="Video of guests around the table at a Brooklyn Supper"

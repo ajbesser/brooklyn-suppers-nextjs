@@ -52,12 +52,13 @@ export function WhatToExpect() {
               <em style={{ color: "#574638" }}>mostly.</em>
             </h2>
 
-            <div className="space-y-8">
+            <ul className="space-y-8 list-none">
               {items.map(({ bold, rest }) => (
-                <div key={bold} className="flex gap-5 items-start">
+                <li key={bold} className="flex gap-5 items-start">
                   <span
                     style={{ fontFamily: "var(--font-kalam)", color: "#a04e33", lineHeight: "1.6" }}
                     className="text-[24px] shrink-0 mt-0.5"
+                    aria-hidden="true"
                   >
                     ~
                   </span>
@@ -68,9 +69,9 @@ export function WhatToExpect() {
                     <span style={{ color: "#2a1f16" }}>{bold}</span>
                     <span style={{ color: "#574638" }}>{rest}</span>
                   </p>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
           {/* Left side: decorative quote */}

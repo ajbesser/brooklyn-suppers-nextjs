@@ -34,7 +34,7 @@ export function Nav() {
           Brooklyn Suppers
         </button>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav aria-label="Main navigation" className="hidden md:flex items-center gap-8">
           {[
             { label: "About", id: "about" },
             { label: "Expect", id: "expect" },

@@ -20,32 +20,31 @@ export function Footer() {
           </p>
         </div>
 
-        <div
-          style={{ fontFamily: "var(--font-newsreader)", color: "#574638" }}
-          className="text-[15px] space-y-1.5 text-right"
-        >
-          <p>
-            <a
-              href="https://instagram.com/brooklynsuppers"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#2a1f16] transition-colors"
-            >
-              Instagram — @brooklynsuppers
-            </a>
-          </p>
-          <p>
-            <a
-              href="mailto:hello@brooklynsuppers.com"
-              className="hover:text-[#2a1f16] transition-colors"
-            >
-              hello@brooklynsuppers.com
-            </a>
-          </p>
+        <nav aria-label="Footer" style={{ fontFamily: "var(--font-newsreader)", color: "#574638" }} className="text-[15px] text-right">
+          <ul className="space-y-1.5 list-none">
+            <li>
+              <a
+                href="https://instagram.com/brooklynsuppers"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#2a1f16] transition-colors"
+              >
+                Instagram — @brooklynsuppers
+              </a>
+            </li>
+            <li>
+              <a
+                href="mailto:hello@brooklynsuppers.com"
+                className="hover:text-[#2a1f16] transition-colors"
+              >
+                hello@brooklynsuppers.com
+              </a>
+            </li>
+          </ul>
           <p style={{ color: "#6f5f51" }} className="text-[13px] pt-2">
             © 2026
           </p>
-        </div>
+        </nav>
       </div>
     </footer>
   );
