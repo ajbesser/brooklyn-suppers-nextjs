@@ -5,6 +5,7 @@ import { Menus } from "@/components/Menus";
 import { WhatToExpect } from "@/components/WhatToExpect";
 import { SaveASeat } from "@/components/SaveASeat";
 import { Footer } from "@/components/Footer";
+import { RevealSection } from "@/components/RevealSection";
 
 export default function Home() {
   return (
@@ -12,10 +13,18 @@ export default function Home() {
       <Nav />
       <main id="main-content">
         <Hero />
-        <About />
-        <WhatToExpect />
-        <Menus />
-        <SaveASeat />
+        <RevealSection>
+          <About />
+        </RevealSection>
+        <RevealSection delay={100}>
+          <WhatToExpect />
+        </RevealSection>
+        <RevealSection>
+          <Menus />
+        </RevealSection>
+        <RevealSection delay={100}>
+          <SaveASeat />
+        </RevealSection>
       </main>
       <Footer />
     </>

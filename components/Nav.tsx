@@ -2,8 +2,15 @@
 
 import { useState, useEffect } from "react";
 
+const navLinks = [
+  { label: "About", id: "about" },
+  { label: "Expect", id: "expect" },
+  { label: "Menus", id: "menus" },
+];
+
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -11,73 +18,157 @@ export function Nav() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close menu on scroll
+  useEffect(() => {
+    if (menuOpen && scrolled) setMenuOpen(false);
+  }, [scrolled, menuOpen]);
+
   const scrollTo = (id: string) => {
+    setMenuOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  return (
-    <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-      style={{
-        background: scrolled ? "rgba(250,246,238,0.92)" : "transparent",
-        backdropFilter: scrolled ? "blur(8px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(42,31,22,0.08)" : "1px solid transparent",
-      }}
-    >
-      <div className="max-w-[960px] mx-auto px-6 h-14 flex items-center justify-between">
-        <button
-          type="button"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          style={{ fontFamily: "var(--font-newsreader)", color: "#2a1f16" }}
-          className="text-[18px] font-normal tracking-tight rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
-        >
-          Brooklyn Suppers
-        </button>
+  const scrollToTop = () => {
+    setMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-        <nav aria-label="Main navigation" className="hidden md:flex items-center gap-8">
-          {[
-            { label: "About", id: "about" },
-            { label: "Expect", id: "expect" },
-            { label: "Menus", id: "menus" },
-          ].map(({ label, id }) => (
-            <button
-              type="button"
-              key={id}
-              onClick={() => scrollTo(id)}
-              style={{ fontFamily: "var(--font-newsreader)", color: "#574638" }}
-              className="text-[16px] font-normal hover:text-[#2a1f16] transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
-            >
-              {label}
-            </button>
-          ))}
+  return (
+    <>
+      <header
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+        style={{
+          background:
+            menuOpen || scrolled ? "rgba(250,246,238,0.97)" : "transparent",
+          backdropFilter: menuOpen || scrolled ? "blur(8px)" : "none",
+          borderBottom:
+            menuOpen || scrolled
+              ? "1px solid rgba(42,31,22,0.08)"
+              : "1px solid transparent",
+        }}
+      >
+        <div className="max-w-[960px] mx-auto px-6 h-14 flex items-center justify-between">
           <button
             type="button"
-            onClick={() => scrollTo("save-a-seat")}
-            style={{
-              fontFamily: "var(--font-newsreader)",
-              background: "#2a1f16",
-              color: "#f4eee2",
-            }}
-            className="text-[16px] font-normal px-5 py-2 rounded-full hover:opacity-90 transition-opacity italic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
+            onClick={scrollToTop}
+            style={{ fontFamily: "var(--font-newsreader)", color: "#2a1f16" }}
+            className="text-[18px] font-normal tracking-tight rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
           >
-            Hear first →
+            Brooklyn Suppers
           </button>
-        </nav>
 
-        {/* Mobile: just the CTA */}
-        <button
-          type="button"
-          onClick={() => scrollTo("save-a-seat")}
+          {/* Desktop nav */}
+          <nav aria-label="Main navigation" className="hidden md:flex items-center gap-8">
+            {navLinks.map(({ label, id }) => (
+              <button
+                type="button"
+                key={id}
+                onClick={() => scrollTo(id)}
+                style={{ fontFamily: "var(--font-newsreader)", color: "#574638" }}
+                className="text-[16px] font-normal hover:text-[#2a1f16] transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
+              >
+                {label}
+              </button>
+            ))}
+            <button
+              type="button"
+              onClick={() => scrollTo("save-a-seat")}
+              style={{
+                fontFamily: "var(--font-newsreader)",
+                background: "#2a1f16",
+                color: "#f4eee2",
+              }}
+              className="text-[16px] font-normal px-5 py-2 rounded-full hover:opacity-90 transition-opacity italic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
+            >
+              Hear first →
+            </button>
+          </nav>
+
+          {/* Mobile controls */}
+          <div className="md:hidden flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => scrollTo("save-a-seat")}
+              style={{
+                fontFamily: "var(--font-newsreader)",
+                background: "#2a1f16",
+                color: "#f4eee2",
+              }}
+              className="text-[15px] font-normal px-4 py-2 rounded-full italic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
+            >
+              Hear first →
+            </button>
+
+            {/* Hamburger */}
+            <button
+              type="button"
+              onClick={() => setMenuOpen((o) => !o)}
+              aria-expanded={menuOpen}
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              className="w-9 h-9 flex flex-col items-center justify-center gap-[5px] rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf6ee]"
+            >
+              <span
+                className="block h-px w-5 transition-all duration-200"
+                style={{
+                  background: "#2a1f16",
+                  transform: menuOpen ? "translateY(6px) rotate(45deg)" : "none",
+                }}
+              />
+              <span
+                className="block h-px w-5 transition-all duration-200"
+                style={{
+                  background: "#2a1f16",
+                  opacity: menuOpen ? 0 : 1,
+                }}
+              />
+              <span
+                className="block h-px w-5 transition-all duration-200"
+                style={{
+                  background: "#2a1f16",
+                  transform: menuOpen ? "translateY(-6px) rotate(-45deg)" : "none",
+                }}
+              />
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile dropdown */}
+        <div
+          className="md:hidden overflow-hidden transition-all duration-300"
           style={{
-            fontFamily: "var(--font-newsreader)",
-            background: "#2a1f16",
-            color: "#f4eee2",
+            maxHeight: menuOpen ? "320px" : "0",
+            borderTop: menuOpen ? "1px solid rgba(42,31,22,0.08)" : "none",
           }}
-          className="md:hidden text-[15px] font-normal px-4 py-2 rounded-full italic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
         >
-          Hear first →
-        </button>
-      </div>
-    </header>
+          <nav
+            aria-label="Mobile navigation"
+            className="flex flex-col px-6 py-6 gap-1"
+          >
+            {navLinks.map(({ label, id }) => (
+              <button
+                type="button"
+                key={id}
+                onClick={() => scrollTo(id)}
+                style={{ fontFamily: "var(--font-newsreader)", color: "#574638" }}
+                className="text-left text-[20px] py-3 font-normal hover:text-[#2a1f16] transition-colors border-b focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
+              >
+                {label}
+              </button>
+            ))}
+            <button
+              type="button"
+              onClick={() => scrollTo("save-a-seat")}
+              style={{
+                fontFamily: "var(--font-newsreader)",
+                color: "#a04e33",
+              }}
+              className="text-left text-[20px] py-3 font-normal italic hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
+            >
+              Hear first about the next supper →
+            </button>
+          </nav>
+        </div>
+      </header>
+    </>
   );
 }
