@@ -34,16 +34,17 @@ export function About() {
               <p>
                 Brooklyn Suppers started a little over three years ago as a way
                 to bring people together over food and thoughtful conversation.
-                It's grown into a monthly rhythm I look forward to every month.
+                It&apos;s grown into a monthly rhythm I look forward to every month.
               </p>
               <p>
                 Each dinner is different. Menus are guided by what is in peak
                 season, and what feels right for the table.
               </p>
               <p>
-                Eight chairs around one table. Three or four courses, paced slowly.
-                Wine pairings throughout. The point is a generous evening with
-                enough time for the meal and the conversation to unfold.
+                A small group around one table. Three or four courses, paced
+                slowly. Wine pairings throughout. The point is a generous
+                evening with enough time for the meal and the conversation to
+                unfold.
               </p>
             </div>
           </div>
@@ -56,7 +57,7 @@ export function About() {
             >
               <Image
                 src="/images/about.png"
-                alt="A warm dinner gathering in Bed-Stuy"
+                alt="A warm dinner gathering around a Brooklyn supper table"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"

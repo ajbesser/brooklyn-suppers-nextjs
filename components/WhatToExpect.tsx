@@ -16,8 +16,8 @@ const items = [
     rest: " with time to settle in and let the evening unfold.",
   },
   {
-    bold: "Bed–Stuy,",
-    rest: " Brooklyn. The exact address is shared only with confirmed guests.",
+    bold: "Address by confirmation.",
+    rest: " The exact location is shared only with confirmed guests.",
   },
   {
     bold: "Dietary notes",
@@ -89,8 +89,8 @@ export function WhatToExpect() {
                 }}
                 className="text-[22px]"
               >
-                "The table is small enough that everyone gets folded into the
-                same conversation."
+                &ldquo;The table is small enough that everyone gets folded into the
+                same conversation.&rdquo;
               </p>
               <footer
                 style={{ fontFamily: "var(--font-kalam)", color: "#6f5f51" }}

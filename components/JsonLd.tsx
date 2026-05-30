@@ -3,7 +3,7 @@ const jsonLd = {
   "@type": "FoodEstablishment",
   name: "Brooklyn Suppers",
   description:
-    "A monthly dinner club in Bed-Stuy, Brooklyn. Eight seats, one table, seasonal menus, wine pairings, and good conversation.",
+    "A monthly dinner club in Brooklyn with seasonal menus, wine, and good conversation around a long table.",
   url: "https://brooklynsuppers.com",
   address: {
     "@type": "PostalAddress",

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 
 const navLinks = [
@@ -12,6 +12,7 @@ const navLinks = [
 
 export function Nav() {
   const pathname = usePathname();
+  const router = useRouter();
   const isHome = pathname === "/";
 
   const [scrolled, setScrolled] = useState(false);
@@ -46,17 +47,12 @@ export function Nav() {
     return () => observers.forEach((o) => o.disconnect());
   }, [isHome]);
 
-  // Close menu on scroll
-  useEffect(() => {
-    if (menuOpen && scrolled) setMenuOpen(false);
-  }, [scrolled, menuOpen]);
-
   const scrollTo = (id: string) => {
     setMenuOpen(false);
     if (isHome) {
       document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     } else {
-      window.location.href = `/#${id}`;
+      router.push(`/#${id}`);
     }
   };
 
@@ -65,7 +61,7 @@ export function Nav() {
     if (isHome) {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      window.location.href = "/";
+      router.push("/");
     }
   };
 
@@ -125,7 +121,7 @@ export function Nav() {
             }}
             className="text-[16px] font-normal px-5 py-2 rounded-full hover:opacity-90 transition-opacity italic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
           >
-            Hear first →
+            Come over →
           </button>
         </nav>
 
@@ -141,7 +137,7 @@ export function Nav() {
             }}
             className="text-[15px] font-normal px-4 py-2 rounded-full italic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
           >
-            Hear first →
+            Come over →
           </button>
 
           {/* Hamburger */}
@@ -222,7 +218,7 @@ export function Nav() {
             }}
             className="text-left text-[20px] py-3 font-normal italic hover:opacity-80 transition-opacity border-t border-[rgba(42,31,22,0.08)] mt-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
           >
-            Hear first about the next supper →
+            Come over →
           </button>
         </nav>
       </div>

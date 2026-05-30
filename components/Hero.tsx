@@ -23,7 +23,7 @@ export function Hero() {
         mode: "no-cors", // Mailchimp doesn't support CORS, but submission still works
       });
       setSubmitted(true);
-    } catch (error) {
+    } catch {
       // Even if fetch fails due to CORS, the form still submits successfully
       setSubmitted(true);
     } finally {
@@ -121,7 +121,7 @@ export function Hero() {
                   }}
                   className="text-[17px] italic"
                 >
-                  You're on the list. I'll be in touch when the next dinner is
+                  You&apos;re on the list. I&apos;ll be in touch when the next dinner is
                   set. ✦
                 </p>
               ) : (

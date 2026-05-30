@@ -43,7 +43,7 @@ Migrate Brooklyn Suppers from Vite/React → Next.js and deploy to Vercel for pr
    - Loaded via `next/font/google` for optimal performance
 
 4. ✅ SEO metadata configured in `app/layout.tsx`:
-   - Title: "Brooklyn Suppers — A Monthly Table in Bed-Stuy"
+   - Title: "Brooklyn Suppers — Monthly Dinner Club in Brooklyn"
    - Meta description optimized
    - Open Graph tags
    - Twitter Card tags

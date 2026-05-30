@@ -39,7 +39,7 @@ export default function DinnersPage() {
           style={{ fontFamily: "var(--font-newsreader)", color: "#574638", lineHeight: "1.7" }}
           className="text-[18px] max-w-[560px]"
         >
-          A record of what we've cooked, when, and why. Menus are guided by
+          A record of what we&apos;ve cooked, when, and why. Menus are guided by
           season and what was best at the market.
         </p>
       </div>

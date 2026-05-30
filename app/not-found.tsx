@@ -21,13 +21,13 @@ export default function NotFound() {
           }}
           className="text-[clamp(48px,6vw,72px)] font-normal mb-6"
         >
-          This page doesn't exist.
+          This page doesn&apos;t exist.
         </h1>
         <p
           style={{ fontFamily: "var(--font-newsreader)", color: "#574638", lineHeight: "1.7" }}
           className="text-[18px] max-w-[480px] mb-10"
         >
-          The seat you're looking for isn't here. Head back to the table.
+          The seat you&apos;re looking for isn&apos;t here. Head back to the table.
         </p>
         <Link
           href="/"
