@@ -22,33 +22,66 @@ export function SaveASeat() {
             letterSpacing: "-1px",
             lineHeight: "1.1",
           }}
-          className="text-[clamp(36px,5vw,52px)] font-normal mb-6"
+          className="text-[clamp(36px,5vw,52px)] font-normal mb-10"
         >
           How to reserve a seat
         </h2>
 
+        {/* Steps */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12 text-left">
+          {[
+            {
+              num: "01",
+              heading: "Join the list",
+              body: "Sign up below. The email list gets first access — usually a week or two before a dinner is publicly announced.",
+            },
+            {
+              num: "02",
+              heading: "Receive the RSVP",
+              body: "When the next dinner is set, you'll get an email with the menu theme, date, and a link to reserve your seat.",
+            },
+            {
+              num: "03",
+              heading: "Confirm your spot",
+              body: "The full RSVP asks for dietary notes and guest count. Once confirmed, you'll receive the address in Bed-Stuy.",
+            },
+          ].map(({ num, heading, body }) => (
+            <div key={num} className="flex flex-col gap-2">
+              <span
+                style={{ fontFamily: "var(--font-kalam)", color: "#a04e33" }}
+                className="text-[20px]"
+              >
+                {num}
+              </span>
+              <p
+                style={{ fontFamily: "var(--font-newsreader)", color: "#2a1f16" }}
+                className="text-[17px] font-normal"
+              >
+                {heading}
+              </p>
+              <p
+                style={{ fontFamily: "var(--font-newsreader)", color: "#574638", lineHeight: "1.65" }}
+                className="text-[15px]"
+              >
+                {body}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Divider */}
+        <div
+          className="mb-10"
+          style={{ height: "1px", background: "rgba(42,31,22,0.1)" }}
+        />
+
         <div
           style={{ fontFamily: "var(--font-newsreader)", color: "#574638", lineHeight: "1.75" }}
-          className="text-[18px] space-y-5 mb-10"
+          className="text-[17px] mb-10"
         >
           <p>
-            RSVP opens monthly, with the email list getting first access. Each
-            dinner is unique, with menus decided closer to the date based on
-            guest preferences and what is in peak season. The full RSVP asks
-            for dietary notes, guest count, and anything helpful to know before
-            you come over.
-          </p>
-
-          <p>
-            Dinners are limited to eight guests, so spots fill quickly. Join
-            the list below to be the first to know when the next dinner is
-            announced. The apartment address is shared after a seat is
-            confirmed, not on the public site.
-          </p>
-
-          <p>
-            If the table is full, you'll stay on the list for the next opening.
-            You'll hear when there is a new dinner to gather around.
+            Dinners are limited to eight guests, so spots fill quickly. If the table
+            is full, you'll stay on the list for the next opening.
           </p>
         </div>
 
@@ -71,7 +104,7 @@ export function SaveASeat() {
             color: "#6f5f51",
             fontStyle: "italic",
           }}
-          className="text-[15px] mt-8"
+          className="text-[15px] mt-6"
         >
           If you've joined us before, welcome back. You're already on the list.
         </p>

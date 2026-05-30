@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { heroStats } from "@/data/stats";
 
 export function Hero() {
   const [email, setEmail] = useState("");
@@ -79,10 +80,7 @@ export function Hero() {
               className="flex flex-wrap gap-x-6 gap-y-2 mb-10 pb-10"
               style={{ borderBottom: "1px solid rgba(42,31,22,0.15)" }}
             >
-              {[
-                { stat: "22", label: "dinners hosted" },
-                { stat: "150+", label: "new and returning attendees" },
-              ].map(({ stat, label }) => (
+              {heroStats.map(({ stat, label }) => (
                 <div key={stat}>
                   <span
                     style={{
