@@ -10,7 +10,7 @@ export interface Menu {
   photo?: string;
 }
 
-// Most recent first — the /dinners archive renders these entries.
+// Most recent first — the homepage shows the first two, and /dinners renders the archive.
 // To add a new dinner: prepend a new object here (and copy the photo to public/images/).
 export const menus: Menu[] = [
   {
