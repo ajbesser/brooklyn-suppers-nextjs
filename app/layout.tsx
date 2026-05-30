@@ -26,22 +26,22 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://brooklynsuppers.com"),
-  title: "Brooklyn Suppers — A Monthly Table in Bed-Stuy",
+  title: "Brooklyn Suppers — Monthly Dinner Club in Brooklyn",
   description:
-    "Eight seats, one table, seasonal menus. A monthly dinner for people who eat with intention. Bed-Stuy, Brooklyn.",
+    "Seasonal menus, wine, and good conversation around a long table in Brooklyn. Join the list to hear first about the next supper.",
   keywords: [
     "Brooklyn dinner club",
     "supper club Brooklyn",
-    "Bed-Stuy dinner",
+    "Brooklyn supper club",
     "seasonal tasting menu",
-    "private dining Brooklyn",
+    "community dinner Brooklyn",
     "monthly dinner NYC",
   ],
   robots: { index: true, follow: true },
   openGraph: {
-    title: "Brooklyn Suppers — A Monthly Table in Bed-Stuy",
+    title: "Brooklyn Suppers — Monthly Dinner Club in Brooklyn",
     description:
-      "Eight seats, one table, seasonal menus. A monthly dinner for people who eat with intention.",
+      "Seasonal menus, wine, and good conversation around a long table in Brooklyn.",
     url: "https://brooklynsuppers.com",
     siteName: "Brooklyn Suppers",
     images: [
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Brooklyn Suppers — a long dinner in Bed-Stuy",
+        alt: "Brooklyn Suppers — a long dinner table in Brooklyn",
       },
     ],
     type: "website",
@@ -59,9 +59,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@brooklynsuppers",
     creator: "@brooklynsuppers",
-    title: "Brooklyn Suppers — A Monthly Table in Bed-Stuy",
+    title: "Brooklyn Suppers — Monthly Dinner Club in Brooklyn",
     description:
-      "Eight seats, one table, seasonal menus. A monthly dinner for people who eat with intention.",
+      "Seasonal menus, wine, and good conversation around a long table in Brooklyn.",
     images: ["/og-image.jpg"],
   },
   icons: {

@@ -4,6 +4,8 @@
 //   NEXT_PUBLIC_NEXT_DINNER_SPOTS = "3"   (optional)
 // Leave unset to hide the banner entirely.
 
+import Link from "next/link";
+
 export function DinnerBanner() {
   const date = process.env.NEXT_PUBLIC_NEXT_DINNER_DATE;
   const spots = process.env.NEXT_PUBLIC_NEXT_DINNER_SPOTS;
@@ -31,13 +33,13 @@ export function DinnerBanner() {
           </span>
         )}
         {" "}·{" "}
-        <a
+        <Link
           href="/#save-a-seat"
           className="underline underline-offset-2 hover:opacity-80 transition-opacity"
           style={{ color: "#faf6ee" }}
         >
           Join the list to hear first
-        </a>
+        </Link>
       </p>
     </div>
   );

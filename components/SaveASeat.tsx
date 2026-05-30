@@ -43,7 +43,7 @@ export function SaveASeat() {
             {
               num: "03",
               heading: "Confirm your spot",
-              body: "The full RSVP asks for dietary notes and guest count. Once confirmed, you'll receive the address in Bed-Stuy.",
+              body: "The full RSVP asks for dietary notes and guest count. Once confirmed, you'll receive the address and any final details.",
             },
           ].map(({ num, heading, body }) => (
             <div key={num} className="flex flex-col gap-2">
@@ -80,8 +80,8 @@ export function SaveASeat() {
           className="text-[17px] mb-10"
         >
           <p>
-            Dinners are limited to eight guests, so spots fill quickly. If the table
-            is full, you'll stay on the list for the next opening.
+            Seats are limited, so spots fill quickly. If the table is full,
+            you&apos;ll stay on the list for the next opening.
           </p>
         </div>
 
@@ -106,7 +106,7 @@ export function SaveASeat() {
           }}
           className="text-[15px] mt-6"
         >
-          If you've joined us before, welcome back. You're already on the list.
+          If you&apos;ve joined us before, welcome back. You&apos;re already on the list.
         </p>
       </div>
     </section>
