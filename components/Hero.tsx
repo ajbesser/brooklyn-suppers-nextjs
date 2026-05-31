@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { heroStats } from "@/data/stats";
 
@@ -12,12 +12,40 @@ export function Hero() {
   const [dietary, setDietary] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const firstNameRef = useRef<HTMLInputElement>(null);
+  const modalTriggerRef = useRef<HTMLButtonElement>(null);
 
   const openModal = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
     setShowModal(true);
   };
+
+  const closeModal = useCallback(() => {
+    setShowModal(false);
+    modalTriggerRef.current?.focus();
+  }, []);
+
+  useEffect(() => {
+    if (!showModal) return;
+
+    firstNameRef.current?.focus();
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeModal();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [closeModal, showModal]);
 
   const submitToMailchimp = async () => {
     setIsSubmitting(true);
@@ -158,6 +186,7 @@ export function Hero() {
                   />
                   <button
                     type="submit"
+                    ref={modalTriggerRef}
                     className="shrink-0 px-6 py-3 rounded-full text-[16px] transition-all hover:opacity-90 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-2 focus-visible:ring-offset-[#d4c4ad]"
                     style={{
                       fontFamily: "var(--font-newsreader)",
@@ -174,29 +203,56 @@ export function Hero() {
                   <div
                     className="fixed inset-0 z-50 flex items-center justify-center px-4"
                     style={{ background: "rgba(42,31,22,0.5)", backdropFilter: "blur(4px)" }}
-                    onClick={(e) => { if (e.target === e.currentTarget) setShowModal(false); }}
+                    onClick={(e) => { if (e.target === e.currentTarget) closeModal(); }}
                   >
                     <div
+                      role="dialog"
+                      aria-modal="true"
+                      aria-labelledby="signup-details-title"
+                      aria-describedby="signup-details-description"
                       className="w-full max-w-[420px] rounded-[20px] p-8 shadow-2xl"
                       style={{ background: "#faf6ee" }}
                     >
-                      <p
-                        style={{ fontFamily: "var(--font-kalam)", color: "#a04e33" }}
-                        className="text-[18px] mb-1"
-                      >
-                        one more thing —
-                      </p>
+                      <div className="mb-2 flex items-start justify-between gap-4">
+                        <p
+                          style={{ fontFamily: "var(--font-kalam)", color: "#a04e33" }}
+                          className="text-[18px]"
+                        >
+                          one more thing —
+                        </p>
+                        <button
+                          type="button"
+                          onClick={closeModal}
+                          aria-label="Close signup details"
+                          className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-[18px] transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
+                          style={{
+                            fontFamily: "var(--font-newsreader)",
+                            color: "#2a1f16",
+                            background: "rgba(42,31,22,0.06)",
+                          }}
+                        >
+                          ×
+                        </button>
+                      </div>
                       <h2
+                        id="signup-details-title"
                         style={{ fontFamily: "var(--font-newsreader)", color: "#2a1f16", letterSpacing: "-0.5px" }}
                         className="text-[26px] font-normal mb-2"
                       >
                         A couple quick details
                       </h2>
-                      <div className="mb-6" />
+                      <p
+                        id="signup-details-description"
+                        style={{ fontFamily: "var(--font-newsreader)", color: "#6f5f51", lineHeight: "1.55" }}
+                        className="mb-6 text-[15px]"
+                      >
+                        Optional, but helpful for greeting you properly and planning future menus.
+                      </p>
 
                       <div className="flex flex-col gap-3">
                         <div className="flex gap-2">
                           <input
+                            ref={firstNameRef}
                             type="text"
                             aria-label="First name"
                             autoComplete="given-name"

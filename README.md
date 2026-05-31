@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Brooklyn Suppers
 
-## Getting Started
+Next.js site for [Brooklyn Suppers](https://www.brooklynsuppers.com), a monthly supper club in Brooklyn.
 
-First, run the development server:
+## Current Stack
+
+- **Framework:** Next.js App Router + TypeScript
+- **Hosting:** Vercel
+- **Canonical URL:** `https://www.brooklynsuppers.com`
+- **Newsletter:** Mailchimp signup endpoint
+- **Analytics:** Vercel Analytics
+
+The older React/Vite/Railway site is legacy fallback only and should not be treated as the source of truth.
+
+## Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Useful Commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+```
 
-## Learn More
+## Content Updates
 
-To learn more about Next.js, take a look at the following resources:
+- Homepage sections live in `components/`.
+- Public menu cards and the `/dinners` archive use `data/menus.ts`.
+- Hero stats use `data/stats.ts`.
+- Shared site metadata uses `data/site.ts`.
+- Images belong in `public/images/`; hero video/poster assets live in `public/`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+When adding a new public menu, add a `sortDate` in ISO format so homepage and archive ordering remain deterministic.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployment
 
-## Deploy on Vercel
+Vercel deploys from the GitHub repo. After content or metadata changes, verify:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `npm run lint`
+- `npm run build`
+- Homepage renders correctly on desktop and mobile
+- `/dinners` remains reverse chronological
+- `robots.txt`, `sitemap.xml`, Open Graph, and JSON-LD use the canonical `www` URL

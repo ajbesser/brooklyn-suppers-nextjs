@@ -51,7 +51,7 @@ export default function DinnersPage() {
       >
         {menus.map((menu, i) => (
           <article
-            key={`${menu.month}-${menu.year}`}
+            key={`${menu.sortDate}-${menu.theme}`}
             className="py-16"
             style={{
               borderBottom: i < menus.length - 1 ? "1px solid rgba(42,31,22,0.1)" : "none",
@@ -69,7 +69,7 @@ export default function DinnersPage() {
                   </span>
                   {menu.date && (
                     <time
-                      dateTime={menu.date}
+                      dateTime={menu.sortDate}
                       style={{ fontFamily: "var(--font-newsreader)", color: "#6f5f51", fontStyle: "italic" }}
                       className="text-[14px]"
                     >

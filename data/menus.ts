@@ -1,6 +1,7 @@
 export interface Menu {
   month: string;
   year: number;
+  sortDate: string; // ISO date used for deterministic homepage/archive ordering
   date?: string; // e.g. "May 17, 2026" — used on the archive page
   theme: string;
   wines: string;
@@ -10,12 +11,13 @@ export interface Menu {
   photo?: string;
 }
 
-// Most recent first — the homepage shows the first two, and /dinners renders the archive.
-// To add a new dinner: prepend a new object here (and copy the photo to public/images/).
-export const menus: Menu[] = [
+// The homepage shows the two most recent menus, and /dinners renders the archive.
+// To add a new dinner: add it here with a sortDate and copy the photo to public/images/.
+const menuEntries: Menu[] = [
   {
     month: "May",
     year: 2026,
+    sortDate: "2026-05-17",
     date: "May 17, 2026",
     theme: "A spring table",
     wines: "with paired wines",
@@ -33,8 +35,30 @@ export const menus: Menu[] = [
     ],
   },
   {
+    month: "April",
+    year: 2026,
+    sortDate: "2026-04-12",
+    date: "April 12, 2026",
+    theme: "A late spring dinner",
+    wines: "with paired wines",
+    note: "A slow, generous menu with a few things to start, a shared main course, sides, and dessert.",
+    caption: "fried chicken with honey-fermented kumquats",
+    photo: "/images/menu-apr.jpg",
+    courses: [
+      "Pimento cheese and crackers",
+      "Fennel pickled shrimp",
+      "Pickled spring vegetables",
+      "Fried chicken with honey-fermented kumquats and hot honey",
+      "Collard greens",
+      "Skillet cornbread",
+      "Mac and cheese",
+      "Strawberry rhubarb pavlova",
+    ],
+  },
+  {
     month: "February",
     year: 2026,
+    sortDate: "2026-02-01",
     theme: "Spicy Italian",
     wines: "with paired wines",
     note: "A full Italian spread with heat running through it — Calabrian chili, bitter radicchio, and two desserts.",
@@ -53,6 +77,7 @@ export const menus: Menu[] = [
   {
     month: "January",
     year: 2026,
+    sortDate: "2026-01-01",
     theme: "Southeast Asia via Italy",
     wines: "with paired wines",
     note: "Vietnamese and Thai technique folded into Italian forms — bo kho as ragù, pad kra pao as arancini.",
@@ -65,24 +90,8 @@ export const menus: Menu[] = [
       "Vietnamese coffee tiramisu",
     ],
   },
-  {
-    month: "April",
-    year: 2026,
-    date: "April 12, 2026",
-    theme: "A late spring dinner",
-    wines: "with paired wines",
-    note: "A slow, generous menu with a few things to start, a shared main course, sides, and dessert.",
-    caption: "fried chicken with honey-fermented kumquats",
-    photo: "/images/menu-apr.jpg",
-    courses: [
-      "Pimento cheese and crackers",
-      "Fennel pickled shrimp",
-      "Pickled spring vegetables",
-      "Fried chicken with honey-fermented kumquats and hot honey",
-      "Collard greens",
-      "Skillet cornbread",
-      "Mac and cheese",
-      "Strawberry rhubarb pavlova",
-    ],
-  },
 ];
+
+export const menus = [...menuEntries].sort((a, b) =>
+  b.sortDate.localeCompare(a.sortDate)
+);

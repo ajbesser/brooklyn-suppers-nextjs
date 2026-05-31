@@ -1,10 +1,12 @@
+import { site } from "@/data/site";
+
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "FoodEstablishment",
-  name: "Brooklyn Suppers",
+  name: site.name,
   description:
     "A monthly dinner club in Brooklyn with seasonal menus, wine, and good conversation around a long table.",
-  url: "https://brooklynsuppers.com",
+  url: site.url,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Brooklyn",
@@ -13,10 +15,10 @@ const jsonLd = {
   },
   servesCuisine: "Seasonal American",
   priceRange: "$$",
-  sameAs: ["https://www.instagram.com/brooklynsuppers"],
+  sameAs: [site.instagramUrl],
   contactPoint: {
     "@type": "ContactPoint",
-    email: "hello@brooklynsuppers.com",
+    email: site.email,
     contactType: "customer service",
   },
 };

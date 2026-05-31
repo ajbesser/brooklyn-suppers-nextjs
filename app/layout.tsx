@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Newsreader, Kalam } from "next/font/google";
 import { JsonLd } from "@/components/JsonLd";
 import { DinnerBanner } from "@/components/DinnerBanner";
+import { site } from "@/data/site";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
@@ -25,7 +26,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://brooklynsuppers.com"),
+  metadataBase: new URL(site.url),
   title: "Brooklyn Suppers — Monthly Dinner Club in Brooklyn",
   description:
     "Seasonal menus, wine, and good conversation around a long table in Brooklyn. Join the list to hear first about the next supper.",
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
     title: "Brooklyn Suppers — Monthly Dinner Club in Brooklyn",
     description:
       "Seasonal menus, wine, and good conversation around a long table in Brooklyn.",
-    url: "https://brooklynsuppers.com",
+    url: site.url,
     siteName: "Brooklyn Suppers",
     images: [
       {
@@ -66,6 +67,9 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/favicon.svg",
+  },
+  alternates: {
+    canonical: site.url,
   },
 };
 
