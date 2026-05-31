@@ -42,6 +42,12 @@ export default function DinnersPage() {
           A record of what we&apos;ve cooked, when, and why. Menus are guided by
           season and what was best at the market.
         </p>
+        <p
+          style={{ fontFamily: "var(--font-newsreader)", color: "#6f5f51" }}
+          className="mt-8 text-[14px] uppercase tracking-[0.12em]"
+        >
+          {menus.length} dinners currently archived
+        </p>
       </div>
 
       {/* Dinners list */}
@@ -52,35 +58,45 @@ export default function DinnersPage() {
         {menus.map((menu, i) => (
           <article
             key={`${menu.sortDate}-${menu.theme}`}
-            className="py-16"
+            className="py-16 md:py-20"
             style={{
               borderBottom: i < menus.length - 1 ? "1px solid rgba(42,31,22,0.1)" : "none",
             }}
           >
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-8 md:gap-16 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-8 md:gap-16 items-start">
               {/* Left: menu content */}
               <div>
-                <div className="flex items-baseline gap-4 mb-2">
-                  <span
-                    style={{ fontFamily: "var(--font-kalam)", color: "#a04e33" }}
-                    className="text-[28px]"
-                  >
-                    {menu.month}
-                  </span>
-                  {menu.date && (
-                    <time
-                      dateTime={menu.sortDate}
-                      style={{ fontFamily: "var(--font-newsreader)", color: "#6f5f51", fontStyle: "italic" }}
-                      className="text-[14px]"
+                <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+                  <div className="flex items-baseline gap-4">
+                    <span
+                      style={{ fontFamily: "var(--font-kalam)", color: "#a04e33" }}
+                      className="text-[28px]"
                     >
-                      {menu.date}
-                    </time>
+                      {menu.month}
+                    </span>
+                    {menu.date && (
+                      <time
+                        dateTime={menu.sortDate}
+                        style={{ fontFamily: "var(--font-newsreader)", color: "#6f5f51", fontStyle: "italic" }}
+                        className="text-[14px]"
+                      >
+                        {menu.date}
+                      </time>
+                    )}
+                  </div>
+                  {i === 0 && (
+                    <span
+                      style={{ fontFamily: "var(--font-newsreader)", color: "#a04e33" }}
+                      className="rounded-full border border-[rgba(160,78,51,0.28)] px-3 py-1 text-[12px] uppercase tracking-[0.12em]"
+                    >
+                      latest
+                    </span>
                   )}
                 </div>
 
                 <h2
                   style={{ fontFamily: "var(--font-newsreader)", color: "#2a1f16" }}
-                  className="text-[28px] font-normal mb-1"
+                  className="text-[clamp(28px,3vw,36px)] font-normal mb-1"
                 >
                   {menu.theme}
                 </h2>
@@ -92,14 +108,14 @@ export default function DinnersPage() {
                 </p>
                 <p
                   style={{ fontFamily: "var(--font-newsreader)", color: "#574638", lineHeight: "1.65" }}
-                  className="text-[15px] mb-8 max-w-[480px]"
+                  className="text-[16px] mb-8 max-w-[520px]"
                 >
                   {menu.note}
                 </p>
 
-                <ul className="space-y-2.5 list-none">
+                <ul className="grid max-w-[560px] list-none gap-2.5 sm:grid-cols-2 sm:gap-x-8">
                   {menu.courses.map((course) => (
-                    <li key={course} className="flex gap-3 items-start">
+                    <li key={course} className="grid grid-cols-[auto_1fr] gap-3 items-start">
                       <span
                         style={{ fontFamily: "var(--font-newsreader)", color: "#6f5f51" }}
                         className="text-[14px] shrink-0 mt-0.5"

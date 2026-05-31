@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
+import { BrandWordmark } from "@/components/BrandWordmark";
 
 const navLinks = [
   { label: "About", id: "about" },
@@ -82,10 +83,9 @@ export function Nav() {
         <button
           type="button"
           onClick={scrollToTop}
-          style={{ fontFamily: "var(--font-newsreader)", color: "#2a1f16" }}
-          className="text-[18px] font-normal tracking-tight rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
+          className="rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
         >
-          Brooklyn Suppers
+          <BrandWordmark compact />
         </button>
 
         {/* Desktop nav */}
