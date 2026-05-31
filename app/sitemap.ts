@@ -1,17 +1,16 @@
 import type { MetadataRoute } from "next";
-
-const BASE_URL = "https://brooklynsuppers.com";
+import { site } from "@/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: BASE_URL,
+      url: site.url,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
-      url: `${BASE_URL}/dinners`,
+      url: `${site.url}/dinners`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
