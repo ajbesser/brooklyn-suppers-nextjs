@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { BackToTop } from "@/components/BackToTop";
+import { BrandWordmark } from "@/components/BrandWordmark";
+import { site } from "@/data/site";
 
 export function Footer() {
   return (
@@ -9,12 +11,9 @@ export function Footer() {
     >
       <div className="max-w-[960px] mx-auto flex flex-col md:flex-row md:items-start justify-between gap-8">
         <div>
-          <p
-            style={{ fontFamily: "var(--font-newsreader)", color: "#2a1f16" }}
-            className="text-[18px] mb-1"
-          >
-            Brooklyn Suppers
-          </p>
+          <div className="mb-1">
+            <BrandWordmark />
+          </div>
           <p
             style={{ fontFamily: "var(--font-newsreader)", color: "#574638", fontStyle: "italic" }}
             className="text-[15px] mb-3"
@@ -34,7 +33,7 @@ export function Footer() {
           <ul className="space-y-1.5 list-none">
             <li>
               <a
-                href="https://instagram.com/brooklynsuppers"
+                href={site.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-[#2a1f16] transition-colors"
@@ -44,10 +43,10 @@ export function Footer() {
             </li>
             <li>
               <a
-                href="mailto:hello@brooklynsuppers.com"
+                href={`mailto:${site.email}`}
                 className="hover:text-[#2a1f16] transition-colors"
               >
-                hello@brooklynsuppers.com
+                {site.email}
               </a>
             </li>
           </ul>
