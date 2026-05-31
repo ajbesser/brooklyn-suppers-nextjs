@@ -209,6 +209,7 @@ export const dinnersArchive: DinnerRecord[] = [
       "Smashed cucumber salad",
     ],
     specialDrinks: "Sungold tomato martini",
+    note: "Photos available: table-set-bw.jpg (B&W overhead of full table, editorial quality), summer-martini.jpg (sungold tomato martini with seasonal veg, natural light).",
     visible: false,
   },
   {
@@ -220,6 +221,7 @@ export const dinnersArchive: DinnerRecord[] = [
     mainDish: "Skirt steak lettuce wraps",
     sides: ["Sautéed wild mushrooms", "Farmers market tomato salad"],
     dessert: "Vietnamese coffee tiramisu",
+    note: "Photos available: dinner-sep-2025.jpg (overhead table spread with steak, salads, marigold flowers).",
     visible: true,
   },
   {
