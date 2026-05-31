@@ -112,7 +112,8 @@ export function WhatToExpect() {
                   alt="Fried chicken with honey-fermented kumquats"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  style={{ objectPosition: "center 30%", filter: "brightness(0.82)" }}
                   loading="lazy"
                 />
               </div>

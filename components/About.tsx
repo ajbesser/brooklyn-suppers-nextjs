@@ -41,10 +41,8 @@ export function About() {
                 season, and what feels right for the table.
               </p>
               <p>
-                A small group around one table. Three or four courses, paced
-                slowly. Wine pairings throughout. The point is a generous
-                evening with enough time for the meal and the conversation to
-                unfold.
+                A small group around one table, sharing a family-style spread
+                paired with regional wines.
               </p>
             </div>
           </div>
@@ -64,12 +62,6 @@ export function About() {
                 loading="lazy"
               />
             </div>
-            <p
-              style={{ fontFamily: "var(--font-kalam)", color: "#6f5f51" }}
-              className="text-[17px] ml-1"
-            >
-              the table, before the first course
-            </p>
           </div>
         </div>
       </div>
