@@ -192,12 +192,7 @@ export function Hero() {
                       >
                         A couple quick details
                       </h2>
-                      <p
-                        style={{ fontFamily: "var(--font-newsreader)", color: "#6f5f51", lineHeight: "1.6" }}
-                        className="text-[15px] mb-6"
-                      >
-                        All optional — helps us plan the table.
-                      </p>
+                      <div className="mb-6" />
 
                       <div className="flex flex-col gap-3">
                         <div className="flex gap-2">
