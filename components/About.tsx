@@ -53,11 +53,11 @@ export function About() {
           <div className="flex flex-col gap-4">
             <div
               className="group relative rounded-[3px] overflow-hidden shadow-[0_20px_60px_-20px_rgba(42,31,22,0.28)]"
-              style={{ height: "400px" }}
+              style={{ height: "520px" }}
             >
               <Image
-                src="/images/menu-apr.jpg"
-                alt="Fried chicken with honey-fermented kumquats"
+                src="/images/dinner-sep-2025.jpg"
+                alt="A fully set dinner table — skirt steak, salads, marigolds"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -68,7 +68,7 @@ export function About() {
               style={{ fontFamily: "var(--font-kalam)", color: "#6f5f51" }}
               className="text-[17px] ml-1"
             >
-              fried chicken with honey-fermented kumquats
+              the table, before the first course
             </p>
           </div>
         </div>

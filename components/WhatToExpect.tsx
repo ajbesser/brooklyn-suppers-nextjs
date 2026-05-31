@@ -104,15 +104,15 @@ export function WhatToExpect() {
 
             <div className="flex flex-col gap-3">
               <div
-                className="group relative rounded-[3px] overflow-hidden shadow-[0_16px_48px_-16px_rgba(42,31,22,0.25)]"
-                style={{ height: "280px" }}
+                className="group relative rounded-[16px] overflow-hidden shadow-[0_16px_48px_-16px_rgba(42,31,22,0.25)]"
+                style={{ height: "300px" }}
               >
                 <Image
-                  src="/images/dinner-sep-2025.jpg"
-                  alt="A fully set dinner table at a Brooklyn Suppers evening"
+                  src="/images/menu-apr.jpg"
+                  alt="Fried chicken with honey-fermented kumquats"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
               </div>
