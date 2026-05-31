@@ -11,8 +11,9 @@ export function BrandWordmark({ compact = false }: { compact?: boolean }) {
           color: "#574638",
           letterSpacing: "0",
           lineHeight: 1,
+          fontWeight: 600,
         }}
-        className={compact ? "text-[13px]" : "text-[15px]"}
+        className={compact ? "text-[14px]" : "text-[17px]"}
       >
         brooklyn
       </span>
