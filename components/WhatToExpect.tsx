@@ -108,12 +108,12 @@ export function WhatToExpect() {
                 style={{ height: "300px" }}
               >
                 <Image
-                  src="/images/menu-apr.jpg"
-                  alt="Fried chicken with honey-fermented kumquats"
+                  src="/images/expect-table-edited.jpg"
+                  alt="A family-style fried chicken supper spread across a candlelit table"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  style={{ objectPosition: "center 30%", filter: "brightness(0.82)" }}
+                  style={{ objectPosition: "center 50%" }}
                   loading="lazy"
                 />
               </div>
