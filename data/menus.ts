@@ -72,7 +72,8 @@ export const menus: Menu[] = [
     theme: "A late spring dinner",
     wines: "with paired wines",
     note: "A slow, generous menu with a few things to start, a shared main course, sides, and dessert.",
-    caption: "from the table",
+    caption: "fried chicken with honey-fermented kumquats",
+    photo: "/images/menu-apr.jpg",
     courses: [
       "Pimento cheese and crackers",
       "Fennel pickled shrimp",

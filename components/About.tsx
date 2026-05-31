@@ -56,8 +56,8 @@ export function About() {
               style={{ height: "400px" }}
             >
               <Image
-                src="/images/about.png"
-                alt="A warm dinner gathering around a Brooklyn supper table"
+                src="/images/market-prep.jpg"
+                alt="Fresh market ingredients — strawberries, rhubarb, fiddleheads, and spring vegetables"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -68,7 +68,7 @@ export function About() {
               style={{ fontFamily: "var(--font-kalam)", color: "#6f5f51" }}
               className="text-[17px] ml-1"
             >
-              the table, in good company
+              from the market, before the dinner
             </p>
           </div>
         </div>

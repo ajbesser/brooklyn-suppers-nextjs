@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const items = [
   {
     bold: "Come hungry.",
@@ -74,8 +76,8 @@ export function WhatToExpect() {
             </ul>
           </div>
 
-          {/* Left side: decorative quote */}
-          <div className="md:order-1 flex flex-col justify-center">
+          {/* Left side: decorative quote + table photo */}
+          <div className="md:order-1 flex flex-col gap-10 justify-center">
             <blockquote
               className="relative"
               style={{ borderLeft: "2px solid rgba(160,78,51,0.3)", paddingLeft: "24px" }}
@@ -99,6 +101,28 @@ export function WhatToExpect() {
                 — a returning guest
               </footer>
             </blockquote>
+
+            <div className="flex flex-col gap-3">
+              <div
+                className="group relative rounded-[3px] overflow-hidden shadow-[0_16px_48px_-16px_rgba(42,31,22,0.25)]"
+                style={{ height: "280px" }}
+              >
+                <Image
+                  src="/images/dinner-table.jpg"
+                  alt="Guests around the table at a Brooklyn Suppers dinner"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <p
+                style={{ fontFamily: "var(--font-kalam)", color: "#6f5f51" }}
+                className="text-[17px] ml-1"
+              >
+                the long table
+              </p>
+            </div>
           </div>
         </div>
       </div>
