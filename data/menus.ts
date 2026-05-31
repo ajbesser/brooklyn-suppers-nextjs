@@ -42,8 +42,8 @@ const menuEntries: Menu[] = [
     theme: "A late spring dinner",
     wines: "with paired wines",
     note: "A slow, generous menu with a few things to start, a shared main course, sides, and dessert.",
-    caption: "fried chicken with honey-fermented kumquats",
-    photo: "/images/menu-apr.jpg",
+    caption: "fried chicken, sides, and the table mid-supper",
+    photo: "/images/april-table-edited.jpg",
     courses: [
       "Pimento cheese and crackers",
       "Fennel pickled shrimp",

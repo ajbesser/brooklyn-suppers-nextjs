@@ -54,11 +54,12 @@ export function About() {
               style={{ height: "520px" }}
             >
               <Image
-                src="/images/dinner-sep-2025.jpg"
-                alt="A fully set dinner table — skirt steak, salads, marigolds"
+                src="/images/about-table-edited.jpg"
+                alt="Guests gathered around a candlelit Brooklyn Suppers dinner table"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
+                style={{ objectPosition: "center 54%" }}
                 loading="lazy"
               />
             </div>
