@@ -306,19 +306,6 @@ export function Hero() {
                 />
               </video>
             </div>
-            {/* Small accent photo */}
-            <div
-              className="absolute w-[160px] h-[200px] rounded-[10px] overflow-hidden shadow-[0_16px_40px_-8px_rgba(42,31,22,0.35)] transition-transform duration-300 hover:scale-105 hover:rotate-[-2deg]"
-              style={{ bottom: "-8px", left: "-12px", zIndex: 10 }}
-            >
-              <Image
-                src="/images/hero-food.jpg"
-                alt="A dish from the table"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
           </div>
         </div>
 

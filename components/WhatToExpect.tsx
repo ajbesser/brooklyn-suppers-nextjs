@@ -108,8 +108,8 @@ export function WhatToExpect() {
                 style={{ height: "280px" }}
               >
                 <Image
-                  src="/images/dinner-table.jpg"
-                  alt="Guests around the table at a Brooklyn Suppers dinner"
+                  src="/images/dinner-sep-2025.jpg"
+                  alt="A fully set dinner table at a Brooklyn Suppers evening"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
