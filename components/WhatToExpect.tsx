@@ -5,19 +5,23 @@ import { testimonials } from "@/data/testimonials";
 const items = [
   {
     bold: "Come hungry.",
-    rest: " There's usually bread and something to start.",
+    rest: " Every supper will have bread and appetizers.",
   },
   {
-    bold: "A seasonal menu",
-    rest: ", three or four courses, served family-style.",
+    bold: "A monthly seasonal menu,",
+    rest: " served family-style.",
   },
   {
-    bold: "Wine pairings",
-    rest: " throughout. Bring a bottle if you'd like to share.",
+    bold: "Wine and beverage pairings",
+    rest: " to fit the meal. More bottles are welcome for sharing.",
   },
   {
     bold: "A slow dinner,",
-    rest: " with time to settle in and let the evening unfold.",
+    rest: " with time to let the evening unfold.",
+  },
+  {
+    bold: "Dinners typically start at 7:30pm",
+    rest: " and end at approximately midnight (or later).",
   },
   {
     bold: "Address by confirmation.",
@@ -53,7 +57,7 @@ export function WhatToExpect() {
               className="text-[clamp(36px,4.5vw,48px)] font-normal mb-12"
             >
               A long evening,{" "}
-              <em style={{ color: "var(--color-body)" }}>mostly.</em>
+              <em style={{ color: "var(--color-body)" }}>around the dinner table.</em>
             </h2>
 
             <ul className="space-y-8 list-none">
