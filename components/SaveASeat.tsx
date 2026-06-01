@@ -1,10 +1,8 @@
 "use client";
 
-export function SaveASeat() {
-  const scrollToHero = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+import { EmailSignupForm } from "@/components/EmailSignupForm";
 
+export function SaveASeat() {
   return (
     <section id="save-a-seat" className="py-24 px-6" style={{ background: "#faf6ee" }}>
       <div className="max-w-[720px] mx-auto text-center">
@@ -77,7 +75,7 @@ export function SaveASeat() {
 
         <div
           style={{ fontFamily: "var(--font-newsreader)", color: "#574638", lineHeight: "1.75" }}
-          className="text-[17px] mb-10"
+          className="text-[17px] mb-8"
         >
           <p>
             Seats are limited, so spots fill quickly. If the table is full,
@@ -85,18 +83,10 @@ export function SaveASeat() {
           </p>
         </div>
 
-        <button
-          type="button"
-          onClick={scrollToHero}
-          className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-[17px] transition-all hover:scale-105 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
-          style={{
-            fontFamily: "var(--font-newsreader)",
-            background: "#2a1f16",
-            color: "#f4eee2",
-          }}
-        >
-          Hear first about the next supper →
-        </button>
+        {/* Inline email signup */}
+        <div className="text-left">
+          <EmailSignupForm />
+        </div>
 
         <p
           style={{

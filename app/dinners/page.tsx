@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { Nav } from "@/components/Nav";
+import { Footer } from "@/components/Footer";
 import { menus } from "@/data/menus";
 
 export const metadata: Metadata = {
@@ -196,6 +197,7 @@ export default function DinnersPage() {
           Hear first about the next supper →
         </Link>
       </div>
+      <Footer />
     </div>
   );
 }
