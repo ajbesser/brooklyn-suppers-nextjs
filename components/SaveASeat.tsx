@@ -96,7 +96,7 @@ export function SaveASeat() {
           }}
           className="text-[15px] mt-6"
         >
-          If you&apos;ve joined us before, welcome back. You&apos;re already on the list.
+          If you&apos;ve joined us before, welcome back.
         </p>
       </div>
     </section>
