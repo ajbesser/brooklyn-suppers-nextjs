@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { RotatingQuote } from "@/components/RotatingQuote";
+import { testimonials } from "@/data/testimonials";
 
 const items = [
   {
@@ -82,17 +84,16 @@ export function WhatToExpect() {
               className="relative"
               style={{ borderLeft: "2px solid rgba(160,78,51,0.3)", paddingLeft: "24px" }}
             >
-              <p
+              <RotatingQuote
+                quotes={testimonials.map(t => t.quote)}
+                className="text-[22px]"
                 style={{
                   fontFamily: "var(--font-newsreader)",
                   color: "var(--color-body)",
                   lineHeight: "1.65",
                   fontStyle: "italic",
                 }}
-                className="text-[22px]"
-              >
-                &ldquo;Conversation got way deeper than I expected.&rdquo;
-              </p>
+              />
             </blockquote>
 
             <div className="flex flex-col gap-3">
