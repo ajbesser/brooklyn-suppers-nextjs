@@ -47,10 +47,10 @@ export const metadata: Metadata = {
     siteName: "Brooklyn Suppers",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/images/hero-food.jpg",
         width: 1200,
         height: 630,
-        alt: "Brooklyn Suppers — a long dinner table in Brooklyn",
+        alt: "Brooklyn Suppers — a full table spread with paella, candles, and shared dishes",
       },
     ],
     type: "website",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     title: "Brooklyn Suppers — Monthly Dinner Club in Brooklyn",
     description:
       "Seasonal menus, wine, and good conversation around a long table in Brooklyn.",
-    images: ["/og-image.jpg"],
+    images: ["/images/hero-food.jpg"],
   },
   icons: {
     icon: "/favicon.svg",
