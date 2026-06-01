@@ -52,7 +52,7 @@ export function RevealSection({
         transitionDelay: state === "animating" ? `${delay}ms` : "0ms",
         transitionDuration: "700ms",
         transitionTimingFunction: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-        opacity: 1,
+        opacity: isHidden ? 0 : 1,
         transform: isHidden ? "translateY(18px)" : "none",
       }}
     >

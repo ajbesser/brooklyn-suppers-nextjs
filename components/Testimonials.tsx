@@ -2,10 +2,10 @@ import { testimonials } from "@/data/testimonials";
 
 export function Testimonials() {
   return (
-    <section className="py-24 px-6" style={{ background: "#f4eee2" }}>
+    <section className="py-24 px-6" style={{ background: "var(--color-parchment)" }}>
       <div className="max-w-[960px] mx-auto">
         <p
-          style={{ fontFamily: "var(--font-kalam)", color: "#a04e33" }}
+          style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
           className="text-[22px] mb-14 -ml-0.5"
         >
           in their words
@@ -21,7 +21,7 @@ export function Testimonials() {
               <p
                 style={{
                   fontFamily: "var(--font-newsreader)",
-                  color: "#574638",
+                  color: "var(--color-body)",
                   lineHeight: "1.65",
                   fontStyle: "italic",
                 }}

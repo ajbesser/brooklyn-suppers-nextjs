@@ -4,10 +4,10 @@ import { EmailSignupForm } from "@/components/EmailSignupForm";
 
 export function SaveASeat() {
   return (
-    <section id="save-a-seat" className="py-24 px-6" style={{ background: "#faf6ee" }}>
+    <section id="save-a-seat" className="py-24 px-6" style={{ background: "var(--color-cream)" }}>
       <div className="max-w-[720px] mx-auto text-center">
         <p
-          style={{ fontFamily: "var(--font-kalam)", color: "#a04e33" }}
+          style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
           className="text-[22px] mb-4"
         >
           RSVP
@@ -16,7 +16,7 @@ export function SaveASeat() {
         <h2
           style={{
             fontFamily: "var(--font-newsreader)",
-            color: "#2a1f16",
+            color: "var(--color-dark)",
             letterSpacing: "-1px",
             lineHeight: "1.1",
           }}
@@ -31,34 +31,34 @@ export function SaveASeat() {
             {
               num: "01",
               heading: "Join the list",
-              body: "Sign up below. The email list gets first access — usually a week or two before a dinner is publicly announced.",
+              body: "Sign up below. The email list gets first access — a day or two before sign-up opens to everyone.",
             },
             {
               num: "02",
-              heading: "Receive the RSVP",
-              body: "When the next dinner is set, you'll get an email with the menu theme, date, and a link to reserve your seat.",
+              heading: "Receive the invite",
+              body: "When the next dinner is set, you'll get an email with the date and a link to reserve your seat.",
             },
             {
               num: "03",
               heading: "Confirm your spot",
-              body: "The full RSVP asks for dietary notes and guest count. Once confirmed, you'll receive the address and any final details.",
+              body: "The full RSVP asks for dietary notes and requires prepayment. Seats are non-refundable once confirmed — you'll receive the address closer to the date.",
             },
           ].map(({ num, heading, body }) => (
             <div key={num} className="flex flex-col gap-2">
               <span
-                style={{ fontFamily: "var(--font-kalam)", color: "#a04e33" }}
+                style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
                 className="text-[20px]"
               >
                 {num}
               </span>
               <p
-                style={{ fontFamily: "var(--font-newsreader)", color: "#2a1f16" }}
+                style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-dark)" }}
                 className="text-[17px] font-normal"
               >
                 {heading}
               </p>
               <p
-                style={{ fontFamily: "var(--font-newsreader)", color: "#574638", lineHeight: "1.65" }}
+                style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-body)", lineHeight: "1.65" }}
                 className="text-[15px]"
               >
                 {body}
@@ -74,7 +74,7 @@ export function SaveASeat() {
         />
 
         <div
-          style={{ fontFamily: "var(--font-newsreader)", color: "#574638", lineHeight: "1.75" }}
+          style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-body)", lineHeight: "1.75" }}
           className="text-[17px] mb-8"
         >
           <p>
@@ -91,7 +91,7 @@ export function SaveASeat() {
         <p
           style={{
             fontFamily: "var(--font-newsreader)",
-            color: "#6f5f51",
+            color: "var(--color-muted)",
             fontStyle: "italic",
           }}
           className="text-[15px] mt-6"

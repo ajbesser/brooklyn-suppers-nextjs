@@ -19,7 +19,7 @@ export function Hero() {
           {/* Left: copy */}
           <div>
             <p
-              style={{ fontFamily: "var(--font-kalam)", color: "#a04e33" }}
+              style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
               className="text-[22px] mb-3 -ml-0.5"
             >
               welcome —
@@ -28,7 +28,7 @@ export function Hero() {
             <h1
               style={{
                 fontFamily: "var(--font-newsreader)",
-                color: "#2a1f16",
+                color: "var(--color-dark)",
                 letterSpacing: "-1.8px",
                 lineHeight: "1.02",
               }}
@@ -40,7 +40,7 @@ export function Hero() {
             <p
               style={{
                 fontFamily: "var(--font-newsreader)",
-                color: "#4a3a2a",
+                color: "var(--color-brown)",
                 lineHeight: "1.7",
               }}
               className="text-[18px] mb-8"
@@ -59,7 +59,7 @@ export function Hero() {
                   <span
                     style={{
                       fontFamily: "var(--font-newsreader)",
-                      color: "#2a1f16",
+                      color: "var(--color-dark)",
                     }}
                     className="text-[20px] font-normal"
                   >
@@ -68,7 +68,7 @@ export function Hero() {
                   <span
                     style={{
                       fontFamily: "var(--font-newsreader)",
-                      color: "#6f5f51",
+                      color: "var(--color-muted)",
                     }}
                     className="text-[15px] ml-1.5"
                   >
@@ -81,16 +81,16 @@ export function Hero() {
             {/* Primary CTA — email signup */}
             <div>
               <p
-                style={{ fontFamily: "var(--font-kalam)", color: "#a04e33" }}
+                style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
                 className="text-[18px] mb-3"
               >
                 Hear first about the next supper
               </p>
-              <EmailSignupForm ringOffsetColor="#d4c4ad" />
+              <EmailSignupForm ringOffsetColor="var(--color-tan)" />
               <p
                 style={{
                   fontFamily: "var(--font-newsreader)",
-                  color: "#6f5f51",
+                  color: "var(--color-muted)",
                 }}
                 className="text-[14px] italic mt-2.5 ml-1"
               >
@@ -110,7 +110,7 @@ export function Hero() {
                 loop
                 muted
                 playsInline
-                preload="none"
+                preload="metadata"
                 poster="/hero-poster.jpg"
                 className="w-full h-full object-cover"
                 aria-label="Video of guests around the table at a Brooklyn Supper"
@@ -137,7 +137,7 @@ export function Hero() {
             style={{ animation: "scrollBounce 2s ease-in-out infinite" }}
           >
             <span
-              style={{ fontFamily: "var(--font-newsreader)", color: "#4a3a2a" }}
+              style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-brown)" }}
               className="text-[12px] tracking-widest uppercase"
             >
               scroll
@@ -151,7 +151,7 @@ export function Hero() {
             >
               <path
                 d="M1 1l7 7 7-7"
-                stroke="#4a3a2a"
+                stroke="var(--color-brown)"
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -161,13 +161,13 @@ export function Hero() {
         </div>
 
         {/* Mobile video */}
-        <div className="md:hidden mt-10 rounded-[12px] overflow-hidden shadow-[0_20px_60px_-20px_rgba(42,31,22,0.3)] h-[260px]">
+        <div className="md:hidden mt-10 rounded-[12px] overflow-hidden shadow-[0_20px_60px_-20px_rgba(42,31,22,0.3)] h-[360px]">
           <video
             autoPlay
             loop
             muted
             playsInline
-            preload="none"
+            preload="metadata"
             poster="/hero-poster.jpg"
             className="w-full h-full object-cover"
             aria-label="Video of guests around the table at a Brooklyn Supper"

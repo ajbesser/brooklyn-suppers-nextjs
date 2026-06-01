@@ -29,13 +29,13 @@ const items = [
 
 export function WhatToExpect() {
   return (
-    <section id="expect" className="py-24 px-6" style={{ background: "#faf6ee" }}>
+    <section id="expect" className="py-24 px-6" style={{ background: "var(--color-cream)" }}>
       <div className="max-w-[960px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
           {/* Right side: heading + list */}
           <div className="md:order-2">
             <p
-              style={{ fontFamily: "var(--font-kalam)", color: "#a04e33" }}
+              style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
               className="text-[22px] mb-4 -ml-0.5"
             >
               what to expect
@@ -44,21 +44,21 @@ export function WhatToExpect() {
             <h2
               style={{
                 fontFamily: "var(--font-newsreader)",
-                color: "#2a1f16",
+                color: "var(--color-dark)",
                 letterSpacing: "-1px",
                 lineHeight: "1.1",
               }}
               className="text-[clamp(36px,4.5vw,48px)] font-normal mb-12"
             >
               A long evening,{" "}
-              <em style={{ color: "#574638" }}>mostly.</em>
+              <em style={{ color: "var(--color-body)" }}>mostly.</em>
             </h2>
 
             <ul className="space-y-8 list-none">
               {items.map(({ bold, rest }) => (
                 <li key={bold} className="flex gap-5 items-start">
                   <span
-                    style={{ fontFamily: "var(--font-kalam)", color: "#a04e33", lineHeight: "1.6" }}
+                    style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)", lineHeight: "1.6" }}
                     className="text-[24px] shrink-0 mt-0.5"
                     aria-hidden="true"
                   >
@@ -68,8 +68,8 @@ export function WhatToExpect() {
                     style={{ fontFamily: "var(--font-newsreader)", lineHeight: "1.65" }}
                     className="text-[18px]"
                   >
-                    <span style={{ color: "#2a1f16" }}>{bold}</span>
-                    <span style={{ color: "#574638" }}>{rest}</span>
+                    <span style={{ color: "var(--color-dark)" }}>{bold}</span>
+                    <span style={{ color: "var(--color-body)" }}>{rest}</span>
                   </p>
                 </li>
               ))}
@@ -85,7 +85,7 @@ export function WhatToExpect() {
               <p
                 style={{
                   fontFamily: "var(--font-newsreader)",
-                  color: "#574638",
+                  color: "var(--color-body)",
                   lineHeight: "1.65",
                   fontStyle: "italic",
                 }}
@@ -111,7 +111,7 @@ export function WhatToExpect() {
                 />
               </div>
               <p
-                style={{ fontFamily: "var(--font-kalam)", color: "#6f5f51" }}
+                style={{ fontFamily: "var(--font-kalam)", color: "var(--color-muted)" }}
                 className="text-[17px] ml-1"
               >
                 the long table

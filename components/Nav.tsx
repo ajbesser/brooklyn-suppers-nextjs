@@ -97,7 +97,7 @@ export function Nav() {
               onClick={() => scrollTo(id)}
               style={{
                 fontFamily: "var(--font-newsreader)",
-                color: isHome && activeSection === id ? "#2a1f16" : "#574638",
+                color: isHome && activeSection === id ? "var(--color-dark)" : "var(--color-body)",
               }}
               className="text-[16px] font-normal hover:text-[#2a1f16] transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
             >
@@ -106,7 +106,7 @@ export function Nav() {
           ))}
           <Link
             href="/dinners"
-            style={{ fontFamily: "var(--font-newsreader)", color: "#574638" }}
+            style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-body)" }}
             className="text-[16px] font-normal hover:text-[#2a1f16] transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
           >
             Past dinners
@@ -116,8 +116,8 @@ export function Nav() {
             onClick={() => scrollTo("save-a-seat")}
             style={{
               fontFamily: "var(--font-newsreader)",
-              background: "#2a1f16",
-              color: "#f4eee2",
+              background: "var(--color-dark)",
+              color: "var(--color-parchment)",
             }}
             className="text-[16px] font-normal px-5 py-2 rounded-full hover:opacity-90 transition-opacity italic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
           >
@@ -132,8 +132,8 @@ export function Nav() {
             onClick={() => scrollTo("save-a-seat")}
             style={{
               fontFamily: "var(--font-newsreader)",
-              background: "#2a1f16",
-              color: "#f4eee2",
+              background: "var(--color-dark)",
+              color: "var(--color-parchment)",
             }}
             className="text-[15px] font-normal px-4 py-2 rounded-full italic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
           >
@@ -151,21 +151,21 @@ export function Nav() {
             <span
               className="block h-px w-5 transition-all duration-200"
               style={{
-                background: "#2a1f16",
+                background: "var(--color-dark)",
                 transform: menuOpen ? "translateY(6px) rotate(45deg)" : "none",
               }}
             />
             <span
               className="block h-px w-5 transition-all duration-200"
               style={{
-                background: "#2a1f16",
+                background: "var(--color-dark)",
                 opacity: menuOpen ? 0 : 1,
               }}
             />
             <span
               className="block h-px w-5 transition-all duration-200"
               style={{
-                background: "#2a1f16",
+                background: "var(--color-dark)",
                 transform: menuOpen ? "translateY(-6px) rotate(-45deg)" : "none",
               }}
             />
@@ -192,7 +192,7 @@ export function Nav() {
               onClick={() => scrollTo(id)}
               style={{
                 fontFamily: "var(--font-newsreader)",
-                color: isHome && activeSection === id ? "#2a1f16" : "#574638",
+                color: isHome && activeSection === id ? "var(--color-dark)" : "var(--color-body)",
               }}
               className={`text-left text-[20px] py-3 font-normal hover:text-[#2a1f16] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] ${
                 i < navLinks.length - 1 ? "border-b border-[rgba(42,31,22,0.08)]" : ""
@@ -204,7 +204,7 @@ export function Nav() {
           <Link
             href="/dinners"
             onClick={() => setMenuOpen(false)}
-            style={{ fontFamily: "var(--font-newsreader)", color: "#574638" }}
+            style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-body)" }}
             className="text-left text-[20px] py-3 font-normal hover:text-[#2a1f16] transition-colors border-b border-[rgba(42,31,22,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
           >
             Past dinners
@@ -214,7 +214,7 @@ export function Nav() {
             onClick={() => scrollTo("save-a-seat")}
             style={{
               fontFamily: "var(--font-newsreader)",
-              color: "#a04e33",
+              color: "var(--color-terracotta)",
             }}
             className="text-left text-[20px] py-3 font-normal italic hover:opacity-80 transition-opacity border-t border-[rgba(42,31,22,0.08)] mt-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
           >

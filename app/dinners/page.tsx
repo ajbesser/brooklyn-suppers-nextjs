@@ -13,13 +13,13 @@ export const metadata: Metadata = {
 
 export default function DinnersPage() {
   return (
-    <div style={{ background: "#faf6ee", minHeight: "100vh" }}>
+    <div style={{ background: "var(--color-cream)", minHeight: "100vh" }}>
       <Nav />
       {/* Page header */}
       <div className="max-w-[960px] mx-auto px-6 pt-32 pb-16">
 
         <p
-          style={{ fontFamily: "var(--font-kalam)", color: "#a04e33" }}
+          style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
           className="text-[22px] mb-4 -ml-0.5"
         >
           the archive
@@ -27,24 +27,24 @@ export default function DinnersPage() {
         <h1
           style={{
             fontFamily: "var(--font-newsreader)",
-            color: "#2a1f16",
+            color: "var(--color-dark)",
             letterSpacing: "-1.5px",
             lineHeight: "1.05",
           }}
           className="text-[clamp(44px,5.5vw,64px)] font-normal mb-6"
         >
           Every dinner,<br />
-          <em style={{ color: "#574638" }}>from the beginning.</em>
+          <em style={{ color: "var(--color-body)" }}>from the beginning.</em>
         </h1>
         <p
-          style={{ fontFamily: "var(--font-newsreader)", color: "#574638", lineHeight: "1.7" }}
+          style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-body)", lineHeight: "1.7" }}
           className="text-[18px] max-w-[560px]"
         >
           A record of what we&apos;ve cooked, when, and why. Menus are guided by
           season and what was best at the market.
         </p>
         <p
-          style={{ fontFamily: "var(--font-newsreader)", color: "#6f5f51" }}
+          style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-muted)" }}
           className="mt-8 text-[14px] uppercase tracking-[0.12em]"
         >
           {menus.length} dinners currently archived
@@ -70,7 +70,7 @@ export default function DinnersPage() {
                 <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2">
                   <div className="flex items-baseline gap-4">
                     <span
-                      style={{ fontFamily: "var(--font-kalam)", color: "#a04e33" }}
+                      style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
                       className="text-[28px]"
                     >
                       {menu.month}
@@ -78,7 +78,7 @@ export default function DinnersPage() {
                     {menu.date && (
                       <time
                         dateTime={menu.sortDate}
-                        style={{ fontFamily: "var(--font-newsreader)", color: "#6f5f51", fontStyle: "italic" }}
+                        style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-muted)", fontStyle: "italic" }}
                         className="text-[14px]"
                       >
                         {menu.date}
@@ -87,7 +87,7 @@ export default function DinnersPage() {
                   </div>
                   {i === 0 && (
                     <span
-                      style={{ fontFamily: "var(--font-newsreader)", color: "#a04e33" }}
+                      style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-terracotta)" }}
                       className="rounded-full border border-[rgba(160,78,51,0.28)] px-3 py-1 text-[12px] uppercase tracking-[0.12em]"
                     >
                       latest
@@ -96,19 +96,19 @@ export default function DinnersPage() {
                 </div>
 
                 <h2
-                  style={{ fontFamily: "var(--font-newsreader)", color: "#2a1f16" }}
+                  style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-dark)" }}
                   className="text-[clamp(28px,3vw,36px)] font-normal mb-1"
                 >
                   {menu.theme}
                 </h2>
                 <p
-                  style={{ fontFamily: "var(--font-newsreader)", color: "#574638", fontStyle: "italic" }}
+                  style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-body)", fontStyle: "italic" }}
                   className="text-[15px] mb-4"
                 >
                   {menu.wines}
                 </p>
                 <p
-                  style={{ fontFamily: "var(--font-newsreader)", color: "#574638", lineHeight: "1.65" }}
+                  style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-body)", lineHeight: "1.65" }}
                   className="text-[16px] mb-8 max-w-[520px]"
                 >
                   {menu.note}
@@ -118,14 +118,14 @@ export default function DinnersPage() {
                   {menu.courses.map((course) => (
                     <li key={course} className="grid grid-cols-[auto_1fr] gap-3 items-start">
                       <span
-                        style={{ fontFamily: "var(--font-newsreader)", color: "#6f5f51" }}
+                        style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-muted)" }}
                         className="text-[14px] shrink-0 mt-0.5"
                         aria-hidden="true"
                       >
                         —
                       </span>
                       <span
-                        style={{ fontFamily: "var(--font-newsreader)", color: "#2a1f16", lineHeight: "1.5" }}
+                        style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-dark)", lineHeight: "1.5" }}
                         className="text-[14px]"
                       >
                         {course}
@@ -155,7 +155,7 @@ export default function DinnersPage() {
                       style={{ background: "rgba(42,31,22,0.35)" }}
                     >
                       <p
-                        style={{ fontFamily: "var(--font-kalam)", color: "#f4eee2" }}
+                        style={{ fontFamily: "var(--font-kalam)", color: "var(--color-parchment)" }}
                         className="text-[13px]"
                       >
                         {menu.caption}
@@ -174,13 +174,13 @@ export default function DinnersPage() {
         className="max-w-[960px] mx-auto px-6 pb-24 text-center"
       >
         <p
-          style={{ fontFamily: "var(--font-kalam)", color: "#a04e33" }}
+          style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
           className="text-[20px] mb-4"
         >
           join the next one
         </p>
         <p
-          style={{ fontFamily: "var(--font-newsreader)", color: "#574638", lineHeight: "1.7" }}
+          style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-body)", lineHeight: "1.7" }}
           className="text-[17px] mb-8 max-w-[480px] mx-auto"
         >
           RSVP opens by email first. Join the list to hear when the next dinner is announced.
@@ -190,8 +190,8 @@ export default function DinnersPage() {
           className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-[17px] transition-all hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4"
           style={{
             fontFamily: "var(--font-newsreader)",
-            background: "#2a1f16",
-            color: "#f4eee2",
+            background: "var(--color-dark)",
+            color: "var(--color-parchment)",
           }}
         >
           Hear first about the next supper →

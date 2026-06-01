@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-export function EmailSignupForm({ ringOffsetColor = "#faf6ee" }: { ringOffsetColor?: string }) {
+export function EmailSignupForm({ ringOffsetColor = "var(--color-cream)" }: { ringOffsetColor?: string }) {
   const [email, setEmail] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [firstName, setFirstName] = useState("");
@@ -70,7 +70,7 @@ export function EmailSignupForm({ ringOffsetColor = "#faf6ee" }: { ringOffsetCol
       <p
         style={{
           fontFamily: "var(--font-newsreader)",
-          color: "#4a3a2a",
+          color: "var(--color-brown)",
           lineHeight: "1.6",
         }}
         className="text-[17px] italic"
@@ -101,7 +101,7 @@ export function EmailSignupForm({ ringOffsetColor = "#faf6ee" }: { ringOffsetCol
             fontFamily: "var(--font-newsreader)",
             background: "rgba(250,246,238,0.6)",
             border: "1px solid rgba(42,31,22,0.2)",
-            color: "#2a1f16",
+            color: "var(--color-dark)",
             // @ts-expect-error CSS custom property
             "--tw-ring-offset-color": ringOffsetColor,
           }}
@@ -112,8 +112,8 @@ export function EmailSignupForm({ ringOffsetColor = "#faf6ee" }: { ringOffsetCol
           className="shrink-0 px-6 py-3 rounded-full text-[16px] transition-all hover:opacity-90 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-2"
           style={{
             fontFamily: "var(--font-newsreader)",
-            background: "#2a1f16",
-            color: "#f4eee2",
+            background: "var(--color-dark)",
+            color: "var(--color-parchment)",
             // @ts-expect-error CSS custom property
             "--tw-ring-offset-color": ringOffsetColor,
           }}
@@ -134,11 +134,11 @@ export function EmailSignupForm({ ringOffsetColor = "#faf6ee" }: { ringOffsetCol
             aria-labelledby="signup-details-title"
             aria-describedby="signup-details-description"
             className="w-full max-w-[420px] rounded-[20px] p-8 shadow-2xl"
-            style={{ background: "#faf6ee" }}
+            style={{ background: "var(--color-cream)" }}
           >
             <div className="mb-2 flex items-start justify-between gap-4">
               <p
-                style={{ fontFamily: "var(--font-kalam)", color: "#a04e33" }}
+                style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
                 className="text-[18px]"
               >
                 one more thing —
@@ -150,7 +150,7 @@ export function EmailSignupForm({ ringOffsetColor = "#faf6ee" }: { ringOffsetCol
                 className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-[18px] transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
                 style={{
                   fontFamily: "var(--font-newsreader)",
-                  color: "#2a1f16",
+                  color: "var(--color-dark)",
                   background: "rgba(42,31,22,0.06)",
                 }}
               >
@@ -159,14 +159,14 @@ export function EmailSignupForm({ ringOffsetColor = "#faf6ee" }: { ringOffsetCol
             </div>
             <h2
               id="signup-details-title"
-              style={{ fontFamily: "var(--font-newsreader)", color: "#2a1f16", letterSpacing: "-0.5px" }}
+              style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-dark)", letterSpacing: "-0.5px" }}
               className="text-[26px] font-normal mb-2"
             >
               A couple quick details
             </h2>
             <p
               id="signup-details-description"
-              style={{ fontFamily: "var(--font-newsreader)", color: "#6f5f51", lineHeight: "1.55" }}
+              style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-muted)", lineHeight: "1.55" }}
               className="mb-6 text-[15px]"
             >
               Optional, but helpful for greeting you properly and planning future menus.
@@ -185,9 +185,9 @@ export function EmailSignupForm({ ringOffsetColor = "#faf6ee" }: { ringOffsetCol
                   className="flex-1 min-w-0 px-4 py-3 rounded-full text-[15px] outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
                   style={{
                     fontFamily: "var(--font-newsreader)",
-                    background: "#f0e8d8",
+                    background: "var(--color-input-bg)",
                     border: "1px solid rgba(42,31,22,0.15)",
-                    color: "#2a1f16",
+                    color: "var(--color-dark)",
                   }}
                 />
                 <input
@@ -200,9 +200,9 @@ export function EmailSignupForm({ ringOffsetColor = "#faf6ee" }: { ringOffsetCol
                   className="flex-1 min-w-0 px-4 py-3 rounded-full text-[15px] outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
                   style={{
                     fontFamily: "var(--font-newsreader)",
-                    background: "#f0e8d8",
+                    background: "var(--color-input-bg)",
                     border: "1px solid rgba(42,31,22,0.15)",
-                    color: "#2a1f16",
+                    color: "var(--color-dark)",
                   }}
                 />
               </div>
@@ -215,9 +215,9 @@ export function EmailSignupForm({ ringOffsetColor = "#faf6ee" }: { ringOffsetCol
                 className="w-full px-4 py-3 rounded-[14px] text-[15px] outline-none resize-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
                 style={{
                   fontFamily: "var(--font-newsreader)",
-                  background: "#f0e8d8",
+                  background: "var(--color-input-bg)",
                   border: "1px solid rgba(42,31,22,0.15)",
-                  color: "#2a1f16",
+                  color: "var(--color-dark)",
                 }}
               />
               <button
@@ -227,8 +227,8 @@ export function EmailSignupForm({ ringOffsetColor = "#faf6ee" }: { ringOffsetCol
                 className="w-full py-3 rounded-full text-[16px] transition-all hover:opacity-90 disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
                 style={{
                   fontFamily: "var(--font-newsreader)",
-                  background: "#2a1f16",
-                  color: "#f4eee2",
+                  background: "var(--color-dark)",
+                  color: "var(--color-parchment)",
                 }}
               >
                 {isSubmitting ? "Joining..." : "Join the list →"}
@@ -238,7 +238,7 @@ export function EmailSignupForm({ ringOffsetColor = "#faf6ee" }: { ringOffsetCol
                 onClick={submitToMailchimp}
                 disabled={isSubmitting}
                 className="text-[14px] underline underline-offset-2 transition-opacity hover:opacity-70 disabled:opacity-40"
-                style={{ fontFamily: "var(--font-newsreader)", color: "#6f5f51" }}
+                style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-muted)" }}
               >
                 Skip and just use my email
               </button>

@@ -35,7 +35,7 @@ function MenuCard({ menu, featured = false }: { menu: Menu; featured?: boolean }
             }}
           />
           <p
-            style={{ fontFamily: "var(--font-kalam)", color: "#f4eee2" }}
+            style={{ fontFamily: "var(--font-kalam)", color: "var(--color-parchment)" }}
             className="absolute bottom-3 left-4 text-[17px]"
           >
             {menu.caption}
@@ -47,7 +47,7 @@ function MenuCard({ menu, featured = false }: { menu: Menu; featured?: boolean }
           style={{ background: "rgba(160,78,51,0.09)" }}
         >
           <p
-            style={{ fontFamily: "var(--font-kalam)", color: "#a04e33" }}
+            style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
             className="text-[20px]"
           >
             {menu.caption}
@@ -55,7 +55,7 @@ function MenuCard({ menu, featured = false }: { menu: Menu; featured?: boolean }
           <p
             style={{
               fontFamily: "var(--font-newsreader)",
-              color: "#574638",
+              color: "var(--color-body)",
               lineHeight: "1.55",
             }}
             className="max-w-[16rem] text-[17px] italic"
@@ -70,13 +70,13 @@ function MenuCard({ menu, featured = false }: { menu: Menu; featured?: boolean }
         <div className="mb-5 flex items-start justify-between gap-5">
           <div>
             <p
-              style={{ fontFamily: "var(--font-kalam)", color: "#a04e33" }}
+              style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
               className="text-[25px]"
             >
               {menu.month}
             </p>
             <h3
-              style={{ fontFamily: "var(--font-newsreader)", color: "#2a1f16" }}
+              style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-dark)" }}
               className="mt-1 text-[28px] font-normal leading-[1.08]"
             >
               {menu.theme}
@@ -85,7 +85,7 @@ function MenuCard({ menu, featured = false }: { menu: Menu; featured?: boolean }
           <p
             style={{
               fontFamily: "var(--font-newsreader)",
-              color: "#6f5f51",
+              color: "var(--color-muted)",
               fontStyle: "italic",
             }}
             className="mt-2 shrink-0 text-right text-[14px]"
@@ -97,7 +97,7 @@ function MenuCard({ menu, featured = false }: { menu: Menu; featured?: boolean }
         <p
           style={{
             fontFamily: "var(--font-newsreader)",
-            color: "#574638",
+            color: "var(--color-body)",
             lineHeight: "1.65",
           }}
           className="mb-6 text-[15px]"
@@ -115,7 +115,7 @@ function MenuCard({ menu, featured = false }: { menu: Menu; featured?: boolean }
             <li key={course} className="grid grid-cols-[auto_1fr] gap-3">
               <span
                 aria-hidden="true"
-                style={{ fontFamily: "var(--font-newsreader)", color: "#a04e33" }}
+                style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-terracotta)" }}
                 className="mt-[1px] text-[13px]"
               >
                 /
@@ -123,7 +123,7 @@ function MenuCard({ menu, featured = false }: { menu: Menu; featured?: boolean }
               <span
                 style={{
                   fontFamily: "var(--font-newsreader)",
-                  color: "#2a1f16",
+                  color: "var(--color-dark)",
                   lineHeight: "1.45",
                 }}
                 className="text-[14px]"
@@ -138,7 +138,7 @@ function MenuCard({ menu, featured = false }: { menu: Menu; featured?: boolean }
           <p
             style={{
               fontFamily: "var(--font-newsreader)",
-              color: "#6f5f51",
+              color: "var(--color-muted)",
               fontStyle: "italic",
             }}
             className="mt-4 text-[14px]"
@@ -155,12 +155,12 @@ export function Menus() {
   const [recent, older] = menus;
 
   return (
-    <section id="menus" className="py-24 px-6" style={{ background: "#f4eee2" }}>
+    <section id="menus" className="py-24 px-6" style={{ background: "var(--color-parchment)" }}>
       <div className="max-w-[960px] mx-auto">
         <div className="mb-14 grid grid-cols-1 gap-8 md:grid-cols-[0.9fr_1fr] md:items-end">
           <div>
             <p
-              style={{ fontFamily: "var(--font-kalam)", color: "#a04e33" }}
+              style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
               className="mb-4 -ml-0.5 text-[22px]"
             >
               recent menus
@@ -168,7 +168,7 @@ export function Menus() {
             <h2
               style={{
                 fontFamily: "var(--font-newsreader)",
-                color: "#2a1f16",
+                color: "var(--color-dark)",
                 letterSpacing: "-1px",
                 lineHeight: "1.1",
               }}
@@ -181,7 +181,7 @@ export function Menus() {
           <p
             style={{
               fontFamily: "var(--font-newsreader)",
-              color: "#574638",
+              color: "var(--color-body)",
               lineHeight: "1.65",
             }}
             className="text-[18px]"
@@ -200,7 +200,7 @@ export function Menus() {
           <p
             style={{
               fontFamily: "var(--font-newsreader)",
-              color: "#574638",
+              color: "var(--color-body)",
               fontStyle: "italic",
             }}
             className="text-[15px]"
@@ -212,8 +212,8 @@ export function Menus() {
             className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-[16px] transition-all hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#f4eee2]"
             style={{
               fontFamily: "var(--font-newsreader)",
-              background: "#2a1f16",
-              color: "#f4eee2",
+              background: "var(--color-dark)",
+              color: "var(--color-parchment)",
             }}
           >
             Browse past dinners →

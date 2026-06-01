@@ -15,12 +15,12 @@ export function DinnerBanner() {
   return (
     <div
       className="w-full py-2.5 px-6 flex items-center justify-center gap-3 flex-wrap text-center"
-      style={{ background: "#a04e33" }}
+      style={{ background: "var(--color-terracotta)" }}
       role="banner"
       aria-label="Next dinner announcement"
     >
       <p
-        style={{ fontFamily: "var(--font-newsreader)", color: "#faf6ee", lineHeight: "1.4" }}
+        style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-cream)", lineHeight: "1.4" }}
         className="text-[14px]"
       >
         <span style={{ fontFamily: "var(--font-kalam)" }} className="text-[16px] mr-1">
@@ -36,7 +36,7 @@ export function DinnerBanner() {
         <Link
           href="/#save-a-seat"
           className="underline underline-offset-2 hover:opacity-80 transition-opacity"
-          style={{ color: "#faf6ee" }}
+          style={{ color: "var(--color-cream)" }}
         >
           Join the list to hear first
         </Link>

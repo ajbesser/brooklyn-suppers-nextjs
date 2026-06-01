@@ -8,7 +8,7 @@ export function BrandWordmark({ compact = false }: { compact?: boolean }) {
         style={{
           fontFamily:
             "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-          color: "#574638",
+          color: "var(--color-body)",
           letterSpacing: "0",
           lineHeight: 1,
           fontWeight: 600,
@@ -20,12 +20,12 @@ export function BrandWordmark({ compact = false }: { compact?: boolean }) {
       <span
         aria-hidden="true"
         className={compact ? "h-1 w-1 rounded-full" : "h-1.5 w-1.5 rounded-full"}
-        style={{ background: "#a04e33", transform: "translateY(1px)" }}
+        style={{ background: "var(--color-terracotta)", transform: "translateY(1px)" }}
       />
       <span
         style={{
           fontFamily: "var(--font-newsreader)",
-          color: "#2a1f16",
+          color: "var(--color-dark)",
           letterSpacing: "0",
           lineHeight: 1,
           fontStyle: "italic",

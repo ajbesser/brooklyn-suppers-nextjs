@@ -4,10 +4,14 @@
 @theme inline {
   /* Colors */
   --color-cream: #faf6ee;
+  --color-parchment: #f4eee2;
   --color-tan: #d4c4ad;
   --color-terracotta: #a04e33;
   --color-dark: #2a1f16;
   --color-brown: #4a3a2a;
+  --color-body: #574638;
+  --color-muted: #6f5f51;
+  --color-input-bg: #f0e8d8;
   --color-light-tan: #e8dcc8;
   --color-warm-tan: #c4b5a0;
 

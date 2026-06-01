@@ -2,13 +2,13 @@ import Image from "next/image";
 
 export function About() {
   return (
-    <section id="about" className="py-24 px-6" style={{ background: "#f4eee2" }}>
+    <section id="about" className="py-24 px-6" style={{ background: "var(--color-parchment)" }}>
       <div className="max-w-[960px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
           {/* Left: copy */}
           <div>
             <p
-              style={{ fontFamily: "var(--font-kalam)", color: "#a04e33" }}
+              style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
               className="text-[22px] mb-4 -ml-0.5"
             >
               what it is
@@ -17,18 +17,18 @@ export function About() {
             <h2
               style={{
                 fontFamily: "var(--font-newsreader)",
-                color: "#2a1f16",
+                color: "var(--color-dark)",
                 letterSpacing: "-1px",
                 lineHeight: "1.1",
               }}
               className="text-[clamp(36px,4.5vw,48px)] font-normal mb-8"
             >
               A space for community,{" "}
-              <em style={{ color: "#574638" }}>over a long dinner.</em>
+              <em style={{ color: "var(--color-body)" }}>over a long dinner.</em>
             </h2>
 
             <div
-              style={{ fontFamily: "var(--font-newsreader)", color: "#574638", lineHeight: "1.75" }}
+              style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-body)", lineHeight: "1.75" }}
               className="text-[18px] space-y-5"
             >
               <p>
