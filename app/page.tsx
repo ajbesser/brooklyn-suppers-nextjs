@@ -2,6 +2,7 @@ import { Hero } from "@/components/Hero";
 import { Nav } from "@/components/Nav";
 import { About } from "@/components/About";
 import { Menus } from "@/components/Menus";
+import { Testimonials } from "@/components/Testimonials";
 import { WhatToExpect } from "@/components/WhatToExpect";
 import { SaveASeat } from "@/components/SaveASeat";
 import { Footer } from "@/components/Footer";
@@ -21,6 +22,9 @@ export default function Home() {
         </RevealSection>
         <RevealSection>
           <Menus />
+        </RevealSection>
+        <RevealSection>
+          <Testimonials />
         </RevealSection>
         <RevealSection delay={100}>
           <SaveASeat />

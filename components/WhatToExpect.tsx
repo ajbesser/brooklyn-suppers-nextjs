@@ -91,15 +91,8 @@ export function WhatToExpect() {
                 }}
                 className="text-[22px]"
               >
-                &ldquo;The table is small enough that everyone gets folded into the
-                same conversation.&rdquo;
+                &ldquo;Conversation got way deeper than I expected.&rdquo;
               </p>
-              <footer
-                style={{ fontFamily: "var(--font-kalam)", color: "#6f5f51" }}
-                className="text-[17px] mt-4"
-              >
-                — a returning guest
-              </footer>
             </blockquote>
 
             <div className="flex flex-col gap-3">
