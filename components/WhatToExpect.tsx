@@ -1,6 +1,4 @@
 import Image from "next/image";
-import { RotatingQuote } from "@/components/RotatingQuote";
-import { testimonials } from "@/data/testimonials";
 
 const items = [
   {
@@ -84,16 +82,23 @@ export function WhatToExpect() {
               className="relative"
               style={{ borderLeft: "2px solid rgba(160,78,51,0.3)", paddingLeft: "24px" }}
             >
-              <RotatingQuote
-                quotes={testimonials.map(t => t.quote)}
-                className="text-[22px]"
+              <p
                 style={{
                   fontFamily: "var(--font-newsreader)",
                   color: "var(--color-body)",
                   lineHeight: "1.65",
                   fontStyle: "italic",
                 }}
-              />
+                className="text-[22px]"
+              >
+                &ldquo;With good friends&hellip; and good food on the board, and good wine in the pitcher, we may as well ask &lsquo;When shall we live if not now?&rsquo;&rdquo;
+              </p>
+              <p
+                style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-muted)" }}
+                className="text-[14px] mt-3"
+              >
+                &mdash; M.F.K. Fisher
+              </p>
             </blockquote>
 
             <div className="flex flex-col gap-3">
