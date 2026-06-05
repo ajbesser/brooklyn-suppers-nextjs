@@ -23,8 +23,8 @@ export function About() {
               }}
               className="text-[clamp(36px,4.5vw,48px)] font-normal mb-8"
             >
-              A space for community,{" "}
-              <em style={{ color: "var(--color-body)" }}>over a long dinner.</em>
+              A long, seasonally-inspired dinner{" "}
+              <em style={{ color: "var(--color-body)" }}>lasting into the night.</em>
             </h2>
 
             <div
