@@ -4,20 +4,16 @@ import { testimonials } from "@/data/testimonials";
 
 const items = [
   {
-    bold: "Come hungry.",
-    rest: " Every supper will have bread and appetizers.",
-  },
-  {
     bold: "A monthly seasonal menu,",
     rest: " served family-style.",
   },
   {
     bold: "Wine and beverage pairings",
-    rest: " to fit the meal. More bottles are welcome for sharing.",
+    rest: " based on the menu. More bottles are welcome for sharing.",
   },
   {
     bold: "A slow dinner,",
-    rest: " with time to let the evening unfold.",
+    rest: " with time to get to enjoy the group's company and let the evening unfold.",
   },
   {
     bold: "Dinners typically start at 7:30pm",
@@ -28,8 +24,8 @@ const items = [
     rest: " The exact location is shared only with confirmed guests.",
   },
   {
-    bold: "Dietary notes",
-    rest: " are part of the RSVP, and I'll confirm what can be accommodated before the dinner.",
+    bold: "Dietary restrictions",
+    rest: " should be noted in the RSVP, and I'll confirm what can be accommodated before the dinner.",
   },
 ];
 
@@ -56,8 +52,8 @@ export function WhatToExpect() {
               }}
               className="text-[clamp(36px,4.5vw,48px)] font-normal mb-12"
             >
-              A long evening,{" "}
-              <em style={{ color: "var(--color-body)" }}>around the dinner table.</em>
+              Sharing dishes{" "}
+              <em style={{ color: "var(--color-body)" }}>and conversation.</em>
             </h2>
 
             <ul className="space-y-8 list-none">

@@ -78,8 +78,7 @@ export function SaveASeat() {
           className="text-[17px] mb-8"
         >
           <p>
-            Seats are limited, so spots fill quickly. If the table is full,
-            you&apos;ll stay on the list for the next opening.
+            Seats are limited, so spots fill quickly.
           </p>
         </div>
 

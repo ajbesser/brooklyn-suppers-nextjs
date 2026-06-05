@@ -45,8 +45,7 @@ export function Hero() {
               }}
               className="text-[18px] mb-8"
             >
-              A monthly dinner club built around a long table, seasonal cooking,
-              wine, and good conversation.
+              A monthly dinner club centered around seasonal cooking, deep conversation, and building community.
             </p>
 
             {/* Social proof */}

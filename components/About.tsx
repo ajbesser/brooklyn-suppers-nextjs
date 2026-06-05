@@ -34,15 +34,12 @@ export function About() {
               <p>
                 Brooklyn Suppers started a little over three years ago as a way
                 to bring people together over food and thoughtful conversation.
-                It&apos;s grown into a monthly rhythm I look forward to every month.
+                I look forward to the new and returning attendees who get to
+                connect around the dinner table.
               </p>
               <p>
-                Each dinner is different. Menus are guided by what is in peak
-                season, and what feels right for the table.
-              </p>
-              <p>
-                A small group around one table, sharing a family-style spread
-                paired with regional wines.
+                Each dinner is different. Menus are designed uniquely each
+                month, inspired by what is in season.
               </p>
             </div>
           </div>
