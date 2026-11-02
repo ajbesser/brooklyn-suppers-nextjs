@@ -68,6 +68,14 @@ The first native Safari attempt was blocked by the locked Mac; later desktop cov
 - Vercel Overview showed existing analytics (16 visitors over one week) and six-hour observability of 264 CDN requests, zero function invocations and 0% error rate. Detailed Analytics/Speed Insights/runtime logs remain to inspect. No new analytics settings or paid plan enabled.
 - Full continuation context and remaining work: [Linear implementation handoff](https://linear.app/besser/document/brooklyn-suppers-implementation-handoff-and-next-steps-nov-2-2026-5a451458555e).
 
+## Homepage copy exclusion and publication approval — November 2, 2026
+
+Alex approved publication of the remaining work while rejecting the new host-centered homepage About copy. The homepage first paragraph is restored verbatim to the original concept-focused text from `origin/main`, and the new “More about me” homepage paragraph is removed. The heading, seasonal-menu paragraph, separate `/about` page, and approved photo changes remain in scope; downstream content/photo commits must be retained when propagating this update. This approval does not resume the explicitly deferred inbound-email routing repair. Production release and final smoke checks are managed separately from this copy update.
+
+## Contact availability during deferred receiving repair — November 2, 2026
+
+The approved release preserves Contact implementation behind server-only `CONTACT_FORM_ENABLED`, disabled unless its exact value is `true` and both Resend sender settings exist. `/contact` hides its form/direct-email fallback while disabled and offers `@brooklynsuppers` on Instagram with a temporarily-unavailable notice. API POST returns 503/no-store without sending to Resend; its native fallback offers Instagram without a retry form, email fallback, or reflected personal data. Public email preferences elsewhere are unchanged. Contact delivery remains open while receiving repair is deferred. Enable only after verified receiving and rebuild/redeploy. Provider tests explicitly enable the flag; two new default-disabled/native-safety cases bring the suite to 14 passing tests. Lint, production build, and diff checks pass. The production-built Contact main content contains the unavailable notice and Instagram link, with no form/email fallback or sender settings.
+
 ## Still open
 
 - **Finish provider setup before merging/deploying.** Mailchimp Preview is configured and its pending-to-subscribed flow is verified above. Verify fresh-email delivery after the sender correction, configure Mailchimp for production, and repair inbound routing before repeating the Contact delivery test. Actual Contact inbox receipt and production checks remain outstanding. BES-145/160/164/85/101/109 remain open for their remaining acceptance checks; do not treat preview signup evidence as a contact or production pass.

@@ -1,3 +1,5 @@
+import { site } from "../data/site.ts";
+
 export type FormResult = { message: string; errors?: Record<string, string> };
 export type FormKind = "newsletter" | "contact";
 export type Fields = Record<string, string>;
@@ -53,13 +55,16 @@ export async function readFields(request: Request): Promise<Fields> {
 const escape = (value: string) => value.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!));
 
 // Native POSTs get a usable fallback page; personal data never enters a GET URL.
-export function formResponse(request: Request, result: FormResult, status: number, kind: FormKind, fields: Fields = {}) {
+export function formResponse(request: Request, result: FormResult, status: number, kind: FormKind, fields: Fields = {}, options: { retry?: boolean; instagramFallback?: boolean } = {}) {
   const headers = { "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff" };
   if (request.headers.get("accept")?.includes("application/json")) return Response.json(result, { status, headers });
   const inputs = kind === "contact" ? [["name", "Name"], ["email", "Email"], ["message", "Message"]] : [["email", "Email"], ["firstName", "First name"], ["lastName", "Last name"], ["dietary", "Dietary restrictions (optional)"]];
-  const form = status >= 400 ? `<form action="/api/${kind}" method="post">${inputs.map(([name, label]) => {
+  const form = status >= 400 && options.retry !== false ? `<form action="/api/${kind}" method="post">${inputs.map(([name, label]) => {
     const attrs = `id="${name}" name="${name}" ${name === "dietary" ? "" : "required"} aria-describedby="${name}-error"`;
     return `<p><label for="${name}">${label}</label>${name === "message" || name === "dietary" ? `<textarea ${attrs} maxlength="${name === "message" ? 5000 : 2000}">${escape(fields[name] || "")}</textarea>` : `<input ${attrs} type="${name === "email" ? "email" : "text"}" maxlength="${name === "email" ? 254 : 100}" value="${escape(fields[name] || "")}">`}<span id="${name}-error">${escape(result.errors?.[name] || "")}</span></p>`;
   }).join("")}<div hidden><label>Leave blank<input name="website" tabindex="-1" autocomplete="off"></label></div><button>Try again</button></form>` : "";
-  return new Response(`<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Brooklyn Suppers</title><style>body{font:18px Georgia,serif;max-width:36rem;margin:3rem auto;padding:1rem;color:#2a1f16;background:#faf6ee}label,input,textarea{display:block}input,textarea{box-sizing:border-box;width:100%;font:inherit;padding:.75rem}button{font:inherit;padding:.75rem 1rem}span{color:#843c29}a{color:inherit}</style><main><h1>${escape(result.message)}</h1>${form}<p>You can also email <a href="mailto:${contactEmail}">${contactEmail}</a>.</p><a href="/">Back to Brooklyn Suppers</a></main></html>`, { status, headers: { ...headers, "Content-Type": "text/html; charset=utf-8", "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'" } });
+  const fallback = options.instagramFallback
+    ? `<p>Message <a href="${escape(site.instagramUrl)}">${escape(site.instagramHandle)} on Instagram</a>.</p>`
+    : `<p>You can also email <a href="mailto:${contactEmail}">${contactEmail}</a>.</p>`;
+  return new Response(`<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Brooklyn Suppers</title><style>body{font:18px Georgia,serif;max-width:36rem;margin:3rem auto;padding:1rem;color:#2a1f16;background:#faf6ee}label,input,textarea{display:block}input,textarea{box-sizing:border-box;width:100%;font:inherit;padding:.75rem}button{font:inherit;padding:.75rem 1rem}span{color:#843c29}a{color:inherit}</style><main><h1>${escape(result.message)}</h1>${form}${fallback}<a href="/">Back to Brooklyn Suppers</a></main></html>`, { status, headers: { ...headers, "Content-Type": "text/html; charset=utf-8", "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'" } });
 }
