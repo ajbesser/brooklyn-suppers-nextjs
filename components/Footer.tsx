@@ -6,8 +6,8 @@ import { site } from "@/data/site";
 export function Footer() {
   return (
     <footer
-      className="px-6 py-12"
-      style={{ borderTop: "1px solid rgba(42,31,22,0.1)", background: "var(--color-parchment)" }}
+      className="on-green px-6 py-12"
+      style={{ borderTop: "6px solid #5b1f26", background: "#093525" }}
     >
       <div className="max-w-[960px] mx-auto flex flex-col md:flex-row md:items-start justify-between gap-8">
         <div>
@@ -23,7 +23,7 @@ export function Footer() {
           <Link
             href="/dinners"
             style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-body)" }}
-            className="text-[14px] hover:text-[#2a1f16] transition-colors"
+            className="text-[14px] hover:text-[var(--color-dark)] transition-colors"
           >
             Past dinners →
           </Link>
@@ -38,7 +38,7 @@ export function Footer() {
                 href={site.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#2a1f16] transition-colors"
+                className="hover:text-[var(--color-dark)] transition-colors"
               >
                 Instagram — @brooklynsuppers
               </a>
@@ -46,7 +46,7 @@ export function Footer() {
             <li>
               <a
                 href={`mailto:${site.email}`}
-                className="hover:text-[#2a1f16] transition-colors"
+                className="hover:text-[var(--color-dark)] transition-colors"
               >
                 {site.email}
               </a>

@@ -1,5 +1,9 @@
 # Functional fix verification — November 1, 2026
 
+## Review branches
+
+The existing palette PR #7 merged into main during this work. The functional branch preserves that palette, resolves its overlapping edits, and includes dependency PR #8. The functional PR is stacked on #8; review/merge #8 first, then retarget the functional PR to main. This chat did not merge a PR or change production.
+
 ## Implemented
 
 - BES-145/160: server-validated required-name signup, provider-accepted pending opt-in confirmation, error/retry handling, no email-only bypass, native modal/background inertness, explicit forward/reverse Tab wrapping, Escape and focus restoration, unique field labels/errors, 16px inputs, short-screen scrolling, and a native POST fallback via `/join`.
