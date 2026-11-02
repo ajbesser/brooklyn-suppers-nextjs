@@ -24,11 +24,19 @@ The existing palette PR #7 merged into main during this work. The functional bra
 
 ## Favicon follow-up (BES-170)
 
-The stale app/favicon.ico was confirmed visually as the Vercel triangle. Replaced it with a gold plate/fork on bottle green, with 16/32/48px ICO frames, matching app/icon.svg, and a 180px Apple icon. The legacy public/favicon.svg is updated too. Removed the manual metadata icon entry so file conventions consistently supply the icons. Lint/build pass; all five public routes advertise the same three branded icons with new hashed URLs, and every served asset matches its source bytes. Checked 16px readability and the local browser head tags. Review/deployment is still pending.
+The stale app/favicon.ico was confirmed visually as the Vercel triangle. Replaced it with a gold plate/fork on bottle green, with 16/32/48px ICO frames, matching app/icon.svg, and a 180px Apple icon. The legacy public/favicon.svg is updated too. Removed the manual metadata icon entry so file conventions consistently supply the icons. Lint/build pass; all five public routes advertise the same three branded icons with new hashed URLs, and every served asset matches its source bytes. Checked 16px readability and the local browser head tags. Available in the functional-fixes preview; production review/deployment is still pending.
+
+## Real Mailchimp preview verification — November 2, 2026
+
+- Saved server-only Mailchimp key/audience settings for Vercel Preview and rebuilt `e10c078` as deployment `GrvEw1c9fqycZPdUi29EF8tYA3P5`. No production deployment or production environment-variable change.
+- Existing `ajbesser@gmail.com` returns already-registered guidance without overwriting the contact. The approved Gmail plus alias received a pending response and confirmation email. After the owner completed the human check and confirmation, Mailchimp showed Subscribed with Alex/Besser and the optional dietary test note intact. The record source identifies the new Vercel API integration.
+- Confirmed audience ID and all three merge tags. Enabled first/last Required in Mailchimp and reopened each field to verify persistence.
+- The first confirmation reached Gmail Spam and failed DMARC with the audience's legacy Gmail From address. Confirmed `brooklynsuppers.com` is already authenticated in Mailchimp, changed the audience default From to `alex@brooklynsuppers.com`, and verified the saved value. Delivery/authentication after the sender correction still needs a fresh email test.
+- The Mailchimp key expires November 2, 2027 and must be rotated before then. Credentials are not stored in the repository or local files.
 
 ## Still open
 
-- **Configure provider credentials before merging/deploying.** Without them the new endpoints deliberately show unavailable errors; they do not fall back to false success. Follow `docs/forms-setup.md` for audience tags/required settings, confirmed test mailbox, double-opt-in confirmation, and actual inbox receipt. Stub tests are not delivery evidence. BES-145/160/164/85/101/109 remain open for that verification.
+- **Finish provider setup before merging/deploying.** Mailchimp Preview is configured and its pending-to-subscribed flow is verified above. Verify fresh-email delivery after the sender correction, configure Mailchimp for production, and set up Contact delivery (`RESEND_API_KEY` / verified `CONTACT_FROM_EMAIL`). Actual Contact inbox receipt and production checks remain outstanding. BES-145/160/164/85/101/109 remain open for their remaining acceptance checks; do not treat preview signup evidence as a contact or production pass.
 - Actual Safari/iPhone, Android, Firefox, VoiceOver, and production checks are still required for BES-83/107/108. Local simulated widths are not real-device coverage.
 - The existing portrait social photo is retained with correct dimensions. A reviewed landscape sharing crop remains under BES-166; no replacement image or photo choice was inferred.
 - Search Console ownership/indexing, real-user performance, and Railway shutdown require account/live verification. No production deployment, domain change, or service shutdown was performed.

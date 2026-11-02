@@ -13,6 +13,16 @@ Never put keys in `NEXT_PUBLIC_` variables, code, commits, screenshots, issue co
 
 In Mailchimp, confirm that the audience merge tags are `FNAME`, `LNAME`, and `MMERGE11` (dietary notes). Mark first and last names required in audience settings so other hosted signup paths also enforce the requirement. Check that the audience's confirmation email/form is configured and branded.
 
+## Preview setup verified November 2, 2026
+
+`MAILCHIMP_API_KEY` and `MAILCHIMP_AUDIENCE_ID` are saved as server-only Vercel Preview secrets. The audience dashboard confirms ID `bfc2de2d8a` and merge tags `FNAME`, `LNAME`, and `MMERGE11`; first and last names are now required in Mailchimp as well as the website. The owner-generated key expires November 2, 2027; rotate it before expiry. No credential was saved in source or local files.
+
+Preview deployment `GrvEw1c9fqycZPdUi29EF8tYA3P5` rebuilt commit `e10c078` with the real Mailchimp settings. A controlled plus-alias signup received the pending response and confirmation email; after the owner completed confirmation, the audience showed Subscribed with the submitted names and dietary test note. An existing subscriber received recovery guidance without overwriting their record.
+
+The initial confirmation email arrived in Gmail Spam with DMARC failure while the audience default sender was `ajbesser@gmail.com`. Mailchimp already authenticates `brooklynsuppers.com`; the audience default sender was corrected to `alex@brooklynsuppers.com`. A fresh confirmation email is still needed to verify delivery and authentication after this change. See [Mailchimp's confirmation-email troubleshooting guidance](https://mailchimp.com/help/troubleshoot-the-opt-in-confirmation-email/).
+
+Production environment variables and deployment are unchanged. Contact delivery still needs `RESEND_API_KEY`, a verified `CONTACT_FROM_EMAIL`, and an actual inbox test. Do not treat preview signup evidence as a production or contact-form delivery pass.
+
 ## Signup behavior
 
 The new route creates a pending member via the Marketing API. A verified `pending` response displays “Check your inbox to confirm”; it never claims the person is subscribed before confirmation. This deliberately uses double opt-in. Existing members receive contact/recovery guidance without overwriting their data or resubscribing unsubscribed contacts. Provider/network/configuration errors preserve the entered fields and offer retry/contact. The old opaque `no-cors` path is removed.
