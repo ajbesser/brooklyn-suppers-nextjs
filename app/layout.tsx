@@ -3,6 +3,7 @@ import { Newsreader, Kalam } from "next/font/google";
 import { JsonLd } from "@/components/JsonLd";
 import { DinnerBanner } from "@/components/DinnerBanner";
 import { site } from "@/data/site";
+import { pageMetadata } from "@/lib/metadata";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
@@ -27,50 +28,10 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: "Brooklyn Suppers — Monthly Dinner Club in Brooklyn",
-  description:
-    "Seasonal menus, wine, and good conversation around a long table in Brooklyn. Join the list to hear first about the next supper.",
-  keywords: [
-    "Brooklyn dinner club",
-    "supper club Brooklyn",
-    "Brooklyn supper club",
-    "seasonal tasting menu",
-    "community dinner Brooklyn",
-    "monthly dinner NYC",
-  ],
+  ...pageMetadata("Brooklyn Suppers — Monthly Dinner Club in Brooklyn", "Seasonal menus, wine, and good conversation around a long table in Brooklyn. Join the list to hear first about the next supper."),
+  keywords: ["Brooklyn dinner club", "supper club Brooklyn", "seasonal menus", "community dinner Brooklyn", "monthly dinner NYC"],
   robots: { index: true, follow: true },
-  openGraph: {
-    title: "Brooklyn Suppers — Monthly Dinner Club in Brooklyn",
-    description:
-      "Seasonal menus, wine, and good conversation around a long table in Brooklyn.",
-    url: site.url,
-    siteName: "Brooklyn Suppers",
-    images: [
-      {
-        url: "/images/hero-food.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Brooklyn Suppers — a full table spread with paella, candles, and shared dishes",
-      },
-    ],
-    type: "website",
-    locale: "en_US",
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@brooklynsuppers",
-    creator: "@brooklynsuppers",
-    title: "Brooklyn Suppers — Monthly Dinner Club in Brooklyn",
-    description:
-      "Seasonal menus, wine, and good conversation around a long table in Brooklyn.",
-    images: ["/images/hero-food.jpg"],
-  },
-  icons: {
-    icon: "/favicon.svg",
-  },
-  alternates: {
-    canonical: site.url,
-  },
+  icons: { icon: "/favicon.svg" },
 };
 
 export default function RootLayout({

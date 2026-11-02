@@ -1,6 +1,7 @@
 "use client";
 
 import { EmailSignupForm } from "@/components/EmailSignupForm";
+import Link from "next/link";
 
 export function SaveASeat() {
   return (
@@ -31,17 +32,17 @@ export function SaveASeat() {
             {
               num: "01",
               heading: "Join the list",
-              body: "Sign up below. The email list gets first access — a day or two before sign-up opens to everyone.",
+              body: "Sign up below to hear first when the next dinner opens. Joining the mailing list doesn't reserve a seat.",
             },
             {
               num: "02",
               heading: "Receive the invite",
-              body: "When the next dinner is set, you'll get an email with the date and a link to reserve your seat.",
+              body: "When the next dinner is set, you'll get an email with the date, cost, full details, and a link to RSVP.",
             },
             {
               num: "03",
               heading: "Confirm your spot",
-              body: "The full RSVP asks for dietary notes and requires prepayment. Seats are non-refundable once confirmed — you'll receive the address closer to the date.",
+              body: "Share dietary notes when you RSVP. I'll confirm accommodations before you pay. Seats are non-refundable once confirmed; the exact address is shared only with confirmed guests.",
             },
           ].map(({ num, heading, body }) => (
             <div key={num} className="flex flex-col gap-2">
@@ -95,7 +96,8 @@ export function SaveASeat() {
           }}
           className="text-[15px] mt-6"
         >
-          If you&apos;ve joined us before, welcome back.
+          Already on the list? Check your inbox for the latest invitation.
+          If you missed it, <Link href="/contact" className="underline">send me a note</Link>.
         </p>
       </div>
     </section>

@@ -4,17 +4,15 @@ import Image from "next/image";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { menus } from "@/data/menus";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Past Dinners — Brooklyn Suppers",
-  description:
-    "A record of every Brooklyn Suppers dinner — the menus, the seasons, and what was good at the market.",
-};
+export const metadata: Metadata = pageMetadata("Past Dinners — Brooklyn Suppers", "Selected past Brooklyn Suppers menus, guided by the seasons and what was good at the market.", "/dinners");
 
 export default function DinnersPage() {
   return (
     <div style={{ background: "var(--color-cream)", minHeight: "100vh" }}>
       <Nav />
+      <main id="main-content">
       {/* Page header */}
       <div className="max-w-[960px] mx-auto px-6 pt-32 pb-16">
 
@@ -33,14 +31,14 @@ export default function DinnersPage() {
           }}
           className="text-[clamp(44px,5.5vw,64px)] font-normal mb-6"
         >
-          Every dinner,<br />
-          <em style={{ color: "var(--color-body)" }}>from the beginning.</em>
+          Past dinner<br />
+          <em style={{ color: "var(--color-body)" }}>menus.</em>
         </h1>
         <p
           style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-body)", lineHeight: "1.7" }}
           className="text-[18px] max-w-[560px]"
         >
-          A record of what we&apos;ve cooked, when, and why. Menus are guided by
+          A selection of what we&apos;ve cooked, when, and why. Menus are guided by
           season and what was best at the market.
         </p>
         <p
@@ -73,7 +71,7 @@ export default function DinnersPage() {
                       style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
                       className="text-[28px]"
                     >
-                      {menu.month}
+                      {menu.month} {menu.year}
                     </span>
                     {menu.date && (
                       <time
@@ -197,6 +195,7 @@ export default function DinnersPage() {
           Hear first about the next supper →
         </Link>
       </div>
+      </main>
       <Footer />
     </div>
   );

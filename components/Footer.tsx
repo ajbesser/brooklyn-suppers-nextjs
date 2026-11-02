@@ -31,6 +31,8 @@ export function Footer() {
 
         <nav aria-label="Footer" style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-body)" }} className="text-[15px] md:text-right">
           <ul className="space-y-1.5 list-none">
+            <li><Link href="/about">About Alex</Link></li>
+            <li><Link href="/contact">Contact</Link></li>
             <li>
               <a
                 href={site.instagramUrl}

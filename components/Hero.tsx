@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { HeroVideo } from "@/components/HeroVideo";
 import { heroStats } from "@/data/stats";
 import { EmailSignupForm } from "@/components/EmailSignupForm";
 
@@ -104,24 +104,7 @@ export function Hero() {
               className="absolute inset-0 rounded-[12px] overflow-hidden shadow-[0_24px_64px_-16px_rgba(42,31,22,0.3)] transition-transform duration-300 hover:scale-[1.02]"
               style={{ top: "20px", right: "0", left: "24px" }}
             >
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-                poster="/hero-poster.jpg"
-                className="w-full h-full object-cover"
-                aria-label="Video of guests around the table at a Brooklyn Supper"
-              >
-                <source src="/hero-video.mp4" type="video/mp4" />
-                <Image
-                  src="/images/hero-people.jpg"
-                  alt="Guests around the table at a Brooklyn Supper"
-                  fill
-                  className="object-cover"
-                />
-              </video>
+              <HeroVideo />
             </div>
           </div>
         </div>
@@ -161,24 +144,7 @@ export function Hero() {
 
         {/* Mobile video */}
         <div className="md:hidden mt-10 rounded-[12px] overflow-hidden shadow-[0_20px_60px_-20px_rgba(42,31,22,0.3)] h-[360px]">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            poster="/hero-poster.jpg"
-            className="w-full h-full object-cover"
-            aria-label="Video of guests around the table at a Brooklyn Supper"
-          >
-            <source src="/hero-video.mp4" type="video/mp4" />
-            <Image
-              src="/images/hero-people.jpg"
-              alt="Guests around the table at a Brooklyn Supper"
-              fill
-              className="object-cover"
-            />
-          </video>
+          <HeroVideo mobile />
         </div>
       </div>
     </section>

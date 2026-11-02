@@ -1,251 +1,71 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import Link from "next/link";
+import { FormFields, useSiteForm } from "@/components/FormFields";
 
-export function EmailSignupForm({ ringOffsetColor = "var(--color-cream)" }: { ringOffsetColor?: string }) {
-  const [email, setEmail] = useState("");
+export function EmailSignupForm({ ringOffsetColor = "var(--color-cream)", standalone = false }: { ringOffsetColor?: string; standalone?: boolean }) {
+  const statusRef = useRef<HTMLParagraphElement>(null);
+  const form = useSiteForm("newsletter");
   const [showModal, setShowModal] = useState(false);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [dietary, setDietary] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const firstNameRef = useRef<HTMLInputElement>(null);
-  const modalTriggerRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const titleId = useId();
+  const descriptionId = useId();
 
-  const openModal = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-    setShowModal(true);
-  };
-
-  const closeModal = useCallback(() => {
-    setShowModal(false);
-    modalTriggerRef.current?.focus();
-  }, []);
-
-  useEffect(() => {
-    if (!showModal) return;
-
-    firstNameRef.current?.focus();
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        closeModal();
-      }
-    };
-
-    document.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      document.removeEventListener("keydown", onKeyDown);
-    };
-  }, [closeModal, showModal]);
-
-  const submitToMailchimp = async () => {
-    setIsSubmitting(true);
-    const data = new FormData();
-    data.append("EMAIL", email);
-    data.append("FNAME", firstName);
-    data.append("LNAME", lastName);
-    data.append("MMERGE11", dietary);
-    data.append("b_2dc474f2d0acdfb6984a19dec_bfc2de2d8a", ""); // honeypot
-    try {
-      await fetch(
-        "https://instagram.us9.list-manage.com/subscribe/post?u=2dc474f2d0acdfb6984a19dec&id=bfc2de2d8a&f_id=0055eee1f0",
-        { method: "POST", body: data, mode: "no-cors" }
-      );
-    } finally {
-      setIsSubmitting(false);
-      setShowModal(false);
-      setSubmitted(true);
+  const containTab = (event: React.KeyboardEvent<HTMLDialogElement>) => {
+    if (event.key !== "Tab") return;
+    const items = [...event.currentTarget.querySelectorAll<HTMLElement>('button, input, textarea, select, a[href], [tabindex="0"]')].filter((element) => element.getClientRects().length > 0 && !element.matches(":disabled"));
+    const first = items[0];
+    const last = items.at(-1);
+    if ((!event.shiftKey && document.activeElement === last) || (event.shiftKey && document.activeElement === first)) {
+      event.preventDefault();
+      (event.shiftKey ? last : first)?.focus();
     }
   };
 
-  if (submitted) {
-    return (
-      <p
-        style={{
-          fontFamily: "var(--font-newsreader)",
-          color: "var(--color-brown)",
-          lineHeight: "1.6",
-        }}
-        className="text-[17px] italic"
-      >
-        You&apos;re on the list. I&apos;ll be in touch when the next dinner is set. ✦
-      </p>
-    );
-  }
+  useEffect(() => {
+    if (!showModal || form.complete) return;
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    // Native modal dialogs contain focus, make the background inert, and enter
+    // the top layer even inside a transformed reveal/hero ancestor.
+    dialog.showModal();
+    dialog.querySelector<HTMLInputElement>('[name="firstName"]')?.focus();
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = previous; if (dialog.open) dialog.close(); };
+  }, [showModal, form.complete]);
 
-  return (
-    <>
-      <form
-        onSubmit={openModal}
-        aria-label="Join the mailing list"
-        className="flex gap-2 flex-wrap sm:flex-nowrap"
-      >
-        <input
-          type="email"
-          aria-label="Email address"
-          autoComplete="email"
-          name="EMAIL"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="your@email.com"
-          required
-          className="flex-1 min-w-0 px-4 py-3 rounded-full text-[16px] outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-2"
-          style={{
-            fontFamily: "var(--font-newsreader)",
-            background: "rgba(250,246,238,0.6)",
-            border: "1px solid rgba(42,31,22,0.2)",
-            color: "var(--color-dark)",
-            // @ts-expect-error CSS custom property
-            "--tw-ring-offset-color": ringOffsetColor,
-          }}
-        />
-        <button
-          type="submit"
-          ref={modalTriggerRef}
-          className="shrink-0 px-6 py-3 rounded-full text-[16px] transition-all hover:opacity-90 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-2"
-          style={{
-            fontFamily: "var(--font-newsreader)",
-            background: "var(--color-dark)",
-            color: "var(--color-parchment)",
-            // @ts-expect-error CSS custom property
-            "--tw-ring-offset-color": ringOffsetColor,
-          }}
-        >
-          Hear first →
-        </button>
-      </form>
+  useEffect(() => { if (form.complete) statusRef.current?.focus(); }, [form.complete]);
 
-      {showModal && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center px-4"
-          style={{ background: "rgba(42,31,22,0.5)", backdropFilter: "blur(4px)" }}
-          onClick={(e) => { if (e.target === e.currentTarget) closeModal(); }}
-        >
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="signup-details-title"
-            aria-describedby="signup-details-description"
-            className="w-full max-w-[420px] rounded-[20px] p-8 shadow-2xl"
-            style={{ background: "var(--color-cream)" }}
-          >
-            <div className="mb-2 flex items-start justify-between gap-4">
-              <p
-                style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
-                className="text-[18px]"
-              >
-                one more thing —
-              </p>
-              <button
-                type="button"
-                onClick={closeModal}
-                aria-label="Close signup details"
-                className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-[18px] transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
-                style={{
-                  fontFamily: "var(--font-newsreader)",
-                  color: "var(--color-dark)",
-                  background: "rgba(42,31,22,0.06)",
-                }}
-              >
-                ×
-              </button>
-            </div>
-            <h2
-              id="signup-details-title"
-              style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-dark)", letterSpacing: "-0.5px" }}
-              className="text-[26px] font-normal mb-2"
-            >
-              A couple quick details
-            </h2>
-            <p
-              id="signup-details-description"
-              style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-muted)", lineHeight: "1.55" }}
-              className="mb-6 text-[15px]"
-            >
-              Optional, but helpful for greeting you properly and planning future menus.
-            </p>
+  if (form.complete) return <p ref={statusRef} tabIndex={-1} role="status" className="text-[18px] leading-relaxed">{form.message}</p>;
 
-            <div className="flex flex-col gap-3">
-              <div className="flex gap-2">
-                <input
-                  ref={firstNameRef}
-                  type="text"
-                  aria-label="First name"
-                  autoComplete="given-name"
-                  placeholder="First name"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  className="flex-1 min-w-0 px-4 py-3 rounded-full text-[15px] outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
-                  style={{
-                    fontFamily: "var(--font-newsreader)",
-                    background: "var(--color-input-bg)",
-                    border: "1px solid rgba(42,31,22,0.15)",
-                    color: "var(--color-dark)",
-                  }}
-                />
-                <input
-                  type="text"
-                  aria-label="Last name"
-                  autoComplete="family-name"
-                  placeholder="Last name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  className="flex-1 min-w-0 px-4 py-3 rounded-full text-[15px] outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
-                  style={{
-                    fontFamily: "var(--font-newsreader)",
-                    background: "var(--color-input-bg)",
-                    border: "1px solid rgba(42,31,22,0.15)",
-                    color: "var(--color-dark)",
-                  }}
-                />
-              </div>
-              <textarea
-                aria-label="Dietary restrictions"
-                placeholder="Any dietary restrictions? (optional)"
-                value={dietary}
-                onChange={(e) => setDietary(e.target.value)}
-                rows={3}
-                className="w-full px-4 py-3 rounded-[14px] text-[15px] outline-none resize-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
-                style={{
-                  fontFamily: "var(--font-newsreader)",
-                  background: "var(--color-input-bg)",
-                  border: "1px solid rgba(42,31,22,0.15)",
-                  color: "var(--color-dark)",
-                }}
-              />
-              <button
-                type="button"
-                onClick={submitToMailchimp}
-                disabled={isSubmitting}
-                className="w-full py-3 rounded-full text-[16px] transition-all hover:opacity-90 disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
-                style={{
-                  fontFamily: "var(--font-newsreader)",
-                  background: "var(--color-dark)",
-                  color: "var(--color-parchment)",
-                }}
-              >
-                {isSubmitting ? "Joining..." : "Join the list →"}
-              </button>
-              <button
-                type="button"
-                onClick={submitToMailchimp}
-                disabled={isSubmitting}
-                className="text-[14px] underline underline-offset-2 transition-opacity hover:opacity-70 disabled:opacity-40"
-                style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-muted)" }}
-              >
-                Skip and just use my email
-              </button>
-            </div>
-          </div>
+  const details = <form action="/api/newsletter" method="post" noValidate onSubmit={form.submit} aria-label="Mailing list details" aria-busy={form.pending}>
+    <FormFields kind="newsletter" form={form} />
+    {form.message && <p role="alert" className="mt-4 text-[16px]">{form.message}</p>}
+    <p className="mt-4 text-[16px] leading-relaxed">Joining the list doesn&apos;t reserve a seat. Questions or missed an invitation? <Link className="underline" href="/contact">Send Alex a note.</Link></p>
+    <noscript><p>Your browser will open a confirmation page after you submit.</p></noscript>
+  </form>;
+
+  if (standalone) return details;
+
+  return <>
+    <form action="/join" method="get" onSubmit={(event) => { event.preventDefault(); setShowModal(true); }} aria-label="Join the mailing list" className="flex gap-2 flex-wrap sm:flex-nowrap" style={{ "--form-ring-offset": ringOffsetColor } as React.CSSProperties}>
+      {/* No name on this input: the no-JS GET fallback must not leak email in a URL. */}
+      <input type="email" aria-label="Email address" autoComplete="email" value={form.fields.email || ""} onChange={(event) => form.setField("email", event.target.value)} placeholder="your@email.com" required maxLength={254} className="site-input flex-1 min-w-0 !rounded-full" />
+      <button ref={triggerRef} type="submit" className="site-button shrink-0">Hear first →</button>
+    </form>
+    {!showModal && form.message && <p role="alert" className="mt-4 text-[16px]">{form.message}</p>}
+    {showModal && <dialog ref={dialogRef} onKeyDown={containTab} aria-labelledby={titleId} aria-describedby={descriptionId} className="signup-dialog on-light" onClose={() => { setShowModal(false); triggerRef.current?.focus(); }} onClick={(event) => { if (event.target === event.currentTarget) dialogRef.current?.close(); }}>
+      <div className="p-5 sm:p-8">
+        <div className="flex items-start justify-between gap-4 mb-3">
+          <h2 id={titleId} className="text-[26px] leading-tight">A couple quick details</h2>
+          <button type="button" onClick={() => dialogRef.current?.close()} aria-label="Close signup details" className="min-w-11 min-h-11 rounded-full text-[24px] focus-visible:outline-2">×</button>
         </div>
-      )}
-    </>
-  );
+        <p id={descriptionId} className="mb-5 text-[16px] leading-relaxed">Your first and last name help me greet you properly. Dietary notes are optional.</p>
+        {details}
+      </div>
+    </dialog>}
+  </>;
 }

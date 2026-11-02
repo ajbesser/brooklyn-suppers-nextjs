@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export function About() {
   return (
@@ -32,11 +33,11 @@ export function About() {
               className="text-[18px] space-y-5"
             >
               <p>
-                Brooklyn Suppers started a little over three years ago as a way
-                to bring people together over food and thoughtful conversation.
-                I look forward to the new and returning attendees who get to
-                connect around the dinner table.
+                I&apos;m Alex, a home cook in Brooklyn. Since January 2023,
+                I&apos;ve hosted monthly dinners in my apartment to bring people
+                together over food and thoughtful conversation.
               </p>
+              <p><Link href="/about" className="underline underline-offset-4">More about me →</Link></p>
               <p>
                 Each dinner is different. Menus are designed uniquely each
                 month, inspired by what is in season.

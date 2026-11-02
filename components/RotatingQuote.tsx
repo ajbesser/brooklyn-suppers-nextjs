@@ -13,21 +13,29 @@ export function RotatingQuote({
 }) {
   const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(true);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = setInterval(() => {
-      setVisible(false);
-      setTimeout(() => {
-        setIndex(i => (i + 1) % quotes.length);
-        setVisible(true);
-      }, 400);
-    }, 5000);
-    return () => clearInterval(id);
-  }, [quotes.length]);
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let interval: ReturnType<typeof setInterval> | undefined;
+    let fade: ReturnType<typeof setTimeout> | undefined;
+    const stop = () => { clearInterval(interval); clearTimeout(fade); };
+    const start = () => {
+      stop();
+      if (paused || reduced.matches || quotes.length < 2) return;
+      interval = setInterval(() => {
+        setVisible(false);
+        fade = setTimeout(() => { setIndex(i => (i + 1) % quotes.length); setVisible(true); }, 400);
+      }, 5000);
+    };
+    const motionChanged = () => { setVisible(true); start(); };
+    start();
+    reduced.addEventListener("change", motionChanged);
+    return () => { stop(); reduced.removeEventListener("change", motionChanged); };
+  }, [quotes.length, paused]);
 
   return (
-    <p
+    <div><p
       className={className}
       style={{
         ...style,
@@ -37,5 +45,7 @@ export function RotatingQuote({
     >
       &ldquo;{quotes[index]}&rdquo;
     </p>
+      {quotes.length > 1 && <button type="button" aria-pressed={paused} className="block mx-auto mt-6 px-3 py-2 min-h-11 underline text-[16px]" onClick={() => { setVisible(true); setPaused(p => !p); }}>{paused ? "Resume quotes" : "Pause quotes"}</button>}
+    </div>
   );
 }
