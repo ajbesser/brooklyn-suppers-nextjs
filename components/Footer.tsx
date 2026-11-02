@@ -23,7 +23,7 @@ export function Footer() {
           <Link
             href="/dinners"
             style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-body)" }}
-            className="text-[14px] hover:text-[var(--color-dark)] transition-colors"
+            className="inline-flex min-h-11 items-center text-[14px] hover:text-[var(--color-dark)] transition-colors"
           >
             Past dinners →
           </Link>
@@ -31,14 +31,14 @@ export function Footer() {
 
         <nav aria-label="Footer" style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-body)" }} className="text-[15px] md:text-right">
           <ul className="space-y-1.5 list-none">
-            <li><Link href="/about">About Alex</Link></li>
-            <li><Link href="/contact">Contact</Link></li>
+            <li><Link href="/about" className="inline-flex min-h-11 items-center">About Alex</Link></li>
+            <li><Link href="/contact" className="inline-flex min-h-11 items-center">Contact</Link></li>
             <li>
               <a
                 href={site.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[var(--color-dark)] transition-colors"
+                className="inline-flex min-h-11 items-center hover:text-[var(--color-dark)] transition-colors"
               >
                 Instagram — @brooklynsuppers
               </a>
@@ -46,7 +46,7 @@ export function Footer() {
             <li>
               <a
                 href={`mailto:${site.email}`}
-                className="hover:text-[var(--color-dark)] transition-colors"
+                className="inline-flex min-h-11 items-center hover:text-[var(--color-dark)] transition-colors"
               >
                 {site.email}
               </a>

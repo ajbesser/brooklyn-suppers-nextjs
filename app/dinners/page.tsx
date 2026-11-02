@@ -66,7 +66,7 @@ export default function DinnersPage() {
               {/* Left: menu content */}
               <div>
                 <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2">
-                  <div className="flex items-baseline gap-4">
+                  <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
                     <span
                       style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
                       className="text-[28px]"
@@ -124,7 +124,7 @@ export default function DinnersPage() {
                       </span>
                       <span
                         style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-dark)", lineHeight: "1.5" }}
-                        className="text-[14px]"
+                        className="text-[16px]"
                       >
                         {course}
                       </span>
@@ -136,25 +136,24 @@ export default function DinnersPage() {
               {/* Right: photo (if available) */}
               {menu.photo && (
                 <div
-                  className="relative rounded-[6px] overflow-hidden shadow-[0_16px_48px_-16px_rgba(22,36,29,0.25)] shrink-0"
-                  style={{ width: "200px", height: "260px" }}
+                  className="relative aspect-[4/3] w-full shrink-0 overflow-hidden rounded-[8px] shadow-[0_16px_48px_-16px_rgba(22,36,29,0.25)] md:aspect-[10/13] md:w-[200px]"
                 >
                   <Image
                     src={menu.photo}
                     alt={`${menu.month} ${menu.year} dinner`}
                     fill
-                    sizes="200px"
+                    sizes="(max-width: 767px) calc(100vw - 48px), 200px"
                     className="object-cover"
                     loading="lazy"
                   />
                   {menu.caption && (
                     <div
                       className="absolute bottom-0 left-0 right-0 px-3 py-2"
-                      style={{ background: "rgba(22,36,29,0.35)" }}
+                      style={{ background: "rgba(12,31,23,0.9)" }}
                     >
                       <p
                         style={{ fontFamily: "var(--font-kalam)", color: "var(--color-parchment)" }}
-                        className="text-[13px]"
+                        className="text-[16px]"
                       >
                         {menu.caption}
                       </p>

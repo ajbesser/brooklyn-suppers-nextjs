@@ -36,7 +36,7 @@ function MenuCard({ menu, featured = false }: { menu: Menu; featured?: boolean }
           />
           <p
             style={{ fontFamily: "var(--font-kalam)", color: "var(--color-parchment)" }}
-            className="absolute bottom-3 left-4 text-[17px]"
+            className="absolute bottom-3 left-4 right-4 w-fit rounded-sm bg-[#0c1f17]/90 px-2 py-1 text-[17px]"
           >
             {menu.caption}
           </p>
@@ -67,8 +67,8 @@ function MenuCard({ menu, featured = false }: { menu: Menu; featured?: boolean }
       )}
 
       <div className="flex flex-col p-7 md:p-8">
-        <div className="mb-5 flex items-start justify-between gap-5">
-          <div>
+        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-5">
+          <div className="min-w-0">
             <p
               style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
               className="text-[25px]"
@@ -88,7 +88,7 @@ function MenuCard({ menu, featured = false }: { menu: Menu; featured?: boolean }
               color: "var(--color-muted)",
               fontStyle: "italic",
             }}
-            className="mt-2 shrink-0 text-right text-[14px]"
+            className="max-w-[12rem] text-[15px] sm:mt-2 sm:shrink-0 sm:text-right"
           >
             {menu.wines}
           </p>
@@ -100,7 +100,7 @@ function MenuCard({ menu, featured = false }: { menu: Menu; featured?: boolean }
             color: "var(--color-body)",
             lineHeight: "1.65",
           }}
-          className="mb-6 text-[15px]"
+          className="mb-6 text-[16px]"
         >
           {menu.note}
         </p>
@@ -126,7 +126,7 @@ function MenuCard({ menu, featured = false }: { menu: Menu; featured?: boolean }
                   color: "var(--color-dark)",
                   lineHeight: "1.45",
                 }}
-                className="text-[14px]"
+                className="text-[16px]"
               >
                 {course}
               </span>

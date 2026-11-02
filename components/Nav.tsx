@@ -51,6 +51,12 @@ export function Nav() {
 
   return (
     <header
+      onKeyDown={(event) => {
+        if (event.key === "Escape" && menuOpen) {
+          setMenuOpen(false);
+          menuButtonRef.current?.focus();
+        }
+      }}
       className={`${isHome && !scrolled && !menuOpen ? "on-green" : ""} fixed top-0 left-0 right-0 z-50 transition-all duration-300`}
       style={{
         background:
@@ -66,7 +72,7 @@ export function Nav() {
         <Link
           href="/"
           aria-label="Brooklyn Suppers home"
-          className="rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf5]"
+          className="inline-flex min-h-11 items-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf5]"
         >
           <BrandWordmark compact />
         </Link>
@@ -83,7 +89,7 @@ export function Nav() {
                 fontFamily: "var(--font-newsreader)",
                 color: isHome && activeSection === id ? "var(--color-dark)" : "var(--color-body)",
               }}
-              className="text-[16px] font-normal hover:text-[var(--color-dark)] transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf5]"
+              className="inline-flex min-h-11 items-center text-[16px] font-normal hover:text-[var(--color-dark)] transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf5]"
             >
               {label}
             </Link>
@@ -91,7 +97,7 @@ export function Nav() {
           <Link
             href="/dinners"
             style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-body)" }}
-            className="text-[16px] font-normal hover:text-[var(--color-dark)] transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf5]"
+            className="inline-flex min-h-11 items-center text-[16px] font-normal hover:text-[var(--color-dark)] transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf5]"
           >
             Past dinners
           </Link>
@@ -103,7 +109,7 @@ export function Nav() {
               background: "var(--btn-bg)",
               color: "var(--btn-fg)",
             }}
-            className="text-[16px] font-normal px-5 py-2 rounded-full hover:opacity-90 transition-opacity italic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf5]"
+            className="inline-flex min-h-11 items-center text-[16px] font-normal px-5 py-2 rounded-full hover:opacity-90 transition-opacity italic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf5]"
           >
             Come over →
           </Link>
@@ -119,7 +125,7 @@ export function Nav() {
               background: "var(--btn-bg)",
               color: "var(--btn-fg)",
             }}
-            className="hidden min-[360px]:inline-flex text-[15px] font-normal px-4 py-2 rounded-full italic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf5]"
+            className="hidden min-h-11 items-center min-[360px]:inline-flex text-[15px] font-normal px-4 py-2 rounded-full italic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf5]"
           >
             Come over →
           </Link>
@@ -164,7 +170,6 @@ export function Nav() {
         id="mobile-navigation"
         hidden={!menuOpen}
         inert={!menuOpen}
-        onKeyDown={(event) => { if (event.key === "Escape") { setMenuOpen(false); menuButtonRef.current?.focus(); } }}
         className="lg:hidden overflow-hidden transition-all duration-300"
         style={{
           maxHeight: menuOpen ? "380px" : "0",
