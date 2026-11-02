@@ -23,7 +23,7 @@ const menuEntries: Menu[] = [
     wines: "with natural wines and makgeolli",
     note: "Perilla hand rolls, chilled sungold tomato broth, and pork belly bo ssam, with kimchi and vegetables for the table.",
     caption: "pork belly bo ssam",
-    // No photo selected yet; the homepage uses its text-only card treatment.
+    photo: "/images/menu-aug-2026.jpg",
     courses: [
       "Scallop perilla hand rolls",
       "Somen with chilled sungold tomato broth",
@@ -43,7 +43,7 @@ const menuEntries: Menu[] = [
     wines: "",
     note: "A table inspired by the South of France, built around produce from the Fort Greene Farmers Market.",
     caption: "grand aioli",
-    // Alex confirmed all seven dishes. Leave photo unset until Alex chooses one.
+    photo: "/images/menu-jun-2026.jpg",
     courses: [
       "Radis au beurre",
       "Fennel pickled mussels",
