@@ -96,12 +96,12 @@ export function EmailSignupForm({ ringOffsetColor = "var(--color-cream)" }: { ri
           onChange={(e) => setEmail(e.target.value)}
           placeholder="your@email.com"
           required
-          className="flex-1 min-w-0 px-4 py-3 rounded-full text-[16px] outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-2"
+          className="flex-1 min-w-0 px-4 py-3 rounded-full text-[16px] outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-2"
           style={{
             fontFamily: "var(--font-newsreader)",
-            background: "rgba(250,246,238,0.6)",
-            border: "1px solid rgba(42,31,22,0.2)",
-            color: "var(--color-dark)",
+            background: "#fafaf5",
+            border: "1px solid rgba(22,36,29,0.25)",
+            color: "#0c1f17",
             // @ts-expect-error CSS custom property
             "--tw-ring-offset-color": ringOffsetColor,
           }}
@@ -109,11 +109,11 @@ export function EmailSignupForm({ ringOffsetColor = "var(--color-cream)" }: { ri
         <button
           type="submit"
           ref={modalTriggerRef}
-          className="shrink-0 px-6 py-3 rounded-full text-[16px] transition-all hover:opacity-90 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-2"
+          className="shrink-0 px-6 py-3 rounded-full text-[16px] transition-all hover:opacity-90 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-2"
           style={{
             fontFamily: "var(--font-newsreader)",
-            background: "var(--color-dark)",
-            color: "var(--color-parchment)",
+            background: "var(--btn-bg)",
+            color: "var(--btn-fg)",
             // @ts-expect-error CSS custom property
             "--tw-ring-offset-color": ringOffsetColor,
           }}
@@ -124,8 +124,8 @@ export function EmailSignupForm({ ringOffsetColor = "var(--color-cream)" }: { ri
 
       {showModal && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center px-4"
-          style={{ background: "rgba(42,31,22,0.5)", backdropFilter: "blur(4px)" }}
+          className="on-light fixed inset-0 z-50 flex items-center justify-center px-4"
+          style={{ background: "rgba(22,36,29,0.5)", backdropFilter: "blur(4px)" }}
           onClick={(e) => { if (e.target === e.currentTarget) closeModal(); }}
         >
           <div
@@ -134,7 +134,7 @@ export function EmailSignupForm({ ringOffsetColor = "var(--color-cream)" }: { ri
             aria-labelledby="signup-details-title"
             aria-describedby="signup-details-description"
             className="w-full max-w-[420px] rounded-[20px] p-8 shadow-2xl"
-            style={{ background: "var(--color-cream)" }}
+            style={{ background: "#fafaf5" }}
           >
             <div className="mb-2 flex items-start justify-between gap-4">
               <p
@@ -147,11 +147,11 @@ export function EmailSignupForm({ ringOffsetColor = "var(--color-cream)" }: { ri
                 type="button"
                 onClick={closeModal}
                 aria-label="Close signup details"
-                className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-[18px] transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
+                className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-[18px] transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)]"
                 style={{
                   fontFamily: "var(--font-newsreader)",
                   color: "var(--color-dark)",
-                  background: "rgba(42,31,22,0.06)",
+                  background: "rgba(22,36,29,0.06)",
                 }}
               >
                 ×
@@ -182,11 +182,11 @@ export function EmailSignupForm({ ringOffsetColor = "var(--color-cream)" }: { ri
                   placeholder="First name"
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  className="flex-1 min-w-0 px-4 py-3 rounded-full text-[15px] outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
+                  className="flex-1 min-w-0 px-4 py-3 rounded-full text-[15px] outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)]"
                   style={{
                     fontFamily: "var(--font-newsreader)",
                     background: "var(--color-input-bg)",
-                    border: "1px solid rgba(42,31,22,0.15)",
+                    border: "1px solid rgba(22,36,29,0.15)",
                     color: "var(--color-dark)",
                   }}
                 />
@@ -197,11 +197,11 @@ export function EmailSignupForm({ ringOffsetColor = "var(--color-cream)" }: { ri
                   placeholder="Last name"
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
-                  className="flex-1 min-w-0 px-4 py-3 rounded-full text-[15px] outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
+                  className="flex-1 min-w-0 px-4 py-3 rounded-full text-[15px] outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)]"
                   style={{
                     fontFamily: "var(--font-newsreader)",
                     background: "var(--color-input-bg)",
-                    border: "1px solid rgba(42,31,22,0.15)",
+                    border: "1px solid rgba(22,36,29,0.15)",
                     color: "var(--color-dark)",
                   }}
                 />
@@ -212,11 +212,11 @@ export function EmailSignupForm({ ringOffsetColor = "var(--color-cream)" }: { ri
                 value={dietary}
                 onChange={(e) => setDietary(e.target.value)}
                 rows={3}
-                className="w-full px-4 py-3 rounded-[14px] text-[15px] outline-none resize-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
+                className="w-full px-4 py-3 rounded-[14px] text-[15px] outline-none resize-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)]"
                 style={{
                   fontFamily: "var(--font-newsreader)",
                   background: "var(--color-input-bg)",
-                  border: "1px solid rgba(42,31,22,0.15)",
+                  border: "1px solid rgba(22,36,29,0.15)",
                   color: "var(--color-dark)",
                 }}
               />
@@ -224,11 +224,11 @@ export function EmailSignupForm({ ringOffsetColor = "var(--color-cream)" }: { ri
                 type="button"
                 onClick={submitToMailchimp}
                 disabled={isSubmitting}
-                className="w-full py-3 rounded-full text-[16px] transition-all hover:opacity-90 disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
+                className="w-full py-3 rounded-full text-[16px] transition-all hover:opacity-90 disabled:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)]"
                 style={{
                   fontFamily: "var(--font-newsreader)",
-                  background: "var(--color-dark)",
-                  color: "var(--color-parchment)",
+                  background: "var(--btn-bg)",
+                  color: "var(--btn-fg)",
                 }}
               >
                 {isSubmitting ? "Joining..." : "Join the list →"}

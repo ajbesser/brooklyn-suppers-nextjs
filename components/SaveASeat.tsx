@@ -70,7 +70,7 @@ export function SaveASeat() {
         {/* Divider */}
         <div
           className="mb-10"
-          style={{ height: "1px", background: "rgba(42,31,22,0.1)" }}
+          style={{ height: "1px", background: "rgba(22,36,29,0.1)" }}
         />
 
         <div

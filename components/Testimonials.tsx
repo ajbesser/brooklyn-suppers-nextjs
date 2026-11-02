@@ -3,7 +3,7 @@ import { testimonials } from "@/data/testimonials";
 
 export function Testimonials() {
   return (
-    <section className="py-24 px-6" style={{ background: "var(--color-parchment)" }}>
+    <section className="on-green py-24 px-6" style={{ background: "#093525" }}>
       <div className="max-w-[720px] mx-auto">
         <p
           style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
