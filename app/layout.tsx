@@ -5,6 +5,7 @@ import { DinnerBanner } from "@/components/DinnerBanner";
 import { site } from "@/data/site";
 import { pageMetadata } from "@/lib/metadata";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const newsreader = Newsreader({
@@ -52,6 +53,7 @@ export default function RootLayout({
         <DinnerBanner />
         {children}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
