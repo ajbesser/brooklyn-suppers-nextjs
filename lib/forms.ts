@@ -2,7 +2,7 @@ export type FormResult = { message: string; errors?: Record<string, string> };
 export type FormKind = "newsletter" | "contact";
 export type Fields = Record<string, string>;
 
-export const contactEmail = "alex@brooklynsuppers.com";
+export const contactEmail = "hello@brooklynsuppers.com";
 export const isEmail = (value: string) => value.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
 export function validate(fields: Fields, kind: FormKind) {

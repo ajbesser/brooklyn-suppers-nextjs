@@ -14,7 +14,7 @@ beforeEach(() => {
   process.env.MAILCHIMP_API_KEY = "test-key-us9";
   process.env.MAILCHIMP_AUDIENCE_ID = "testaudience";
   process.env.RESEND_API_KEY = "test-key";
-  process.env.CONTACT_FROM_EMAIL = "Brooklyn Suppers <alex@brooklynsuppers.com>";
+  process.env.CONTACT_FROM_EMAIL = "Brooklyn Suppers <hello@brooklynsuppers.com>";
   stub = mock.method(globalThis, "fetch", async () => { throw new Error("Unexpected provider request"); });
 });
 afterEach(() => { mock.restoreAll(); process.env = { ...original }; });
@@ -98,7 +98,7 @@ test("contact uses the fixed owner inbox, safe text content, and the visitor as 
   mock.method(globalThis, "fetch", async (url: Parameters<typeof fetch>[0], options?: RequestInit) => {
     assert.equal(url, "https://api.resend.com/emails");
     const payload = JSON.parse(String(options?.body));
-    assert.deepEqual(payload.to, ["alex@brooklynsuppers.com"]);
+    assert.deepEqual(payload.to, ["hello@brooklynsuppers.com"]);
     assert.equal(payload.reply_to, note.email);
     assert.equal(payload.html, undefined);
     assert.match(payload.text, /A question about dinner/);

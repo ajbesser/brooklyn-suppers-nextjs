@@ -7,7 +7,7 @@ In local `.env.local` and the intended Vercel preview/production environment, se
 - `MAILCHIMP_API_KEY`: an existing Mailchimp API key. Its suffix identifies the datacenter, e.g. `us9`. Keep it server-only.
 - `MAILCHIMP_AUDIENCE_ID`: the current audience is `bfc2de2d8a`; verify in the audience dashboard before deployment.
 - `RESEND_API_KEY`: a Resend sending key.
-- `CONTACT_FROM_EMAIL`: a sender on a domain already verified in Resend, for example `Brooklyn Suppers <alex@brooklynsuppers.com>` if that sender/domain is verified. The visitor email is Reply-To; the destination is always `alex@brooklynsuppers.com` and cannot be supplied by a visitor.
+- `CONTACT_FROM_EMAIL`: a sender on a domain already verified in Resend, for example `Brooklyn Suppers <hello@brooklynsuppers.com>` if that sender/domain is verified. The visitor email is Reply-To; the destination is always `hello@brooklynsuppers.com` and cannot be supplied by a visitor. The owner prefers this forwarding address because it reaches the personal inbox they check.
 
 Never put keys in `NEXT_PUBLIC_` variables, code, commits, screenshots, issue comments, or PR descriptions. The routes return a clear unavailable state when settings are missing. The contact page always includes a direct email fallback. These safe failures are not proof of working delivery.
 
@@ -19,7 +19,7 @@ In Mailchimp, confirm that the audience merge tags are `FNAME`, `LNAME`, and `MM
 
 Preview deployment `GrvEw1c9fqycZPdUi29EF8tYA3P5` rebuilt commit `e10c078` with the real Mailchimp settings. A controlled plus-alias signup received the pending response and confirmation email; after the owner completed confirmation, the audience showed Subscribed with the submitted names and dietary test note. An existing subscriber received recovery guidance without overwriting their record.
 
-The initial confirmation email arrived in Gmail Spam with DMARC failure while the audience default sender was `ajbesser@gmail.com`. Mailchimp already authenticates `brooklynsuppers.com`; the audience default sender was corrected to `alex@brooklynsuppers.com`. A fresh confirmation email is still needed to verify delivery and authentication after this change. See [Mailchimp's confirmation-email troubleshooting guidance](https://mailchimp.com/help/troubleshoot-the-opt-in-confirmation-email/).
+The initial confirmation email arrived in Gmail Spam with DMARC failure while the audience default sender was `ajbesser@gmail.com`. Mailchimp already authenticates `brooklynsuppers.com`. The owner subsequently selected the original forwarding address, `hello@brooklynsuppers.com`, for the site, Contact destination, and Mailchimp sender/replies. This supersedes the earlier `alex@brooklynsuppers.com` choice. Updating the Mailchimp setting is pending the owner unlocking the Mac; a fresh confirmation email is still needed to verify delivery and authentication after the final sender change. See [Mailchimp's confirmation-email troubleshooting guidance](https://mailchimp.com/help/troubleshoot-the-opt-in-confirmation-email/).
 
 Production environment variables and deployment are unchanged. Contact delivery still needs `RESEND_API_KEY`, a verified `CONTACT_FROM_EMAIL`, and an actual inbox test. Do not treat preview signup evidence as a production or contact-form delivery pass.
 

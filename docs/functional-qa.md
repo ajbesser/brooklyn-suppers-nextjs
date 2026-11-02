@@ -7,7 +7,7 @@ The existing palette PR #7 merged into main during this work. The functional bra
 ## Implemented
 
 - BES-145/160: server-validated required-name signup, provider-accepted pending opt-in confirmation, error/retry handling, no email-only bypass, native modal/background inertness, explicit forward/reverse Tab wrapping, Escape and focus restoration, unique field labels/errors, 16px inputs, short-screen scrolling, and a native POST fallback via `/join`.
-- BES-163/164/168: approved About page, Contact page/Resend route, shared navigation/footer links, confirmed `alex@` contact destination, and the approved dietary-before-payment/email-first RSVP sequence.
+- BES-163/164/168: approved About page, Contact page/Resend route, shared navigation/footer links, owner-preferred `hello@brooklynsuppers.com` contact destination, and the approved dietary-before-payment/email-first RSVP sequence.
 - BES-166: route-specific canonical/Open Graph/Twitter metadata, matching sitemap entries, accurate existing social-image dimensions (1080×1350), and structured data without unapproved pricing/cuisine or a private address.
 - BES-162: specified “to enjoy the group's company” copy correction.
 - BES-83: hidden collapsed mobile links, responsive header behavior, archive main/skip-link target, native video pause controls, poster-first reduced-motion code, and a quote pause/resume control with timer cleanup.
@@ -31,7 +31,7 @@ The stale app/favicon.ico was confirmed visually as the Vercel triangle. Replace
 - Saved server-only Mailchimp key/audience settings for Vercel Preview and rebuilt `e10c078` as deployment `GrvEw1c9fqycZPdUi29EF8tYA3P5`. No production deployment or production environment-variable change.
 - Existing `ajbesser@gmail.com` returns already-registered guidance without overwriting the contact. The approved Gmail plus alias received a pending response and confirmation email. After the owner completed the human check and confirmation, Mailchimp showed Subscribed with Alex/Besser and the optional dietary test note intact. The record source identifies the new Vercel API integration.
 - Confirmed audience ID and all three merge tags. Enabled first/last Required in Mailchimp and reopened each field to verify persistence.
-- The first confirmation reached Gmail Spam and failed DMARC with the audience's legacy Gmail From address. Confirmed `brooklynsuppers.com` is already authenticated in Mailchimp, changed the audience default From to `alex@brooklynsuppers.com`, and verified the saved value. Delivery/authentication after the sender correction still needs a fresh email test.
+- The first confirmation reached Gmail Spam and failed DMARC with the audience's legacy Gmail From address. Confirmed `brooklynsuppers.com` is already authenticated in Mailchimp. The owner subsequently chose the original forwarding address, `hello@brooklynsuppers.com`, superseding the intermediate `alex@` sender. Site email links and the fixed Contact recipient now use `hello@`; changing the Mailchimp default is pending the Mac being unlocked. Delivery/authentication after the final sender correction still needs a fresh email test.
 - The Mailchimp key expires November 2, 2027 and must be rotated before then. Credentials are not stored in the repository or local files.
 
 ## Still open
