@@ -31,7 +31,6 @@ export const metadata: Metadata = {
   ...pageMetadata("Brooklyn Suppers — Monthly Dinner Club in Brooklyn", "Seasonal menus, wine, and good conversation around a long table in Brooklyn. Join the list to hear first about the next supper."),
   keywords: ["Brooklyn dinner club", "supper club Brooklyn", "seasonal menus", "community dinner Brooklyn", "monthly dinner NYC"],
   robots: { index: true, follow: true },
-  icons: { icon: "/favicon.svg" },
 };
 
 export default function RootLayout({

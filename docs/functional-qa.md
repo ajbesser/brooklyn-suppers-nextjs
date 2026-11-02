@@ -22,6 +22,10 @@ The existing palette PR #7 merged into main during this work. The functional bra
 - Local provider stubs verify browser error preservation/retry and provider-accepted pending signup. Successful signup closes the dialog and focuses its status message. Contact errors preserve the message; simulated accepted contact submissions replace the form and focus confirmation. The stubs run outside the repository as local runtime instrumentation; no production test switch or test credential is in source.
 - Quote pause toggles its pressed state and stops rotation. Video has native controls; only the visible desktop/mobile instance auto-plays. The reduced-motion preference handler is implemented but was not emulated in the connected browser.
 
+## Favicon follow-up (BES-170)
+
+The stale app/favicon.ico was confirmed visually as the Vercel triangle. Replaced it with a gold plate/fork on bottle green, with 16/32/48px ICO frames, matching app/icon.svg, and a 180px Apple icon. The legacy public/favicon.svg is updated too. Removed the manual metadata icon entry so file conventions consistently supply the icons. Lint/build pass; all five public routes advertise the same three branded icons with new hashed URLs, and every served asset matches its source bytes. Checked 16px readability and the local browser head tags. Review/deployment is still pending.
+
 ## Still open
 
 - **Configure provider credentials before merging/deploying.** Without them the new endpoints deliberately show unavailable errors; they do not fall back to false success. Follow `docs/forms-setup.md` for audience tags/required settings, confirmed test mailbox, double-opt-in confirmation, and actual inbox receipt. Stub tests are not delivery evidence. BES-145/160/164/85/101/109 remain open for that verification.
