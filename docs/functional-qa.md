@@ -56,7 +56,17 @@ Verified on the production build in the connected in-app browser:
 - Representative color ratios: body on cream 8.94:1; muted on cream 6.55:1; gold-button text 8.13:1; white on green 12.96:1; muted on green 8.03:1. Caption text over its 90% dark backing remains above 10:1 even over a white image. These are sampled text combinations, not a full WCAG conformance claim.
 - Lint and production build pass after the navigation changes; the existing 12 provider/validation tests passed before these presentation-only changes.
 
-Actual Safari access was blocked by the locked Mac. Real-device/iOS/Android/Firefox, VoiceOver, browser zoom, and reduced-motion emulation remain unverified. The 44px targets satisfy this project's mobile requirement; this report does not present WCAG 2.1's AAA target-size criterion as AA.
+The first native Safari attempt was blocked by the locked Mac; later desktop coverage is recorded below. Real-device/iOS/Android/Firefox, VoiceOver, browser zoom, and reduced-motion emulation remain unverified. The 44px targets satisfy this project's mobile requirement; this report does not present WCAG 2.1's AAA target-size criterion as AA.
+
+## Approved content and account verification — November 2, 2026
+
+- Alex approved **A Table in the South of France** and **Bo Ssam & Makgeolli**, and confirmed that the old 22 excluded those dinners. PR #10 commit `944951c` applies both titles and **24 dinners hosted**, preserving **150+ new and returning attendees**. No other public hardcoded dinner count was found. Lint/build pass; homepage/archive title fit and no horizontal overflow verified at actual 320/390/768/1440 viewports.
+- Native macOS Safari 27.2 rendered all five local production-built routes. The original video played and native Pause worked. The signup dialog focused first name, rejected missing names and focused the first error, then Escape closed it and restored the Hear first button focus. No valid provider submission was sent from Safari. Full Safari Tab-cycle/zoom, VoiceOver and real-device coverage are not claimed.
+- Search Console domain property `brooklynsuppers.com` already exists; signed-in Settings confirms **You are a verified owner**. Existing sitemap is **Success** (last read October 31; two discovered pages). Canonical homepage URL Inspection says **URL is on Google / Page is indexed** and offers Request again. BES-110 is Done; no duplicate setup or unnecessary re-request performed.
+- Page-indexing report last updated October 22 has one indexed page and five exclusions: three redirects, discovered/not-indexed `/dinners`, and crawled/not-indexed the old hashed favicon URL. Do not request indexing for the favicon. Release the archive canonical fix before requesting `/dinners` indexing. Redirect examples have not been inspected individually.
+- Existing production homepage PageSpeed audit on November 2 at 10:48 AM EST: mobile Performance 99 / Accessibility 100 / Best Practices 100 / SEO 100, LCP 0.9s, TBT 10ms, CLS 0; desktop all four scores 100, LCP 0.4s, TBT 0, CLS 0. These are one lab audit of existing production, not preview or complete accessibility results. Real-user experience reports No Data. [Report](https://pagespeed.web.dev/analysis/https-www-brooklynsuppers-com/8jw5h62332?form_factor=mobile).
+- Vercel Overview showed existing analytics (16 visitors over one week) and six-hour observability of 264 CDN requests, zero function invocations and 0% error rate. Detailed Analytics/Speed Insights/runtime logs remain to inspect. No new analytics settings or paid plan enabled.
+- Full continuation context and remaining work: [Linear implementation handoff](https://linear.app/besser/document/brooklyn-suppers-implementation-handoff-and-next-steps-nov-2-2026-5a451458555e).
 
 ## Homepage copy exclusion and publication approval — November 2, 2026
 
@@ -69,7 +79,21 @@ The approved release preserves Contact implementation behind server-only `CONTAC
 ## Still open
 
 - **Finish provider setup before merging/deploying.** Mailchimp Preview is configured and its pending-to-subscribed flow is verified above. Verify fresh-email delivery after the sender correction, configure Mailchimp for production, and repair inbound routing before repeating the Contact delivery test. Actual Contact inbox receipt and production checks remain outstanding. BES-145/160/164/85/101/109 remain open for their remaining acceptance checks; do not treat preview signup evidence as a contact or production pass.
-- Actual Safari/iPhone, Android, Firefox, VoiceOver, and production checks are still required for BES-83/107/108. Local simulated widths are not real-device coverage.
+- Complete native browser keyboard/zoom, actual iPhone/Android/iPad, Firefox, VoiceOver, and production checks for BES-83/107/108. Native Safari desktop smoke coverage is recorded above; simulated widths are not real-device coverage.
 - The existing portrait social photo is retained with correct dimensions. A reviewed landscape sharing crop remains under BES-166; no replacement image or photo choice was inferred.
-- Search Console ownership/indexing, real-user performance, and Railway shutdown require account/live verification. No production deployment or service shutdown was performed. Only the approved Resend sending DNS additions above were made.
-- June/August menu titles/completeness and photo selections remain a content batch. The supplied June/September folders were inventoried; originals were not changed or published, and September photos were not assumed to depict the August dinner.
+- Search Console setup and homepage indexing are verified above; corrected archive indexing after release, real-user performance, detailed Vercel logs, and Railway shutdown remain open. No production deployment or service shutdown was performed. Only the approved Resend sending DNS additions above were made.
+- June/August titles and the 24-dinner total are approved and applied. Alex confirmed the complete seven-dish June menu on November 2; Alex approved June `IMG_9711.JPG` and Korean `LLS00680.JPG` and confirmed the September folder depicts August 30. Optimized copies are included in the review preview for the homepage and archive; original photos are unchanged. No production publication has occurred.
+
+
+## Approved June and August photos — November 2
+
+Alex approved the recommended June `IMG_9711.JPG` and Korean `LLS00680.JPG`, and confirmed the supplied September folder depicts the August 30 dinner. The menu entries now use `/images/menu-jun-2026.jpg` and `/images/menu-aug-2026.jpg` on both the homepage and archive. Source originals are unchanged. Web copies preserve composition/color, apply EXIF orientation, resize to at most 1600px on the long edge, and omit source EXIF metadata; June is 1440×1600 / 541,168 bytes, August 1280×1600 / 373,291 bytes. Existing Next Image optimization and lazy loading remain in use.
+
+`npm run lint`, `npm run build`, and `git diff --check` pass. The production build was checked in the connected browser at 1280px and 390px: both new images loaded on homepage/archive, no horizontal overflow, readable caption backing, centered food-focused homepage crops, 4:3 mobile archive images, and 200×260 desktop archive images. This is responsive browser coverage, not additional real-device coverage. The earlier photo-less fallback check remains historical; the selected images supersede it for these two entries. Review preview only; no production release.
+
+
+## Approved homepage About photo — November 2
+
+Alex approved June `IMG_9713.JPG` for the photo beside “A long, seasonally-inspired dinner lasting into the night.” `components/About.tsx` now uses `/images/about-jun-2026.jpg` and descriptive alt text for guests sharing food and conversation. The responsive 4:5 frame replaces the fixed 520px height to retain guests at phone widths; object position is 50% 60%. The existing hover treatment and lazy loading remain. The web copy is 1200×1600 / 365,689 bytes with EXIF metadata omitted; the source original and previous site image are retained unchanged.
+
+Lint, production build, and diff checks pass. Connected-browser checks at 1280px and 390px confirm image loading, no horizontal overflow, and visible guests/shared dishes. The frame is 448×560 on desktop and approximately 342×428 on phone. Screenshots: `outputs/about-photo-desktop.png` and `outputs/about-photo-mobile.png` in the chat workspace. Review preview only; no production release.
