@@ -80,7 +80,7 @@ export function WhatToExpect() {
           <div className="md:order-1 flex flex-col gap-10 justify-center">
             <blockquote
               className="relative"
-              style={{ borderLeft: "2px solid rgba(160,78,51,0.3)", paddingLeft: "24px" }}
+              style={{ borderLeft: "2px solid rgba(31,92,67,0.3)", paddingLeft: "24px" }}
             >
               <p
                 style={{
@@ -103,7 +103,7 @@ export function WhatToExpect() {
 
             <div className="flex flex-col gap-3">
               <div
-                className="group relative rounded-[16px] overflow-hidden shadow-[0_16px_48px_-16px_rgba(42,31,22,0.25)]"
+                className="group relative rounded-[16px] overflow-hidden shadow-[0_16px_48px_-16px_rgba(22,36,29,0.25)]"
                 style={{ height: "300px" }}
               >
                 <Image

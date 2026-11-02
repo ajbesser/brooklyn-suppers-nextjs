@@ -28,7 +28,7 @@ export function DinnerBanner() {
         </span>{" "}
         {date}
         {spots && (
-          <span style={{ color: "rgba(250,246,238,0.75)" }}>
+          <span style={{ color: "rgba(250,250,245,0.75)" }}>
             {" "}· {spots} {parseInt(spots) === 1 ? "spot" : "spots"} remaining
           </span>
         )}
