@@ -19,8 +19,7 @@ const menuEntries: Menu[] = [
     year: 2026,
     sortDate: "2026-08-30",
     date: "August 30, 2026",
-    // Working title; proposed final title: "Bo Ssam & Makgeolli".
-    theme: "Korean-inspired",
+    theme: "Bo Ssam & Makgeolli",
     wines: "with natural wines and makgeolli",
     note: "Perilla hand rolls, chilled sungold tomato broth, and pork belly bo ssam, with kimchi and vegetables for the table.",
     caption: "pork belly bo ssam",
@@ -40,8 +39,7 @@ const menuEntries: Menu[] = [
     year: 2026,
     sortDate: "2026-06-14",
     date: "June 14, 2026",
-    // Working title; proposed final title: "A Table in the South of France".
-    theme: "South of France",
+    theme: "A Table in the South of France",
     wines: "",
     note: "A table inspired by the South of France, built around produce from the Fort Greene Farmers Market.",
     caption: "grand aioli",
