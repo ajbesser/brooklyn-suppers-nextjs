@@ -54,14 +54,14 @@ export default function DinnersPage() {
       {/* Dinners list */}
       <div
         className="max-w-[960px] mx-auto px-6 pb-24"
-        style={{ borderTop: "1px solid rgba(42,31,22,0.1)" }}
+        style={{ borderTop: "1px solid rgba(22,36,29,0.1)" }}
       >
         {menus.map((menu, i) => (
           <article
             key={`${menu.sortDate}-${menu.theme}`}
             className="py-16 md:py-20"
             style={{
-              borderBottom: i < menus.length - 1 ? "1px solid rgba(42,31,22,0.1)" : "none",
+              borderBottom: i < menus.length - 1 ? "1px solid rgba(22,36,29,0.1)" : "none",
             }}
           >
             <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto] gap-8 md:gap-16 items-start">
@@ -88,7 +88,7 @@ export default function DinnersPage() {
                   {i === 0 && (
                     <span
                       style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-terracotta)" }}
-                      className="rounded-full border border-[rgba(160,78,51,0.28)] px-3 py-1 text-[12px] uppercase tracking-[0.12em]"
+                      className="rounded-full border border-[rgba(31,92,67,0.28)] px-3 py-1 text-[12px] uppercase tracking-[0.12em]"
                     >
                       latest
                     </span>
@@ -138,7 +138,7 @@ export default function DinnersPage() {
               {/* Right: photo (if available) */}
               {menu.photo && (
                 <div
-                  className="relative rounded-[6px] overflow-hidden shadow-[0_16px_48px_-16px_rgba(42,31,22,0.25)] shrink-0"
+                  className="relative rounded-[6px] overflow-hidden shadow-[0_16px_48px_-16px_rgba(22,36,29,0.25)] shrink-0"
                   style={{ width: "200px", height: "260px" }}
                 >
                   <Image
@@ -152,7 +152,7 @@ export default function DinnersPage() {
                   {menu.caption && (
                     <div
                       className="absolute bottom-0 left-0 right-0 px-3 py-2"
-                      style={{ background: "rgba(42,31,22,0.35)" }}
+                      style={{ background: "rgba(22,36,29,0.35)" }}
                     >
                       <p
                         style={{ fontFamily: "var(--font-kalam)", color: "var(--color-parchment)" }}
@@ -187,11 +187,11 @@ export default function DinnersPage() {
         </p>
         <Link
           href="/#save-a-seat"
-          className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-[17px] transition-all hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4"
+          className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-[17px] transition-all hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-4"
           style={{
             fontFamily: "var(--font-newsreader)",
-            background: "var(--color-dark)",
-            color: "var(--color-parchment)",
+            background: "var(--btn-bg)",
+            color: "var(--btn-fg)",
           }}
         >
           Hear first about the next supper →

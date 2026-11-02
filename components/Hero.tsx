@@ -7,10 +7,11 @@ import { EmailSignupForm } from "@/components/EmailSignupForm";
 export function Hero() {
   return (
     <section
-      className="pt-28 pb-20 px-6"
+      className="on-green pt-28 pb-20 px-6"
       style={{
+        borderBottom: "6px solid #5b1f26",
         background:
-          "radial-gradient(ellipse 80% 60% at 70% 40%, rgba(160,78,51,0.07) 0%, transparent 70%), #d4c4ad",
+          "radial-gradient(ellipse 80% 60% at 70% 40%, rgba(20,120,80,0.2) 0%, transparent 70%), #093525",
       }}
     >
       <div className="max-w-[960px] mx-auto">
@@ -51,7 +52,7 @@ export function Hero() {
             {/* Social proof */}
             <div
               className="flex flex-wrap gap-x-6 gap-y-2 mb-10 pb-10"
-              style={{ borderBottom: "1px solid rgba(42,31,22,0.15)" }}
+              style={{ borderBottom: "1px solid rgba(255,255,255,0.22)" }}
             >
               {heroStats.map(({ stat, label }) => (
                 <div key={stat}>
@@ -101,7 +102,7 @@ export function Hero() {
           {/* Right: video */}
           <div className="relative hidden md:block" style={{ height: "520px" }}>
             <div
-              className="absolute inset-0 rounded-[12px] overflow-hidden shadow-[0_24px_64px_-16px_rgba(42,31,22,0.3)] transition-transform duration-300 hover:scale-[1.02]"
+              className="absolute inset-0 rounded-[12px] overflow-hidden shadow-[0_24px_64px_-16px_rgba(22,36,29,0.3)] transition-transform duration-300 hover:scale-[1.02]"
               style={{ top: "20px", right: "0", left: "24px" }}
             >
               <video
@@ -132,7 +133,7 @@ export function Hero() {
             type="button"
             onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
             aria-label="Scroll to About section"
-            className="flex flex-col items-center gap-1 opacity-50 hover:opacity-80 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#d4c4ad]"
+            className="flex flex-col items-center gap-1 opacity-80 hover:opacity-100 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#093525]"
             style={{ animation: "scrollBounce 2s ease-in-out infinite" }}
           >
             <span
@@ -160,7 +161,7 @@ export function Hero() {
         </div>
 
         {/* Mobile video */}
-        <div className="md:hidden mt-10 rounded-[12px] overflow-hidden shadow-[0_20px_60px_-20px_rgba(42,31,22,0.3)] h-[360px]">
+        <div className="md:hidden mt-10 rounded-[12px] overflow-hidden shadow-[0_20px_60px_-20px_rgba(22,36,29,0.3)] h-[360px]">
           <video
             autoPlay
             loop

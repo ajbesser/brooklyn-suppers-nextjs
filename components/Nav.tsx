@@ -68,14 +68,14 @@ export function Nav() {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      className={`${isHome && !scrolled && !menuOpen ? "on-green" : ""} fixed top-0 left-0 right-0 z-50 transition-all duration-300`}
       style={{
         background:
-          menuOpen || scrolled ? "rgba(250,246,238,0.97)" : "transparent",
+          menuOpen || scrolled ? "rgba(250,250,245,0.97)" : "transparent",
         backdropFilter: menuOpen || scrolled ? "blur(8px)" : "none",
         borderBottom:
           menuOpen || scrolled
-            ? "1px solid rgba(42,31,22,0.08)"
+            ? "1px solid rgba(22,36,29,0.08)"
             : "1px solid transparent",
       }}
     >
@@ -83,7 +83,7 @@ export function Nav() {
         <button
           type="button"
           onClick={scrollToTop}
-          className="rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
+          className="rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf5]"
         >
           <BrandWordmark compact />
         </button>
@@ -99,7 +99,7 @@ export function Nav() {
                 fontFamily: "var(--font-newsreader)",
                 color: isHome && activeSection === id ? "var(--color-dark)" : "var(--color-body)",
               }}
-              className="text-[16px] font-normal hover:text-[#2a1f16] transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
+              className="text-[16px] font-normal hover:text-[var(--color-dark)] transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf5]"
             >
               {label}
             </button>
@@ -107,7 +107,7 @@ export function Nav() {
           <Link
             href="/dinners"
             style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-body)" }}
-            className="text-[16px] font-normal hover:text-[#2a1f16] transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
+            className="text-[16px] font-normal hover:text-[var(--color-dark)] transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf5]"
           >
             Past dinners
           </Link>
@@ -116,10 +116,10 @@ export function Nav() {
             onClick={() => scrollTo("save-a-seat")}
             style={{
               fontFamily: "var(--font-newsreader)",
-              background: "var(--color-dark)",
-              color: "var(--color-parchment)",
+              background: "var(--btn-bg)",
+              color: "var(--btn-fg)",
             }}
-            className="text-[16px] font-normal px-5 py-2 rounded-full hover:opacity-90 transition-opacity italic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
+            className="text-[16px] font-normal px-5 py-2 rounded-full hover:opacity-90 transition-opacity italic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf5]"
           >
             Come over →
           </button>
@@ -132,10 +132,10 @@ export function Nav() {
             onClick={() => scrollTo("save-a-seat")}
             style={{
               fontFamily: "var(--font-newsreader)",
-              background: "var(--color-dark)",
-              color: "var(--color-parchment)",
+              background: "var(--btn-bg)",
+              color: "var(--btn-fg)",
             }}
-            className="text-[15px] font-normal px-4 py-2 rounded-full italic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf6ee]"
+            className="text-[15px] font-normal px-4 py-2 rounded-full italic focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf5]"
           >
             Come over →
           </button>
@@ -146,7 +146,7 @@ export function Nav() {
             onClick={() => setMenuOpen((o) => !o)}
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="w-9 h-9 flex flex-col items-center justify-center gap-[5px] rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-2 focus-visible:ring-offset-[#faf6ee]"
+            className="w-9 h-9 flex flex-col items-center justify-center gap-[5px] rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-2 focus-visible:ring-offset-[#fafaf5]"
           >
             <span
               className="block h-px w-5 transition-all duration-200"
@@ -178,7 +178,7 @@ export function Nav() {
         className="md:hidden overflow-hidden transition-all duration-300"
         style={{
           maxHeight: menuOpen ? "380px" : "0",
-          borderTop: menuOpen ? "1px solid rgba(42,31,22,0.08)" : "none",
+          borderTop: menuOpen ? "1px solid rgba(22,36,29,0.08)" : "none",
         }}
       >
         <nav
@@ -194,8 +194,8 @@ export function Nav() {
                 fontFamily: "var(--font-newsreader)",
                 color: isHome && activeSection === id ? "var(--color-dark)" : "var(--color-body)",
               }}
-              className={`text-left text-[20px] py-3 font-normal hover:text-[#2a1f16] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] ${
-                i < navLinks.length - 1 ? "border-b border-[rgba(42,31,22,0.08)]" : ""
+              className={`text-left text-[20px] py-3 font-normal hover:text-[var(--color-dark)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] ${
+                i < navLinks.length - 1 ? "border-b border-[rgba(22,36,29,0.08)]" : ""
               }`}
             >
               {label}
@@ -205,7 +205,7 @@ export function Nav() {
             href="/dinners"
             onClick={() => setMenuOpen(false)}
             style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-body)" }}
-            className="text-left text-[20px] py-3 font-normal hover:text-[#2a1f16] transition-colors border-b border-[rgba(42,31,22,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
+            className="text-left text-[20px] py-3 font-normal hover:text-[var(--color-dark)] transition-colors border-b border-[rgba(22,36,29,0.08)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)]"
           >
             Past dinners
           </Link>
@@ -216,7 +216,7 @@ export function Nav() {
               fontFamily: "var(--font-newsreader)",
               color: "var(--color-terracotta)",
             }}
-            className="text-left text-[20px] py-3 font-normal italic hover:opacity-80 transition-opacity border-t border-[rgba(42,31,22,0.08)] mt-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33]"
+            className="text-left text-[20px] py-3 font-normal italic hover:opacity-80 transition-opacity border-t border-[rgba(22,36,29,0.08)] mt-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)]"
           >
             Come over →
           </button>

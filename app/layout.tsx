@@ -22,7 +22,7 @@ const kalam = Kalam({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#faf6ee",
+  themeColor: "#fafaf5",
 };
 
 export const metadata: Metadata = {
@@ -84,7 +84,7 @@ export default function RootLayout({
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded focus:text-[15px]"
-          style={{ fontFamily: "var(--font-newsreader)", background: "#2a1f16", color: "#f4eee2" }}
+          style={{ fontFamily: "var(--font-newsreader)", background: "#0c1f17", color: "#eef2ea" }}
         >
           Skip to content
         </a>

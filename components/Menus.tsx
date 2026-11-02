@@ -10,11 +10,11 @@ function MenuCard({ menu, featured = false }: { menu: Menu; featured?: boolean }
     <article
       className="group grid min-h-full grid-cols-1 overflow-hidden rounded-[8px] transition-transform duration-300 hover:-translate-y-1 md:grid-rows-[auto_1fr]"
       style={{
-        background: "rgba(250,246,238,0.72)",
-        border: "1px solid rgba(42,31,22,0.11)",
+        background: "rgba(250,250,245,0.72)",
+        border: "1px solid rgba(22,36,29,0.11)",
         boxShadow: featured
-          ? "0 24px 70px -32px rgba(42,31,22,0.42)"
-          : "0 18px 52px -34px rgba(42,31,22,0.34)",
+          ? "0 24px 70px -32px rgba(22,36,29,0.42)"
+          : "0 18px 52px -34px rgba(22,36,29,0.34)",
       }}
     >
       {menu.photo ? (
@@ -31,7 +31,7 @@ function MenuCard({ menu, featured = false }: { menu: Menu; featured?: boolean }
             className="absolute inset-x-0 bottom-0 h-24"
             style={{
               background:
-                "linear-gradient(to top, rgba(42,31,22,0.42), transparent)",
+                "linear-gradient(to top, rgba(22,36,29,0.42), transparent)",
             }}
           />
           <p
@@ -44,7 +44,7 @@ function MenuCard({ menu, featured = false }: { menu: Menu; featured?: boolean }
       ) : (
         <div
           className="flex h-[230px] flex-col justify-between p-7"
-          style={{ background: "rgba(160,78,51,0.09)" }}
+          style={{ background: "rgba(31,92,67,0.09)" }}
         >
           <p
             style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
@@ -107,7 +107,7 @@ function MenuCard({ menu, featured = false }: { menu: Menu; featured?: boolean }
 
         <div
           className="mb-5"
-          style={{ height: "1px", background: "rgba(42,31,22,0.12)" }}
+          style={{ height: "1px", background: "rgba(22,36,29,0.12)" }}
         />
 
         <ul className="grid list-none gap-2.5">
@@ -196,7 +196,7 @@ export function Menus() {
           <MenuCard menu={older} />
         </div>
 
-        <div className="mt-10 flex flex-col items-start justify-between gap-5 border-t border-[rgba(42,31,22,0.12)] pt-7 sm:flex-row sm:items-center">
+        <div className="mt-10 flex flex-col items-start justify-between gap-5 border-t border-[rgba(22,36,29,0.12)] pt-7 sm:flex-row sm:items-center">
           <p
             style={{
               fontFamily: "var(--font-newsreader)",
@@ -209,11 +209,11 @@ export function Menus() {
           </p>
           <Link
             href="/dinners"
-            className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-[16px] transition-all hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a04e33] focus-visible:ring-offset-4 focus-visible:ring-offset-[#f4eee2]"
+            className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-[16px] transition-all hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#eef2ea]"
             style={{
               fontFamily: "var(--font-newsreader)",
-              background: "var(--color-dark)",
-              color: "var(--color-parchment)",
+              background: "var(--btn-bg)",
+              color: "var(--btn-fg)",
             }}
           >
             Browse past dinners →
