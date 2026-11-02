@@ -58,6 +58,10 @@ Verified on the production build in the connected in-app browser:
 
 Actual Safari access was blocked by the locked Mac. Real-device/iOS/Android/Firefox, VoiceOver, browser zoom, and reduced-motion emulation remain unverified. The 44px targets satisfy this project's mobile requirement; this report does not present WCAG 2.1's AAA target-size criterion as AA.
 
+## Homepage copy exclusion and publication approval — November 2, 2026
+
+Alex approved publication of the remaining work while rejecting the new host-centered homepage About copy. The homepage first paragraph is restored verbatim to the original concept-focused text from `origin/main`, and the new “More about me” homepage paragraph is removed. The heading, seasonal-menu paragraph, separate `/about` page, and approved photo changes remain in scope; downstream content/photo commits must be retained when propagating this update. This approval does not resume the explicitly deferred inbound-email routing repair. Production release and final smoke checks are managed separately from this copy update.
+
 ## Still open
 
 - **Finish provider setup before merging/deploying.** Mailchimp Preview is configured and its pending-to-subscribed flow is verified above. Verify fresh-email delivery after the sender correction, configure Mailchimp for production, and repair inbound routing before repeating the Contact delivery test. Actual Contact inbox receipt and production checks remain outstanding. BES-145/160/164/85/101/109 remain open for their remaining acceptance checks; do not treat preview signup evidence as a contact or production pass.
