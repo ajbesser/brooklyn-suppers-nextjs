@@ -22,7 +22,7 @@ const kalam = Kalam({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#fafaf5",
+  themeColor: "#093525",
 };
 
 export const metadata: Metadata = {

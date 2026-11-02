@@ -134,7 +134,7 @@ export function EmailSignupForm({ ringOffsetColor = "var(--color-cream)" }: { ri
             aria-labelledby="signup-details-title"
             aria-describedby="signup-details-description"
             className="w-full max-w-[420px] rounded-[20px] p-8 shadow-2xl"
-            style={{ background: "var(--color-cream)" }}
+            style={{ background: "#fafaf5" }}
           >
             <div className="mb-2 flex items-start justify-between gap-4">
               <p

@@ -71,7 +71,7 @@ export function Nav() {
       className={`${isHome && !scrolled && !menuOpen ? "on-green" : ""} fixed top-0 left-0 right-0 z-50 transition-all duration-300`}
       style={{
         background:
-          menuOpen || scrolled ? "rgba(250,250,245,0.97)" : "transparent",
+          menuOpen || scrolled ? "rgba(237,240,230,0.97)" : "transparent",
         backdropFilter: menuOpen || scrolled ? "blur(8px)" : "none",
         borderBottom:
           menuOpen || scrolled

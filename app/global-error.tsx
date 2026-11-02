@@ -11,7 +11,7 @@ export default function GlobalError({
       <body>
         <div
           className="min-h-screen flex flex-col items-center justify-center px-6 text-center"
-          style={{ background: "#fafaf5", fontFamily: "Georgia, serif" }}
+          style={{ background: "#edf0e6", fontFamily: "Georgia, serif" }}
         >
           <p style={{ color: "#0c5a3c", fontSize: "20px", marginBottom: "16px" }}>
             something went wrong
@@ -28,7 +28,7 @@ export default function GlobalError({
           >
             An unexpected error occurred.
           </h1>
-          <p style={{ color: "#3f4f46", fontSize: "18px", lineHeight: 1.7, marginBottom: "40px" }}>
+          <p style={{ color: "#34443b", fontSize: "18px", lineHeight: 1.7, marginBottom: "40px" }}>
             Something went wrong on our end. Please try again.
           </p>
           <button
