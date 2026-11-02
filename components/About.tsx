@@ -48,15 +48,14 @@ export function About() {
           {/* Right: photo + caption */}
           <div className="flex flex-col gap-4">
             <div
-              className="group relative rounded-[3px] overflow-hidden shadow-[0_20px_60px_-20px_rgba(22,36,29,0.28)]"
-              style={{ height: "520px" }}
+              className="group relative aspect-[4/5] rounded-[3px] overflow-hidden shadow-[0_20px_60px_-20px_rgba(22,36,29,0.28)]"
             >
               <Image
-                src="/images/dinner-sep-2025.jpg"
-                alt="A fully set dinner table — skirt steak, salads, marigolds"
+                src="/images/about-jun-2026.jpg"
+                alt="Guests sharing food and conversation at the June Brooklyn Supper"
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                className="object-cover object-[50%_60%] transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
             </div>
