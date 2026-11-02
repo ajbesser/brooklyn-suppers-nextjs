@@ -67,7 +67,7 @@ function MenuCard({ menu, featured = false }: { menu: Menu; featured?: boolean }
       )}
 
       <div className="flex flex-col p-7 md:p-8">
-        <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-5">
+        <div className="mb-5 flex flex-col gap-2">
           <div className="min-w-0">
             <p
               style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
@@ -88,7 +88,7 @@ function MenuCard({ menu, featured = false }: { menu: Menu; featured?: boolean }
               color: "var(--color-muted)",
               fontStyle: "italic",
             }}
-            className="max-w-[12rem] text-[15px] sm:mt-2 sm:shrink-0 sm:text-right"
+            className="text-[15px]"
           >
             {menu.wines}
           </p>

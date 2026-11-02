@@ -15,6 +15,49 @@ export interface Menu {
 // To add a new dinner: add it here with a sortDate and copy the photo to public/images/.
 const menuEntries: Menu[] = [
   {
+    month: "August",
+    year: 2026,
+    sortDate: "2026-08-30",
+    date: "August 30, 2026",
+    // Working title; proposed final title: "Bo Ssam & Makgeolli".
+    theme: "Korean-inspired",
+    wines: "with natural wines and makgeolli",
+    note: "Perilla hand rolls, chilled sungold tomato broth, and pork belly bo ssam, with kimchi and vegetables for the table.",
+    caption: "pork belly bo ssam",
+    // No photo selected yet; the homepage uses its text-only card treatment.
+    courses: [
+      "Scallop perilla hand rolls",
+      "Somen with chilled sungold tomato broth",
+      "Pork belly bo ssam with spicy marinated radish",
+      "Homemade baechu-kimchi",
+      "Gaji-namul (marinated eggplant)",
+      "Grilled shishitos",
+      "Hojicha black sesame tiramisu",
+    ],
+  },
+  {
+    month: "June",
+    year: 2026,
+    sortDate: "2026-06-14",
+    date: "June 14, 2026",
+    // Working title; proposed final title: "A Table in the South of France".
+    theme: "South of France",
+    wines: "",
+    note: "A table inspired by the South of France, built around produce from the Fort Greene Farmers Market.",
+    caption: "grand aioli",
+    // TODO(alex): confirm full menu; the source caption was truncated.
+    // Apricot clafoutis is confirmed. Leave photo unset until Alex chooses one.
+    courses: [
+      "Radis au beurre",
+      "Fennel pickled mussels",
+      "Grand aioli",
+      "Roasted branzino",
+      "Carottes râpées",
+      "Herby green salad",
+      "Apricot clafoutis",
+    ],
+  },
+  {
     month: "May",
     year: 2026,
     sortDate: "2026-05-17",
