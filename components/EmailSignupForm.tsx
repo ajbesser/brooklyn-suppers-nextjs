@@ -39,7 +39,7 @@ export function EmailSignupForm({ ringOffsetColor = "var(--color-cream)", standa
 
   useEffect(() => { if (form.complete) statusRef.current?.focus(); }, [form.complete]);
 
-  if (form.complete) return <p ref={statusRef} tabIndex={-1} role="status" className="text-[18px] leading-relaxed">{form.message}</p>;
+  if (form.complete) return <p ref={statusRef} tabIndex={-1} role="status" style={{ color: "var(--color-body)" }} className="text-[18px] leading-relaxed">{form.message}</p>;
 
   const details = <form action="/api/newsletter" method="post" noValidate onSubmit={form.submit} aria-label="Mailing list details" aria-busy={form.pending}>
     <FormFields kind="newsletter" form={form} />
@@ -56,7 +56,7 @@ export function EmailSignupForm({ ringOffsetColor = "var(--color-cream)", standa
       <input type="email" aria-label="Email address" autoComplete="email" value={form.fields.email || ""} onChange={(event) => form.setField("email", event.target.value)} placeholder="your@email.com" required maxLength={254} className="site-input flex-1 min-w-0 !rounded-full" />
       <button ref={triggerRef} type="submit" className="site-button shrink-0">Hear first →</button>
     </form>
-    {!showModal && form.message && <p role="alert" className="mt-4 text-[16px]">{form.message}</p>}
+    {!showModal && form.message && <p role="alert" style={{ color: "var(--color-body)" }} className="mt-4 text-[16px]">{form.message}</p>}
     {showModal && <dialog ref={dialogRef} onKeyDown={containTab} aria-labelledby={titleId} aria-describedby={descriptionId} className="signup-dialog on-light" onClose={() => { setShowModal(false); triggerRef.current?.focus(); }} onClick={(event) => { if (event.target === event.currentTarget) dialogRef.current?.close(); }}>
       <div className="p-5 sm:p-8">
         <div className="flex items-start justify-between gap-4 mb-3">

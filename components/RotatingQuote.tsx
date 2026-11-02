@@ -45,7 +45,7 @@ export function RotatingQuote({
     >
       &ldquo;{quotes[index]}&rdquo;
     </p>
-      {quotes.length > 1 && <button type="button" aria-pressed={paused} className="block mx-auto mt-6 px-3 py-2 min-h-11 underline text-[16px]" onClick={() => { setVisible(true); setPaused(p => !p); }}>{paused ? "Resume quotes" : "Pause quotes"}</button>}
+      {quotes.length > 1 && <button type="button" aria-pressed={paused} style={{ color: "var(--color-body)" }} className="block mx-auto mt-6 px-3 py-2 min-h-11 underline text-[16px]" onClick={() => { setVisible(true); setPaused(p => !p); }}>{paused ? "Resume quotes" : "Pause quotes"}</button>}
     </div>
   );
 }
