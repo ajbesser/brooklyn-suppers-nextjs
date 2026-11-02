@@ -3,14 +3,14 @@
 /* Brooklyn Suppers Design System */
 @theme inline {
   /* Colors */
-  --color-cream: #fafaf5;
-  --color-parchment: #eef2ea;
+  --color-cream: #edf0e6;
+  --color-parchment: #dfe6d8;
   --color-tan: #093525;
   --color-terracotta: #0c5a3c;
   --color-dark: #0c1f17;
   --color-brown: #0c1f17;
-  --color-body: #3f4f46;
-  --color-muted: #56665c;
+  --color-body: #34443b;
+  --color-muted: #48584e;
   --color-input-bg: #eef2ea;
   --color-light-tan: #dfe6dc;
   --color-warm-tan: #c3cdc3;
@@ -71,7 +71,7 @@ body {
   overscroll-behavior: contain;
   border: 0;
   border-radius: 20px;
-  background: var(--color-cream);
+  background: #fafaf5;
   color: var(--color-dark);
   box-shadow: 0 20px 80px #0004;
 }
@@ -98,7 +98,7 @@ body {
   --btn-bg: #eea40c; --btn-fg: #0c1f17;
 }
 .on-light {
-  --color-dark: #0c1f17; --color-brown: #0c1f17; --color-body: #3f4f46; --color-muted: #56665c;
-  --color-terracotta: #0c5a3c; --color-parchment: #eef2ea;
+  --color-dark: #0c1f17; --color-brown: #0c1f17; --color-body: #34443b; --color-muted: #48584e;
+  --color-terracotta: #0c5a3c; --color-parchment: #dfe6d8;
   --btn-bg: #093525; --btn-fg: #fafaf5;
 }

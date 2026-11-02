@@ -3,7 +3,7 @@ import { Nav } from "@/components/Nav";
 
 export default function NotFound() {
   return (
-    <div style={{ background: "#fafaf5", minHeight: "100vh" }}>
+    <div style={{ background: "#edf0e6", minHeight: "100vh" }}>
       <Nav />
       <div className="flex flex-col items-center justify-center px-6 text-center" style={{ minHeight: "100vh" }}>
         <p
@@ -24,7 +24,7 @@ export default function NotFound() {
           This page doesn&apos;t exist.
         </h1>
         <p
-          style={{ fontFamily: "var(--font-newsreader)", color: "#3f4f46", lineHeight: "1.7" }}
+          style={{ fontFamily: "var(--font-newsreader)", color: "#34443b", lineHeight: "1.7" }}
           className="text-[18px] max-w-[480px] mb-10"
         >
           The seat you&apos;re looking for isn&apos;t here. Head back to the table.
