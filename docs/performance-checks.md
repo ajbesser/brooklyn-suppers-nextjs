@@ -8,6 +8,12 @@ Web Analytics and Speed Insights serve different purposes. The existing Analytic
 - Speed Insights showed its setup instructions and **No events collected**. The site lacked `@vercel/speed-insights`; adding the SDK addresses that collection gap. It does not establish passing field metrics before release and sufficient visits.
 - Existing production homepage [PageSpeed report](https://pagespeed.web.dev/analysis/https-www-brooklynsuppers-com/8jw5h62332?form_factor=mobile): mobile Performance 99, LCP 0.9s, TBT 10ms, CLS 0; desktop Performance 100, LCP 0.4s, TBT 0, CLS 0. Field experience says No Data. This was measured before the review PRs were published.
 
+## Preview collection verified
+
+On November 2, the authenticated PR #11 preview rendered in native Chrome. After a controlled homepage visit and signup-dialog interaction without submitting, the Vercel Speed Insights **Preview** environment showed **6 events** and a Real Experience Score of 98. This verifies collection from the review preview; it is a tiny controlled sample, not evidence of passing production or real-visitor Core Web Vitals. Production remains on the previous code.
+
+The native Chrome check also confirmed the browser's explicit **200%** zoom setting, readable/reflowed homepage signup controls and responsive navigation, and dialog first-name focus/Escape restoration. Zoom was restored to 100%. The default Runtime Logs view showed no entries in its last-30-minutes window; no broader error-free or delivery claim is made.
+
 ## Free-plan scope
 
 The project is on Vercel Hobby. [Vercel's documented limits](https://vercel.com/docs/speed-insights/limits-and-pricing) include Speed Insights for one Hobby project, 10,000 data points and a seven-day reporting window. No Plus/Pro upgrade, trial, paid feature or account setting is enabled by this code change. Recheck plan/limits before any future plan change.

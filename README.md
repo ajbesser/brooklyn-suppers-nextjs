@@ -8,7 +8,7 @@ Next.js site for [Brooklyn Suppers](https://www.brooklynsuppers.com), a monthly 
 - **Hosting:** Vercel
 - **Canonical URL:** `https://www.brooklynsuppers.com`
 - **Newsletter:** Mailchimp signup endpoint
-- **Analytics:** Vercel Analytics
+- **Analytics:** Vercel Analytics for visits; Speed Insights for performance measurements
 
 The older React/Vite/Railway site is legacy fallback only and should not be treated as the source of truth.
 
@@ -49,6 +49,7 @@ Vercel deploys from the GitHub repo. After content or metadata changes, verify:
 Set up the server-only form credentials before deploying signup/contact changes:
 [forms setup and delivery checks](docs/forms-setup.md).
 For dinner content and announcements, follow the [monthly update checklist](docs/monthly-update.md).
+For lab/field performance evidence and free-plan monitoring, see [performance checks](docs/performance-checks.md).
 - Homepage renders correctly on desktop and mobile
 - `/dinners` remains reverse chronological
 - `robots.txt`, `sitemap.xml`, Open Graph, and JSON-LD use the canonical `www` URL
