@@ -1,8 +1,10 @@
 // Env-driven announcement banner for the next dinner.
-// Set in Vercel dashboard (no code deploy needed):
+// Set in Vercel dashboard, then redeploy (NEXT_PUBLIC values are build-time):
 //   NEXT_PUBLIC_NEXT_DINNER_DATE  = "June 14"
 //   NEXT_PUBLIC_NEXT_DINNER_SPOTS = "3"   (optional)
 // Leave unset to hide the banner entirely.
+// After a dinner, remove both values and redeploy. Counts are manually maintained,
+// not live inventory. See docs/monthly-update.md for the update/reset checklist.
 
 import Link from "next/link";
 
@@ -29,7 +31,7 @@ export function DinnerBanner() {
         {date}
         {spots && (
           <span style={{ color: "rgba(250,250,245,0.75)" }}>
-            {" "}· {spots} {parseInt(spots) === 1 ? "spot" : "spots"} remaining
+            {" "}· {spots} {parseInt(spots) === 1 ? "spot" : "spots"} remaining at last update
           </span>
         )}
         {" "}·{" "}

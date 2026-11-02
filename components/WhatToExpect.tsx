@@ -11,7 +11,7 @@ const items = [
   },
   {
     bold: "A slow dinner,",
-    rest: " with time to get to enjoy the group's company and let the evening unfold.",
+    rest: " with time to enjoy the group's company and let the evening unfold.",
   },
   {
     bold: "Dinners typically start at 7:30pm",
@@ -23,7 +23,7 @@ const items = [
   },
   {
     bold: "Dietary restrictions",
-    rest: " should be noted in the RSVP, and I'll confirm what can be accommodated before the dinner.",
+    rest: " should be noted in the RSVP. I'll confirm what can be accommodated before you pay.",
   },
 ];
 
@@ -103,7 +103,7 @@ export function WhatToExpect() {
 
             <div className="flex flex-col gap-3">
               <div
-                className="group relative rounded-[16px] overflow-hidden shadow-[0_16px_48px_-16px_rgba(22,36,29,0.25)]"
+                className="group relative rounded-[8px] overflow-hidden shadow-[0_16px_48px_-16px_rgba(22,36,29,0.25)]"
                 style={{ height: "300px" }}
               >
                 <Image
@@ -112,7 +112,7 @@ export function WhatToExpect() {
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  style={{ objectPosition: "center 30%", filter: "brightness(0.82)" }}
+                  style={{ objectPosition: "center 30%" }}
                   loading="lazy"
                 />
               </div>
@@ -120,7 +120,7 @@ export function WhatToExpect() {
                 style={{ fontFamily: "var(--font-kalam)", color: "var(--color-muted)" }}
                 className="text-[17px] ml-1"
               >
-                the long table
+                fried chicken with honey-fermented kumquats
               </p>
             </div>
           </div>

@@ -1,13 +1,45 @@
 "use client";
 
-import Image from "next/image";
+import { HeroVideo } from "@/components/HeroVideo";
 import { heroStats } from "@/data/stats";
 import { EmailSignupForm } from "@/components/EmailSignupForm";
+
+function HeroStats({ className }: { className: string }) {
+  return (
+    <div
+      className={`flex flex-wrap gap-x-6 gap-y-2 ${className}`}
+      style={{ borderBottom: "1px solid rgba(255,255,255,0.22)" }}
+    >
+      {heroStats.map(({ stat, label }) => (
+        <div key={stat}>
+          <span
+            style={{
+              fontFamily: "var(--font-newsreader)",
+              color: "var(--color-dark)",
+            }}
+            className="text-[20px] font-normal"
+          >
+            {stat}
+          </span>{" "}
+          <span
+            style={{
+              fontFamily: "var(--font-newsreader)",
+              color: "var(--color-muted)",
+            }}
+            className="text-[15px] ml-1.5"
+          >
+            {label}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export function Hero() {
   return (
     <section
-      className="on-green pt-28 pb-20 px-6"
+      className="on-green px-6 pt-20 pb-12 md:pt-28 md:pb-20"
       style={{
         borderBottom: "6px solid #5b1f26",
         background:
@@ -33,7 +65,7 @@ export function Hero() {
                 letterSpacing: "-1.8px",
                 lineHeight: "1.02",
               }}
-              className="text-[clamp(52px,7vw,76px)] font-normal mb-6"
+              className="text-[clamp(42px,7vw,76px)] font-normal mb-4 md:mb-6"
             >
               Grab a seat for the next supper.
             </h1>
@@ -42,40 +74,14 @@ export function Hero() {
               style={{
                 fontFamily: "var(--font-newsreader)",
                 color: "var(--color-brown)",
-                lineHeight: "1.7",
               }}
-              className="text-[18px] mb-8"
+              className="mb-6 text-[17px] leading-[1.55] md:mb-8 md:text-[18px] md:leading-[1.7]"
             >
               A monthly dinner club centered around seasonal cooking, deep conversation, and building community.
             </p>
 
-            {/* Social proof */}
-            <div
-              className="flex flex-wrap gap-x-6 gap-y-2 mb-10 pb-10"
-              style={{ borderBottom: "1px solid rgba(255,255,255,0.22)" }}
-            >
-              {heroStats.map(({ stat, label }) => (
-                <div key={stat}>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-newsreader)",
-                      color: "var(--color-dark)",
-                    }}
-                    className="text-[20px] font-normal"
-                  >
-                    {stat}
-                  </span>{" "}
-                  <span
-                    style={{
-                      fontFamily: "var(--font-newsreader)",
-                      color: "var(--color-muted)",
-                    }}
-                    className="text-[15px] ml-1.5"
-                  >
-                    {label}
-                  </span>
-                </div>
-              ))}
+            <div className="hidden md:block">
+              <HeroStats className="mb-10 pb-10" />
             </div>
 
             {/* Primary CTA — email signup */}
@@ -105,35 +111,26 @@ export function Hero() {
               className="absolute inset-0 rounded-[12px] overflow-hidden shadow-[0_24px_64px_-16px_rgba(22,36,29,0.3)] transition-transform duration-300 hover:scale-[1.02]"
               style={{ top: "20px", right: "0", left: "24px" }}
             >
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-                poster="/hero-poster.jpg"
-                className="w-full h-full object-cover"
-                aria-label="Video of guests around the table at a Brooklyn Supper"
-              >
-                <source src="/hero-video.mp4" type="video/mp4" />
-                <Image
-                  src="/images/hero-people.jpg"
-                  alt="Guests around the table at a Brooklyn Supper"
-                  fill
-                  className="object-cover"
-                />
-              </video>
+              <HeroVideo />
             </div>
           </div>
         </div>
 
+        {/* On phones, show the footage before secondary stats and the scroll cue. */}
+        <div className="mt-6 h-[220px] overflow-hidden rounded-[12px] shadow-[0_20px_60px_-20px_rgba(22,36,29,0.3)] min-[390px]:h-[260px] md:hidden">
+          <HeroVideo mobile />
+        </div>
+        <div className="md:hidden">
+          <HeroStats className="mt-6 pb-6" />
+        </div>
+
         {/* Scroll indicator */}
-        <div className="flex justify-center mt-14 md:mt-16">
+        <div className="flex justify-center mt-8 md:mt-16">
           <button
             type="button"
-            onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
+            onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" })}
             aria-label="Scroll to About section"
-            className="flex flex-col items-center gap-1 opacity-80 hover:opacity-100 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#093525]"
+            className="flex min-h-11 min-w-11 flex-col items-center justify-center gap-1 opacity-80 hover:opacity-100 transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-terracotta)] focus-visible:ring-offset-4 focus-visible:ring-offset-[#093525]"
             style={{ animation: "scrollBounce 2s ease-in-out infinite" }}
           >
             <span
@@ -158,28 +155,6 @@ export function Hero() {
               />
             </svg>
           </button>
-        </div>
-
-        {/* Mobile video */}
-        <div className="md:hidden mt-10 rounded-[12px] overflow-hidden shadow-[0_20px_60px_-20px_rgba(22,36,29,0.3)] h-[360px]">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            poster="/hero-poster.jpg"
-            className="w-full h-full object-cover"
-            aria-label="Video of guests around the table at a Brooklyn Supper"
-          >
-            <source src="/hero-video.mp4" type="video/mp4" />
-            <Image
-              src="/images/hero-people.jpg"
-              alt="Guests around the table at a Brooklyn Supper"
-              fill
-              className="object-cover"
-            />
-          </video>
         </div>
       </div>
     </section>

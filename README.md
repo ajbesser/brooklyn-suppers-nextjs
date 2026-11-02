@@ -44,6 +44,11 @@ Vercel deploys from the GitHub repo. After content or metadata changes, verify:
 
 - `npm run lint`
 - `npm run build`
+- `npm test` (Node 22.6+; mocked provider tests send no real email)
+
+Set up the server-only form credentials before deploying signup/contact changes:
+[forms setup and delivery checks](docs/forms-setup.md).
+For dinner content and announcements, follow the [monthly update checklist](docs/monthly-update.md).
 - Homepage renders correctly on desktop and mobile
 - `/dinners` remains reverse chronological
 - `robots.txt`, `sitemap.xml`, Open Graph, and JSON-LD use the canonical `www` URL

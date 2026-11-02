@@ -37,6 +37,46 @@ body {
   background: var(--color-cream);
 }
 
+.site-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--color-muted);
+  border-radius: 12px;
+  background: var(--color-input-bg);
+  color: #0c1f17;
+  font: inherit;
+  font-size: 16px;
+}
+.site-button {
+  padding: 12px 24px;
+  border-radius: 999px;
+  background: var(--btn-bg, var(--color-dark));
+  color: var(--btn-fg, var(--color-cream));
+  font-size: 16px;
+  min-height: 44px;
+}
+.site-button:disabled { opacity: .6; cursor: wait; }
+.site-input:focus-visible, .site-button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--color-terracotta);
+  outline-offset: 3px;
+}
+.site-input[aria-invalid="true"] { border-width: 2px; }
+.signup-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(460px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 0;
+  border-radius: 20px;
+  background: #fafaf5;
+  color: var(--color-dark);
+  box-shadow: 0 20px 80px #0004;
+}
+.signup-dialog::backdrop { background: #0008; backdrop-filter: blur(4px); }
+
 @media (prefers-reduced-motion: reduce) {
   html, body {
     scroll-behavior: auto;

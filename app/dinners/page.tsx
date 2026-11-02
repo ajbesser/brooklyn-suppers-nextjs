@@ -4,17 +4,15 @@ import Image from "next/image";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { menus } from "@/data/menus";
+import { pageMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = {
-  title: "Past Dinners — Brooklyn Suppers",
-  description:
-    "A record of every Brooklyn Suppers dinner — the menus, the seasons, and what was good at the market.",
-};
+export const metadata: Metadata = pageMetadata("Past Dinners — Brooklyn Suppers", "Selected past Brooklyn Suppers menus, guided by the seasons and what was good at the market.", "/dinners");
 
 export default function DinnersPage() {
   return (
     <div style={{ background: "var(--color-cream)", minHeight: "100vh" }}>
       <Nav />
+      <main id="main-content">
       {/* Page header */}
       <div className="max-w-[960px] mx-auto px-6 pt-32 pb-16">
 
@@ -33,14 +31,14 @@ export default function DinnersPage() {
           }}
           className="text-[clamp(44px,5.5vw,64px)] font-normal mb-6"
         >
-          Every dinner,<br />
-          <em style={{ color: "var(--color-body)" }}>from the beginning.</em>
+          Past dinner<br />
+          <em style={{ color: "var(--color-body)" }}>menus.</em>
         </h1>
         <p
           style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-body)", lineHeight: "1.7" }}
           className="text-[18px] max-w-[560px]"
         >
-          A record of what we&apos;ve cooked, when, and why. Menus are guided by
+          A selection of what we&apos;ve cooked, when, and why. Menus are guided by
           season and what was best at the market.
         </p>
         <p
@@ -68,12 +66,12 @@ export default function DinnersPage() {
               {/* Left: menu content */}
               <div>
                 <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2">
-                  <div className="flex items-baseline gap-4">
+                  <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
                     <span
                       style={{ fontFamily: "var(--font-kalam)", color: "var(--color-terracotta)" }}
                       className="text-[28px]"
                     >
-                      {menu.month}
+                      {menu.month} {menu.year}
                     </span>
                     {menu.date && (
                       <time
@@ -126,7 +124,7 @@ export default function DinnersPage() {
                       </span>
                       <span
                         style={{ fontFamily: "var(--font-newsreader)", color: "var(--color-dark)", lineHeight: "1.5" }}
-                        className="text-[14px]"
+                        className="text-[16px]"
                       >
                         {course}
                       </span>
@@ -138,25 +136,24 @@ export default function DinnersPage() {
               {/* Right: photo (if available) */}
               {menu.photo && (
                 <div
-                  className="relative rounded-[6px] overflow-hidden shadow-[0_16px_48px_-16px_rgba(22,36,29,0.25)] shrink-0"
-                  style={{ width: "200px", height: "260px" }}
+                  className="relative aspect-[4/3] w-full shrink-0 overflow-hidden rounded-[8px] shadow-[0_16px_48px_-16px_rgba(22,36,29,0.25)] md:aspect-[10/13] md:w-[200px]"
                 >
                   <Image
                     src={menu.photo}
                     alt={`${menu.month} ${menu.year} dinner`}
                     fill
-                    sizes="200px"
+                    sizes="(max-width: 767px) calc(100vw - 48px), 200px"
                     className="object-cover"
                     loading="lazy"
                   />
                   {menu.caption && (
                     <div
                       className="absolute bottom-0 left-0 right-0 px-3 py-2"
-                      style={{ background: "rgba(22,36,29,0.35)" }}
+                      style={{ background: "rgba(12,31,23,0.9)" }}
                     >
                       <p
                         style={{ fontFamily: "var(--font-kalam)", color: "var(--color-parchment)" }}
-                        className="text-[13px]"
+                        className="text-[16px]"
                       >
                         {menu.caption}
                       </p>
@@ -197,6 +194,7 @@ export default function DinnersPage() {
           Hear first about the next supper →
         </Link>
       </div>
+      </main>
       <Footer />
     </div>
   );
