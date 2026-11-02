@@ -1,6 +1,9 @@
+import { contactSettings, contactUnavailableMessage } from "../../../lib/contact.ts";
 import { contactEmail, formResponse, readFields, validate, type Fields } from "../../../lib/forms.ts";
 
 export async function POST(request: Request) {
+  const settings = contactSettings();
+  if (!settings) return formResponse(request, { message: contactUnavailableMessage }, 503, "contact", {}, { retry: false, instagramFallback: true });
   let fields: Fields = {};
   const reply = (message: string, status: number, errors?: Record<string, string>) => formResponse(request, { message, errors }, status, "contact", fields);
   try { fields = await readFields(request); }
@@ -8,9 +11,7 @@ export async function POST(request: Request) {
   if (fields.website) return reply("We couldn't send this message. Please try again.", 400);
   const errors = validate(fields, "contact");
   if (Object.keys(errors).length) return reply("Please check the highlighted fields.", 422, errors);
-  const key = process.env.RESEND_API_KEY;
-  const from = process.env.CONTACT_FROM_EMAIL;
-  if (!key || !from) return reply("The form is temporarily unavailable. Please email Alex directly.", 503);
+  const { key, from } = settings;
 
   try {
     const response = await fetch("https://api.resend.com/emails", {

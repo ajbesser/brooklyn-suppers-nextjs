@@ -13,6 +13,7 @@ function request(kind: string, data: unknown, headers: Record<string, string> = 
 beforeEach(() => {
   process.env.MAILCHIMP_API_KEY = "test-key-us9";
   process.env.MAILCHIMP_AUDIENCE_ID = "testaudience";
+  process.env.CONTACT_FORM_ENABLED = "true";
   process.env.RESEND_API_KEY = "test-key";
   process.env.CONTACT_FROM_EMAIL = "Brooklyn Suppers <hello@brooklynsuppers.com>";
   stub = mock.method(globalThis, "fetch", async () => { throw new Error("Unexpected provider request"); });
@@ -80,6 +81,28 @@ test("missing or malformed configuration fails safely without a provider request
   assert.equal(stub.mock.callCount(), 0);
 });
 
+test("contact stays unavailable without explicit enablement even when provider credentials exist", async () => {
+  for (const value of [undefined, "", "false", "1", "TRUE"]) {
+    if (value === undefined) delete process.env.CONTACT_FORM_ENABLED;
+    else process.env.CONTACT_FORM_ENABLED = value;
+    const response = await contact(request("contact", note));
+    assert.equal(response.status, 503);
+    assert.match((await response.json()).message, /temporarily unavailable/);
+    assert.equal(response.headers.get("cache-control"), "no-store");
+  }
+  assert.equal(stub.mock.callCount(), 0);
+});
+
+test("disabled contact native responses offer Instagram without a retry form or bouncing email fallback", async () => {
+  delete process.env.CONTACT_FORM_ENABLED;
+  const response = await contact(new Request("https://www.brooklynsuppers.com/api/contact", { method: "POST", body: new URLSearchParams(note) }));
+  assert.equal(response.status, 503);
+  const html = await response.text();
+  assert.match(html, /https:\/\/www.instagram.com\/brooklynsuppers/);
+  assert.doesNotMatch(html, /<form|mailto:|hello@brooklynsuppers.com|guest@example.test/);
+  assert.equal(stub.mock.callCount(), 0);
+});
+
 test("honeypots reject both form types before any provider request", async () => {
   assert.equal((await newsletter(request("newsletter", { ...signup, website: "spam" }))).status, 400);
   assert.equal((await contact(request("contact", { ...note, website: "spam" }))).status, 400);
@@ -119,9 +142,10 @@ test("contact provider failures cannot show success", async () => {
 
 test("native POST fallback retains and escapes entered values on failure", async () => {
   const body = new URLSearchParams({ ...note, message: '<script>alert("test")</script>' });
-  delete process.env.RESEND_API_KEY;
+  mock.restoreAll();
+  mock.method(globalThis, "fetch", async () => Response.json({}, { status: 403 }));
   const response = await contact(new Request("https://www.brooklynsuppers.com/api/contact", { method: "POST", body }));
-  assert.equal(response.status, 503);
+  assert.equal(response.status, 502);
   const html = await response.text();
   assert.match(html, /guest@example.test/);
   assert.match(html, /&lt;script&gt;/);
