@@ -43,8 +43,7 @@ const menuEntries: Menu[] = [
     wines: "",
     note: "A table inspired by the South of France, built around produce from the Fort Greene Farmers Market.",
     caption: "grand aioli",
-    // TODO(alex): confirm full menu; the source caption was truncated.
-    // Apricot clafoutis is confirmed. Leave photo unset until Alex chooses one.
+    // Alex confirmed all seven dishes. Leave photo unset until Alex chooses one.
     courses: [
       "Radis au beurre",
       "Fennel pickled mussels",
