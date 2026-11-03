@@ -2,6 +2,7 @@
 
 import { useId, useRef, useState, type FormEvent } from "react";
 import { validate, type Fields, type FormKind, type FormResult } from "@/lib/forms";
+import { readSource } from "@/lib/attribution";
 
 export function useSiteForm(kind: FormKind) {
   const [fields, setFields] = useState<Fields>({});
@@ -25,6 +26,9 @@ export function useSiteForm(kind: FormKind) {
     setErrors(nextErrors);
     setMessage("");
     if (Object.keys(nextErrors).length) { focusError(nextErrors); return; }
+    if (kind === "newsletter") {
+      try { const source = readSource(window.localStorage); if (source) values.source = source; } catch {}
+    }
     inFlight.current = true;
     setPending(true);
     try {
