@@ -44,6 +44,18 @@ test("signup sends trimmed merge fields and only confirms a provider-accepted pe
   assert.equal(provider.mock.callCount(), 1);
 });
 
+test("signup tags the subscriber with a cleaned source, and drops unsafe sources", async () => {
+  for (const [source, tags] of [["instagram", ["source:instagram"]], ["Bad Source!", undefined]] as const) {
+    mock.restoreAll();
+    const provider = mock.method(globalThis, "fetch", async (_url: Parameters<typeof fetch>[0], options?: RequestInit) => {
+      assert.deepEqual(JSON.parse(String(options?.body)).tags, tags);
+      return Response.json({ status: "pending" });
+    });
+    assert.equal((await newsletter(request("newsletter", { ...signup, source }))).status, 200);
+    assert.equal(provider.mock.callCount(), 1);
+  }
+});
+
 test("existing members get recovery guidance and are never overwritten or resubscribed", async () => {
   mock.restoreAll();
   const provider = mock.method(globalThis, "fetch", async () => Response.json({ title: "Member Exists" }, { status: 400 }));

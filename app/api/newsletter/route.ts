@@ -1,4 +1,5 @@
 import { formResponse, readFields, validate, type Fields } from "../../../lib/forms.ts";
+import { cleanSource } from "../../../lib/attribution.ts";
 
 export async function POST(request: Request) {
   const reply = (message: string, status: number, errors?: Record<string, string>) => formResponse(request, { message, errors }, status, "newsletter", fields);
@@ -8,6 +9,8 @@ export async function POST(request: Request) {
   if (fields.website) return reply("We couldn't submit this signup. Please try again.", 400);
   const errors = validate(fields, "newsletter");
   if (Object.keys(errors).length) return reply("Please check the highlighted fields.", 422, errors);
+
+  const source = cleanSource(fields.source);
 
   const key = process.env.MAILCHIMP_API_KEY;
   const audience = process.env.MAILCHIMP_AUDIENCE_ID;
@@ -19,7 +22,12 @@ export async function POST(request: Request) {
     const response = await fetch(`https://${server}.api.mailchimp.com/3.0/lists/${audience}/members`, {
       method: "POST",
       headers: { Authorization: `Basic ${Buffer.from(`brooklyn-suppers:${key}`).toString("base64")}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ email_address: fields.email, status: "pending", merge_fields: { FNAME: fields.firstName, LNAME: fields.lastName, MMERGE11: fields.dietary || "" } }),
+      body: JSON.stringify({
+        email_address: fields.email,
+        status: "pending",
+        merge_fields: { FNAME: fields.firstName, LNAME: fields.lastName, MMERGE11: fields.dietary || "" },
+        ...(source && { tags: [`source:${source}`] }),
+      }),
       signal: AbortSignal.timeout(10_000),
       cache: "no-store",
     });
