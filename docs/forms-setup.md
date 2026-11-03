@@ -1,6 +1,10 @@
-## Direct-inbox Contact routing — latest owner request
+## Verified production state — November 2/3, 2026
 
-The owner approved using a different inbox instead of broken hello@ receiving. Contact now requires server-only `CONTACT_TO_EMAIL` with a valid single email address; visitors cannot override it. It is configured to the owner-approved personal Gmail inbox in Vercel Production and Preview, never NEXT_PUBLIC_. The explicit enable flag is saved for both environments; Production sending credentials remain absent until preview delivery is verified. The recipient is never rendered on the page or native responses; Contact fallbacks use Instagram. Keep CONTACT_FORM_ENABLED false/unset until a preview delivery is received in the actual inbox, then configure Production and redeploy. DNS/Proton repair remains deferred. This supersedes the historical fixed hello@ destination below; public domain email links elsewhere are unchanged.
+PR15 merged as `1767c39370558da4801c6ef53da7dcba94a72ed0`; Vercel `GX9FqDF6munxX5PmmaYkGZmxs8XQ` succeeds. Contact is enabled with server-only CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL, RESEND_API_KEY and CONTACT_FORM_ENABLED=true in Production and Preview. The private recipient is validated, cannot be overridden by visitors and is not displayed publicly. Instagram is the Contact fallback.
+
+Preview marker BS-DIRECT-20261103-0329 and production marker BS-PRODUCTION-20261103-0340 both reached actual Gmail INBOX, not Spam. Production message1a19f7f4f4332107 confirms SPF/DKIM/DMARC pass and submitted visitor Reply-To. All15 tests/lint/build pass, including recipient injection/privacy tests. BES164/168 complete. Mailchimp Production required names/existing-member recovery pass; fresh corrected-sender confirmation remains open.
+
+This current state supersedes historical Preview-only, fixed-hello, disabled Contact and pending release statements below. Domain receiving repair remains deferred and separate; no receiving DNS or suppression changes were made.
 
 # Forms: setup and delivery verification
 
@@ -10,11 +14,11 @@ In local `.env.local` and the intended Vercel preview/production environment, se
 
 - `MAILCHIMP_API_KEY`: an existing Mailchimp API key. Its suffix identifies the datacenter, e.g. `us9`. Keep it server-only.
 - `MAILCHIMP_AUDIENCE_ID`: the current audience is `bfc2de2d8a`; verify in the audience dashboard before deployment.
-- `CONTACT_FORM_ENABLED`: leave unset or `false` during the deferred inbound-routing issue. Only the exact value `true` enables Contact, and both sender settings below must also exist. Verify real recipient inbox delivery before enabling, then rebuild/redeploy so the Contact page and API agree. This is server-only; never use a `NEXT_PUBLIC_` name.
+- `CONTACT_FORM_ENABLED`: leave unset or `false` until the intended private recipient is delivery-verified. Only the exact value `true` enables Contact, and both sender settings below must also exist. Verify real recipient inbox delivery before enabling, then rebuild/redeploy so the Contact page and API agree. This is server-only; never use a `NEXT_PUBLIC_` name.
 - `RESEND_API_KEY`: a Resend sending key.
-- `CONTACT_FROM_EMAIL`: a sender on a domain already verified in Resend, for example `Brooklyn Suppers <hello@brooklynsuppers.com>` if that sender/domain is verified. The visitor email is Reply-To; the destination is always `hello@brooklynsuppers.com` and cannot be supplied by a visitor. The owner prefers this forwarding address because it reaches the personal inbox they check.
+- `CONTACT_FROM_EMAIL`: a sender on a domain already verified in Resend, for example `Brooklyn Suppers <hello@brooklynsuppers.com>` if that sender/domain is verified. The visitor email is Reply-To; the destination is the validated server-only `CONTACT_TO_EMAIL` setting and cannot be supplied by a visitor. The owner prefers this forwarding address because it reaches the personal inbox they check.
 
-Never put keys in `NEXT_PUBLIC_` variables, code, commits, screenshots, issue comments, or PR descriptions. The routes return a clear unavailable state when settings are missing. Contact is disabled by default even when Resend credentials exist: the page hides the form and offers the existing Brooklyn Suppers Instagram link, without suggesting the known-bouncing recipient as its fallback. Disabled API/native POST responses return 503 with no provider request, retry form, or email fallback. When enabled after verified receiving, the existing contact form and direct-email fallback remain available. These safe failures are not proof of working delivery.
+Never put keys in `NEXT_PUBLIC_` variables, code, commits, screenshots, issue comments, or PR descriptions. The routes return a clear unavailable state when settings are missing. Contact is disabled by default even when Resend credentials exist: the page hides the form and offers the existing Brooklyn Suppers Instagram link, without suggesting the known-bouncing recipient as its fallback. Disabled API/native POST responses return 503 with no provider request, retry form, or email fallback. When enabled after verified receiving, the contact form is available and Contact fallbacks use Instagram. These safe failures are not proof of working delivery.
 
 In Mailchimp, confirm that the audience merge tags are `FNAME`, `LNAME`, and `MMERGE11` (dietary notes). Mark first and last names required in audience settings so other hosted signup paths also enforce the requirement. Check that the audience's confirmation email/form is configured and branded.
 
