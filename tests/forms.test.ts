@@ -14,6 +14,7 @@ beforeEach(() => {
   process.env.MAILCHIMP_API_KEY = "test-key-us9";
   process.env.MAILCHIMP_AUDIENCE_ID = "testaudience";
   process.env.CONTACT_FORM_ENABLED = "true";
+  process.env.CONTACT_TO_EMAIL = "owner@example.test";
   process.env.RESEND_API_KEY = "test-key";
   process.env.CONTACT_FROM_EMAIL = "Brooklyn Suppers <hello@brooklynsuppers.com>";
   stub = mock.method(globalThis, "fetch", async () => { throw new Error("Unexpected provider request"); });
@@ -121,13 +122,13 @@ test("contact uses the fixed owner inbox, safe text content, and the visitor as 
   mock.method(globalThis, "fetch", async (url: Parameters<typeof fetch>[0], options?: RequestInit) => {
     assert.equal(url, "https://api.resend.com/emails");
     const payload = JSON.parse(String(options?.body));
-    assert.deepEqual(payload.to, ["hello@brooklynsuppers.com"]);
+    assert.deepEqual(payload.to, ["owner@example.test"]);
     assert.equal(payload.reply_to, note.email);
     assert.equal(payload.html, undefined);
     assert.match(payload.text, /A question about dinner/);
     return Response.json({ id: "test-message" });
   });
-  const response = await contact(request("contact", note));
+  const response = await contact(request("contact", { ...note, to: "attacker@example.test" }));
   assert.equal(response.status, 200);
   assert.match((await response.json()).message, /Thanks/);
 });
@@ -159,4 +160,21 @@ test("cross-origin, malformed, and oversized bodies are rejected without contact
   assert.equal((await newsletter(request("newsletter", null))).status, 400);
   assert.equal((await newsletter(request("newsletter", { ...signup, dietary: "a".repeat(70000) }))).status, 400);
   assert.equal(stub.mock.callCount(), 0);
+});
+
+test("contact requires a valid private recipient and never exposes it in native responses", async () => {
+  for (const value of [undefined, "", "not-email", "owner@example.test\r\nBcc: attacker@example.test"]) {
+    if (value === undefined) delete process.env.CONTACT_TO_EMAIL;
+    else process.env.CONTACT_TO_EMAIL = value;
+    const response = await contact(request("contact", note));
+    assert.equal(response.status, 503);
+  }
+  assert.equal(stub.mock.callCount(), 0);
+  process.env.CONTACT_TO_EMAIL = "owner@example.test";
+  mock.restoreAll();
+  mock.method(globalThis, "fetch", async () => Response.json({ id: "ok" }));
+  const response = await contact(new Request("https://www.brooklynsuppers.com/api/contact", {method:"POST", body:new URLSearchParams(note)}));
+  const html = await response.text();
+  assert.doesNotMatch(html, /owner@example.test|mailto:/);
+  assert.match(html, /instagram.com/);
 });

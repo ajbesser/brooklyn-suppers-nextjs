@@ -11,7 +11,7 @@ export default function ContactPage() {
   return <ContentPage title={enabled ? "Send me a note." : "Get in touch."}>
     {enabled ? <>
     <p>Questions about a dinner, working together, or just want to say hi? I read every note and will reply as soon as I can.</p>
-    <p>Prefer your own email? <a className="underline" href={`mailto:${site.email}`}>{site.email}</a></p>
+    <p>You can also message <a className="underline" href={site.instagramUrl}>{site.instagramHandle} on Instagram</a>.</p>
     <ContactForm />
     </> : <>
       <p>The contact form is temporarily unavailable.</p>
