@@ -1,3 +1,7 @@
+## Direct-inbox Contact routing — latest owner request
+
+The owner approved using a different inbox instead of broken hello@ receiving. Contact now requires server-only `CONTACT_TO_EMAIL` with a valid single email address; visitors cannot override it. Configure it to the owner-approved personal Gmail inbox in Vercel, never NEXT_PUBLIC_. The recipient is never rendered on the page or native responses; Contact fallbacks use Instagram. Keep CONTACT_FORM_ENABLED false/unset until a preview delivery is received in the actual inbox, then configure Production and redeploy. DNS/Proton repair remains deferred. This supersedes the historical fixed hello@ destination below; public domain email links elsewhere are unchanged.
+
 # Forms: setup and delivery verification
 
 ## Required before enabling Contact delivery
