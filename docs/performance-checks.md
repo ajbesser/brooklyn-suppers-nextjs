@@ -1,3 +1,5 @@
+> Current: Speed Insights is published in production (a0d1496 and later); script verified. Production event receipt/real-visitor field data remain open under BES112. Historical preview-only statements below are superseded. Contact now works independently of domain receiving; see forms-setup.md.
+
 # Performance monitoring
 
 Web Analytics and Speed Insights serve different purposes. The existing Analytics component records visits. Speed Insights measures real-browser FCP, LCP, INP, CLS and TTFB through the Next.js component in the root layout.
